@@ -1,0 +1,178 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～戦争の参加者～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>戦争の参加者の概念</h3>
+    <p>戦争の参加者が誰なのか？<br>
+    といったことを取り扱いたいことは多いものです。<br>
+    </p>
+    <p>ところが戦争の参加者といっても、様々な視点があります。</p>
+    <ul class="pointlist">
+        <li>
+        <h4>参加大名</h4>
+        <p>大名という単位で見て、どの大名勢力が戦争に参加しているのか？</p>
+        <li>
+        <h4>参加軍団</h4>
+        <p>軍団という単位で見て、どの軍団勢力が戦争に参加しているのか？</p>
+        <li>
+        <h4>参加武将</h4>
+        <p>武将という単位で見て、一体誰が戦争に参加しているのか？<br>
+        ・現在の戦場全体(映ってる画面も映っていない画面も含めて)出陣しているのは誰か？<br>
+        ・今画面に映ってる戦場で出陣しているのは誰か？<br>
+        </p>
+    </ul>
+    <p>といった様々な分類があります。</p>
+    </li>
+    <li>
+    <h3>注意点</h3>
+    <p><span class="negative">戦争の具体的な参加勢力は、戦争が発生した直後に決まるわけではありません。<br>
+    戦争が発生した後、「<a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_join_seiryoku_decide">My_戦争参加勢力決定直後</a>」イベントハンドラが呼び出される直前に、<br>
+    具体的な戦争参加勢力が決定します。<br></span></p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p><br>
+    「<a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_join_seiryoku_decide">My_戦争参加勢力決定直後</a>」以降であれば、<br>
+    戦争中どこでも大名・軍団・武将に関する参加情報を引き出すことが出来ます。<br>
+    </p>
+    <fieldset class="code"><legend>大名の参加情報を得る</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+            int iBushouID = パラメタ.第１人称_武将番号;
+            if (武将.配列.Exists(iBushouID))
+            {
+                var dlist = 大名.戦争.参戦大名番号リスト;
+                foreach (int iDaimyoID in dlist)
+                {
+                    int iDaiBushouID = 大名.配列[iDaimyoID].大名_武将番号;
+                    if (武将.配列.Exists(iDaiBushouID))
+                    {
+                        デバッグ出力(武将.配列[iDaiBushouID].名字 &lt;&lt; &quot;家参戦&quot;);
+                    }
+                }
+
+            }
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>戦争を行っているのは、事実上「軍団単位」であるため、<br>
+    参戦情報については、軍団情報が一番充実しているといえます。<br>
+    </p>
+    <fieldset class="code"><legend>軍団の参加情報を得る</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+            int iBushouID = パラメタ.第１人称_武将番号;
+            if (武将.配列.Exists(iBushouID))
+            {
+                var glist = 軍団.戦争.参戦軍団番号リスト;
+                foreach (int iGundanID in glist)
+                {
+                    var g = 軍団.配列[iGundanID];
+                    int iGdcBushouID = g.軍団長_武将番号;
+                    if (武将.配列.Exists(iGdcBushouID))
+                    {
+                        デバッグ出力(武将.配列[iGdcBushouID].姓名 + &quot;の軍団参戦&quot;);
+
+                        int iSdsBushouID = g.戦争.総大将_武将番号;
+                        if (武将.配列.Exists(iSdsBushouID))
+                        {
+                            デバッグ出力(&quot;今回の戦の&quot; + 武将.配列[iSdsBushouID].姓名 + &quot;軍団の指揮官は&quot; + 武将.配列[iSdsBushouID].姓名 + &quot;です&quot;);
+                        }
+
+                        int stand = g.戦争.参戦立場;
+                        if (stand == 列挙.軍団.戦争.参戦立場.攻撃軍)
+                        {
+                            デバッグ出力(&quot;攻撃軍です&quot;);
+                        }
+                        else if (stand == 列挙.軍団.戦争.参戦立場.守備軍)
+                        {
+                            デバッグ出力(&quot;守備軍です&quot;);
+                        }
+                        else if (stand == 列挙.軍団.戦争.参戦立場.攻撃の援軍)
+                        {
+                            デバッグ出力(&quot;攻撃の援軍です&quot;);
+                        }
+                        else if (stand == 列挙.軍団.戦争.参戦立場.守備の援軍)
+                        {
+                            デバッグ出力(&quot;守備の援軍です&quot;);
+                        }
+                        else if (stand == 列挙.軍団.戦争.参戦立場.中立軍)
+                        {
+                            デバッグ出力(&quot;中立軍です&quot;);
+                        }
+                        else
+                        {
+                            デバッグ出力(&quot;不明な軍です&quot;);
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        return &quot;&quot;;
+    }
+
+
+</pre></fieldset>
+
+    </li>
+
+    <li>
+    <h3>使用例③</h3>
+    <p>武将という視点での、出陣者や参戦立場を取得したい<br>
+    そういうシーンも多いものです。<br>
+    武将番号から軍団番号を求めて、参戦立場を得る方法もありますが、<br>
+    武将個々にも参戦立場のプロパティが直接提供されています。</p>
+    <fieldset class="code"><legend>軍団の参加情報を得る</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+
+            var alllist = 武将.戦争.出陣中_武将番号リスト;
+            デバッグ出力(&quot;戦場全体で出陣中の武将一覧:&quot;);
+            foreach (int iBushouID in alllist)
+            {
+                デバッグ出力(武将.配列[iBushouID].姓名 + &quot; 参戦立場:&quot; + 武将.配列[iBushouID].戦争.参戦立場);
+            }
+            デバッグ出力(&quot;&quot;);
+
+            var curlist = 武将.戦争.出陣中_表示戦場_武将番号リスト;
+            デバッグ出力(&quot;現在表示中の戦場限定で、出陣中の武将一覧:&quot;);
+            foreach (int iBushouID in curlist)
+            {
+                デバッグ出力(武将.配列[iBushouID].姓名 + &quot; 参戦立場:&quot; + 武将.配列[iBushouID].戦争.参戦立場);
+            }
+            デバッグ出力(&quot;&quot;);
+
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+
+    </li>
+
+
+    <li>
+    <h3>その他</h3>
+    <p>「戦争の参加者」について、主な解説は以上となります。<br>
+    詳しくはHD.version.SDKソース内の「大名.h」「大名列挙.h」や「軍団.h」「軍団列挙.h」や「武将.h」「武将列挙.h」の<br>
+    戦争関連部分を参照してみてください。</p>
+    </li>
+</ul>
+

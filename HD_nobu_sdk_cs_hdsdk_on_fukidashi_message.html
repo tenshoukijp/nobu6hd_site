@@ -1,0 +1,188 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>My_噴出メッセージ直前</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>My_噴出メッセージ直前</h3>
+    <p>武将の吹き出しのメッセージ等、メッセージ的なものが表示される直前のタイミングで<br>
+    呼ばれるイベントハンドラとなります。<br>
+    文字列を返すことで、元のメッセージではなく、返したメッセージ内容に変更することが可能です。<br>
+
+    </p>
+    </li>
+    <li>
+    <h3>使い処</h3>
+    <p>主として特定の武将や特定の条件を満たした場合に、元のメッセージ内容を変更する際に使います。<br>
+    </p>
+    <li>
+    <h3>使用例①</h3>
+    <p>まずは使い方の基礎をしりましょう。<br>
+    文字列がどういった内容なのかを判定するためには、<br>
+    「文字列系に○○が含まれる」といった趣旨の判定が必然的に多くなります。<br>
+    </p>
+    <fieldset class="code"><legend>商人から米を買う際のメッセージの認識の仕方①</legend><pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (元メッセージ.Contains(&quot;他でもない&quot;) &amp;&amp; 元メッセージ.Contains(&quot;米を&quot;) &amp;&amp; 元メッセージ.Contains(&quot;ほど\xA売&quot;))
+        {
+            return &quot;米買い付け用\xA&quot; + &quot;メッセージだと\xA&quot; + &quot;認識しました\xA&quot;;
+        }
+
+        return &quot;&quot;;
+    }
+</pre></fieldset>
+    <p>このように、ひたすらString-&gt;Containsを繰り返すことでもある程度は判定が出来ますが、<br>
+    スマートではありません。<br>
+    </p>
+    <p>正規表現を使えば以下のようになります。<br>
+    </p>
+    <p><span class="negative">天翔記のメッセージの改行コードは通常とは異なり「\xA」となります。<br>
+    注意してください。</span></p>
+    <fieldset class="code"><legend>商人から米を買う際のメッセージの認識の仕方②</legend><pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (Regex.Match(元メッセージ, &quot;^他.+?\xA米を.+?ほど\xA売&quot;).Success)
+        {
+            return &quot;米買い付け用\xA&quot; + &quot;メッセージだと\xA&quot; + &quot;認識しました\xA&quot;;
+        }
+
+        return &quot;&quot;;
+    }
+</pre></fieldset>
+    <p>米だけではなく、馬や鉄砲にも対応するなら、以下のようになります。<br>
+    </p>
+    <fieldset class="code"><legend>商人から米・馬・鉄砲を買う際のメッセージの認識の仕方②</legend><pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (Regex.Match(元メッセージ, &quot;^他.+?\xA[米馬鉄砲]+を[0-9]+ほど\xA売&quot;).Success)
+        {
+            return &quot;買い付け用\xA&quot; + &quot;メッセージだと\xA&quot; + &quot;認識しました\xA&quot;;
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>
+
+    <li>
+    <h3>使用例②</h3>
+    <p>実際のメッセージをすりかえる際には、「誰が言ったメッセージなのか？」<br>
+    が一番大きな手掛かりとなるでしょう。<br>
+    </p>
+    <fieldset class="code"><legend>第１人称を取得して、判定する</legend><pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        int 第１人称_武将番号 = パラメタ.第１人称_武将番号;
+
+        if (武将.配列.Exists(第１人称_武将番号))
+        {
+            var b = 武将.配列[第１人称_武将番号];
+
+            if (b.列伝番号 == 列挙.武将.列伝番号.真田幸隆)
+            {
+                if (Regex.Match(元メッセージ, &quot;^他.+?\xA米を.+?ほど\xA売&quot;).Success)
+                {
+                    return &quot;米買い付け用\xA&quot; + &quot;メッセージだと\xA&quot; + &quot;認識しました\xA&quot;;
+                }
+                else if (Regex.Match(元メッセージ, &quot;^他.+?\xA馬を.+?ほど\xA売&quot;).Success)
+                {
+                    return &quot;馬買い付け用\xA&quot; + &quot;メッセージだと\xA&quot; + &quot;認識しました\xA&quot;;
+                }
+            }
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    <p><img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_on_fukidashi_01.png"></p>
+    </li>
+    <li>
+    <h3>使用例③</h3>
+    <p>メッセージを取り扱う以上、その一部分を抽出する、<br>
+    といったことは欠かせません。<br>
+    .NET FrameWorkの汎用的な正規表現のメソッドとなるため、詳細は割愛しますが、<br>
+    以下のように部分文字列を抽出する記述も多くなることでしょう。<br>
+    </p>
+    <fieldset class="code"><legend>第１人称・第２人称の両方を取得して、判定する</legend><pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        int 第１人称_武将番号 = パラメタ.第１人称_武将番号;
+
+        if (武将.配列.Exists(第１人称_武将番号))
+        {
+            var b = 武将.配列[第１人称_武将番号];
+
+            if (b.列伝番号 == 列挙.武将.列伝番号.真田幸隆)
+            {
+                // 正規表現オブジェクト
+                Regex reg1 = new Regex(&quot;^他.+?\xA(?&lt;何か&gt;.+?)を.+?ほど\xA売&quot;);
+
+                // 元メッセージとの正規表現結果。マッチ結果系の格納
+                Match match1 = reg1.Match(元メッセージ);
+
+                // マッチしているなら
+                if (match1.Success)
+                {
+                    // 「何か」のところの値を取得
+                    string nani = match1.Groups[&quot;何か&quot;].Value;
+                    return nani + &quot;買い付け用\xA&quot; + &quot;メッセージだと\xA&quot; + &quot;認識しました\xA&quot;;
+                }
+            }
+        }
+
+        return &quot;&quot;;
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例④</h3>
+    <p>噴出しメッセージでは２人の人間が会話をしていることが多いため、<br>
+    誰が誰に話しているのか？<br>
+    という第２人称も重要になることが多くなります。<br>
+    </p>
+    <fieldset class="code"><legend>第１人称・第２人称の両方を取得して、判定する</legend><pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        int 第１人称_武将番号 = パラメタ.第１人称_武将番号;
+        int 第２人称_武将番号 = パラメタ.第２人称_武将番号;
+
+        if (武将.配列.Exists(第１人称_武将番号) &amp;&amp; 武将.配列.Exists(第２人称_武将番号))
+        {
+            var b1 = 武将.配列[第１人称_武将番号];
+            var b2 = 武将.配列[第２人称_武将番号];
+
+            // 話してる人が第１人称。話相手が第２人称
+            if (b1.列伝番号 == 列挙.武将.列伝番号.武田信繁 &amp;&amp; b2.列伝番号 == 列挙.武将.列伝番号.武田晴信)
+            {
+                // 会見のメッセージ
+                if (Regex.Match(元メッセージ, &quot;^何をするか&quot;).Success)
+                {
+                    return &quot;信玄と信繁が\xA&quot; + &quot;会見していると\xA&quot; + &quot;認識しました\xA&quot;;
+                }
+            }
+        }
+        else
+        {
+            デバッグ出力(&quot;武将がそれ以外&quot;);
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    <p><img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_on_fukidashi_02.png"></p>
+    </li>
+    <li>
+    <h3>各シチュエーションのセリフ</h3>
+    <p>各シチュエーションのセリフがどういった内容なのか？<br>
+    については、「<a href="http://www19.atwiki.jp/nobu6/pages/263.html">天翔記 wiki</a>」によく纏まっています。<br>
+    </p>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>「My_噴出メッセージ直前」イベントハンドラについて、主な解説は以上となります。<br>
+    </p>
+    </li>
+</ul>
+

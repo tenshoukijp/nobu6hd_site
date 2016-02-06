@@ -1,0 +1,152 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～武将.戦争.ヘックス位置～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>武将.戦争.ヘックス位置</h3>
+    <p>武将.戦争.ヘックス位置とは、<br>
+    戦争中、画面に表示されているヘックス画面(野戦もしくは籠城戦)において、<br>
+    武将が居るヘックス(升目)の「位置」もしくは、その位置の役割(山・橋・門等)を得るための<br>
+    オブジェクトとなります。</p>
+    <p>ヘックスはゲーム中の機能でも下記のような升目になっていることがわかります。<br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_battle_hex_01.png"><br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_battle_hex_02.png"></p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <fieldset class="code"><legend>現在の画面に出陣している武将のヘックス位置を得る</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+            // 今表示中の武将達のヘックス位置を表示する。
+            var blist = 武将.戦争.出陣中_表示戦場_武将番号リスト;
+
+            // 今戦場に居る全員の位置等
+            foreach (int iBushouID in blist)
+            {
+                var b = 武将.配列[iBushouID];
+                var h = b.戦争.ヘックス位置;
+                デバッグ出力(b.姓名);
+                デバッグ出力(&quot;└ ヘックス位置:&quot; + &quot;(&quot; + h.Ｘ + &quot; , &quot; + h.Ｙ + &quot;)&quot;);
+            }
+        }
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>武将の位置をとるだけでは、あまり意味がありません。<br>
+    通常は武将Ａと武将Ｂのヘックス上での間隔などを得るために、<br>
+    位置をとっているといえるでしょう。</p>
+    <fieldset class="code"><legend>表示中の戦場に上杉謙信と武田信玄が両方いるなら、２人の間隔を得る</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+
+            var blist = 武将.戦争.出陣中_表示戦場_武将番号リスト;
+
+            int 上杉謙信_武将番号 = 武将.Find_武将番号(列挙.武将.列伝番号.長尾景虎);
+            int 武田信玄_武将番号 = 武将.Find_武将番号(列挙.武将.列伝番号.武田晴信);
+
+            // ２人とも今表示されている戦場に居るならば
+            if (blist.Contains(上杉謙信_武将番号) &amp;&amp; blist.Contains(武田信玄_武将番号))
+            {
+                var 謙信の位置 = 武将.配列[上杉謙信_武将番号].戦争.ヘックス位置;
+                var 信玄の位置 = 武将.配列[武田信玄_武将番号].戦争.ヘックス位置;
+
+                // C#版では、C++版とは異なり、演算子オーバーロードが定義されていないので、マニュアルで引き算する必要がある。
+                var vec = new ヘックスベクトル型();
+                vec.Ｘ = 謙信の位置.Ｘ-信玄の位置.Ｘ;
+                vec.Ｙ = 謙信の位置.Ｙ-信玄の位置.Ｙ;
+
+                // ヘックスマスとして勘定した場合の間隔(何マスで相手のところに到着するのか)
+                デバッグ出力(vec.間隔);
+
+                // こちらは普通のベクトルとしての長さ
+                デバッグ出力(vec.長さ);
+            }
+        }
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例③</h3>
+    <p>武将の具体的な位置に対応する「ヘックスの役割(山・橋・門等)」も<br>
+    同様の手段で得ることができます。<br>
+    <fieldset class="code"><legend>原始的な記述例</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+            // 今表示中の武将達のヘックス位置を表示する。
+            var blist = 武将.戦争.出陣中_表示戦場_武将番号リスト;
+            foreach (int iBushouID in blist)
+            {
+                var b = 武将.配列[iBushouID];
+                var h = b.戦争.ヘックス位置;
+                デバッグ出力(b.姓名 + &quot;:&quot;);
+                デバッグ出力(&quot;└ ヘックス役割:&quot; + h.役割);
+
+                if (h.役割 == 列挙.戦争.ヘックス.野戦役割.川)
+                {
+                    デバッグ出力(b.姓名 + &quot;は川の上に居ます&quot;);
+                }
+                else if (h.役割 == 列挙.戦争.ヘックス.野戦役割.道)
+                {
+                    デバッグ出力(b.姓名 + &quot;は道の上に居ます&quot;);
+                }
+                else if (h.役割 == 列挙.戦争.ヘックス.籠城戦役割.城壁)
+                {
+                    デバッグ出力(b.姓名 + &quot;は城壁の上に居ます&quot;);
+                }
+                else if (h.役割 == 列挙.戦争.ヘックス.籠城戦役割.櫓)
+                {
+                    デバッグ出力(b.姓名 + &quot;は櫓の上に居ます&quot;);
+                }
+            }
+        }
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例④</h3>
+    <p>その他、ヘックスの炎上情報や高さ情報なども得ることができます。</p>
+    <fieldset class="code"><legend>ヘックスの炎上状態やヘックスの高さ</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+
+            var blist = 武将.戦争.出陣中_表示戦場_武将番号リスト;
+
+            foreach (int iBushouID in blist)
+            {
+                var b = 武将.配列[iBushouID];
+
+                if (b.戦争.ヘックス位置.炎上 == 列挙.戦争.ヘックス.籠城戦炎上.炎上)
+                {
+                    デバッグ出力(b.姓名 + &quot;のヘックスは炎上しています!&quot;);
+                }
+                デバッグ出力(b.姓名 + &quot;の居る場所の高さ:&quot; + b.戦争.ヘックス位置.高さ);
+            }
+        }
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>武将.戦争.ヘックス位置について、主な解説は以上となります。<br>
+    詳しくはHD.version.SDKソース内の「戦争_ヘックス.h」や「戦争_ヘックス列挙.h」を参照してみてください。</p>
+    </li>
+</ul>
+

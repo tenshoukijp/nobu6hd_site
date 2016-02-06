@@ -1,0 +1,93 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～家宝～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>家宝の概念</h3>
+    <p>家宝と一言で言っても３つの概念で構成されます。<br>
+    </p>
+    <ul class="pointlist">
+        <li>
+        <h4>家宝</h4>
+        <p>家宝という抽象的なカテゴリの概念。</p>
+        <li>
+        <h4>家宝.配列</h4>
+        <p>家宝リストという、天翔記に存在するすべて(未登場や消失含む)の家宝の概念</p>
+        <li>
+        <h4>家宝.配列[ix]</h4>
+        <p>家宝１つの概念</p>
+    </ul>
+    <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>全ての家宝について所定の処理を施すいったシーンは少ないですが、<br>
+    ここでは家宝のプロパティの使い方を知る、ということで、<br>
+    その代表的な例を行ってみましょう。</p>
+    <fieldset class="code"><legend>家宝のプロパティの利用</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        foreach (var k in 家宝.配列)
+        {
+            // 全ての家宝の画像を茶釜とする。
+            k.画像 = 列挙.家宝.画像.茶釜;
+
+            // 全ての家宝を陣羽織とする
+            k.種類 = 列挙.家宝.種類.陣羽織;
+
+            // 全ての家宝の等級を1とする。
+            k.等級 = 1;
+
+            // 全ての家宝を登場させ、
+            k.登場 = true;
+
+            // 消失していたものは元へと戻す
+            k.消失 = false;
+        }
+    }
+</pre></fieldset>
+    <p>なお、家宝の「等級」と「効果」は常に連動するため、<br>
+    片方に値を設定すると、もう一方も連動して変化します。</p>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>次によくあるのが「特定の家宝」を名指して何か処理を施すというものです。<br>
+    天翔記の家宝はデフォルトでは、全て一意であるため、<br>
+    列挙として定義しています。</p>
+    <fieldset class="code"><legend>家宝を名指しして誰かに持たせる</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        int iBushouID = 武将.Find_武将番号(列挙.武将.列伝番号.織田信長);
+
+        // 武将が問題のない番号であれば、
+        if (武将.配列.Exists(iBushouID))
+        {
+            家宝.配列[列挙.家宝.家宝番号.孫子].所有武将番号 = iBushouID; // 所有者を信長に変更
+        }
+    }
+</pre></fieldset>
+    <p>又、名前から逆引きする手段も提供されています。<b>
+    家宝名を変更している場合は、こちらの方が直感的かもしれません。</p>
+    <fieldset class="code"><legend>家宝を名指しして誰かに持たせる</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        int iKahouID = 家宝.Find_家宝番号(&quot;孫子&quot;);
+        int iBushouID = 武将.Find_武将番号(列挙.武将.列伝番号.織田信長);
+
+        // 家宝も武将も問題のない番号であれば、
+        if (家宝.配列.Exists(iKahouID) &amp;&amp; 武将.配列.Exists(iBushouID))
+        {
+            家宝.配列[iKahouID].所有武将番号 = iBushouID; // 所有者を信長に変更
+        }
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>家宝について、主な解説は以上となります。<br>
+    家宝関連には他にもプロパティやメソッドがあります。<br>
+    詳しくはHD.version.SDKソース内の「家宝.h」や「家宝列挙.h」を参照してみてください。</p>
+    </li>
+</ul>
+

@@ -1,0 +1,44 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>HD.version.dllの作り方</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>Visual Studio 2015の準備</h3>
+    <p>導入時期にもよるかもしれませんが、Visual Studio 2015以降、<br>
+    Visual StudioをインストールしただけではC++のフルの機能が利用可能とはなっていません。<br>
+    </p>
+    <p>Visual Studio 2015のメニューより「ファイル」<i class="fa fa-arrow-right"></i>「新規作成」<i class="fa fa-arrow-right"></i>「プロジェクト」 を選び、<br>
+    以下の図のような、「Win32」や「CLR」といった項目が見えるよう、拡張機能をインストールしましょう。<br>
+    (これらの項目が見えていない場合は、これらの項目の替わりに何かインストールする項目が見えるハズです。)<br>
+    <br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_vs_need_01.png"><br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_vs_need_02.png"><br>
+    </p>
+    </li>
+    <li>
+    <h3>「Release」「x86」でビルド</h3>
+    <p>「Release」「x86」でビルドしてください。<br>
+    初めての際や、新しいバージョンのHD.version.SDKへと更新した場合など、<br>
+    必ずリビルドしましょう。<br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_vs_need_03.png"><br>
+    <fieldset class="alert alert-info"><legend>エラー追及などの際はDebugで</legend>フリーズなどが発生し、すぐには原因がわからない場合は、「Debug」「x86」でビルドし、<br>
+    怪しいと思う部分を大きく「try..catch」文で囲むことで原因を追究していきます。<br>
+    残念なことではありますが、%(tshd)sは本体に「アンチデバッグ機能」が搭載されているため、<br>
+    ゆっくりと「ステップ実行」をしてデバッグしてゆくことは出来ません。<br>
+    </fieldset>
+    </li>
+    <li>
+    <h3>HD.version.dll</h3>
+    <p>ReleaseフォルダにHD.version.dllが出来上がりますので、このファイルを天翔記フォルダへとコピーしましょう。<br>
+    </p>
+    <fieldset class="alert alert-info"><legend>天翔記フォルダ</legend>%(tshd)sの実行ファイルがある場所のこと。<br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_vs_need_04.png"><br>
+    </fieldset>
+    <fieldset class="alert alert-info"><legend>version.dll</legend>SDKに元々添付されているversion.dllのコピーも忘れないでください。<br>
+    %(tshd)sがversion.dllを呼び出し、<br>
+    version.dllが「どのプログラムから呼び出されたのか」を判断し、<br>
+    呼び出したのが%(tshd)sであれば、HD.version.dllを呼び出します。</fieldset>
+    <fieldset class="alert alert-info"><legend>コピーバッチの必要性</legend>開発をし始めると、１日100回はHD.version.dllをコピーすることになるハズです。
+    コピー用のバッチファイルなどを制作しておくのをお勧めします。</fieldset>
+    </li>
+</ul>
+

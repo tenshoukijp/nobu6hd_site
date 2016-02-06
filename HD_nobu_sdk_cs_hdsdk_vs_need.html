@@ -1,0 +1,42 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.dllの作り方</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>Visual Studio 2015の準備</h3>
+    <p>User.version.SDKそのものは、ほとんどソースを内包していません。<br>
+    普段C#を利用される方は、提供されている.NET FrameWorkライブラリそのものの具体的な実装内容を<br>
+    ソースまで巡って実際確認する、といった習慣はないことでしょう。<br></p>
+    <p>
+    どちらかと言えば、<span class="positive">「アセンブリとなるdll」を参照可能として加え、<br>
+    「入力補完」や「オブジェクトブラウザー」や「各種API資料」を元に使っていくというスタイル</span>だと思います。<br>
+    </p>
+    <p>User.verson.SDKもそのスタイルに習っています。<br>
+    <span class="positive">HD.version.dllをアセンブリとして加えることで、HD.version.SDKの98％ほどの機能が、<br>
+    そのまま利用可能</span>です。</p>
+    </li>
+    <li>
+    <h3>参照としてHD.version.dllを加える</h3>
+    <p><span class="negative">User.version.SDKは、そのままではコンパイルできません。<br>
+    参照として、HD.version.dllを追加</span>してください。<br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_01.png"><br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_05.png"><br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_02.png"><br>
+    <li>
+    <h3>User.version.dll</h3>
+    <p>User.version.SDKをコンパイルすると、<br>x86\ReleaseフォルダにUser.version.dllが出来上がりますので、<br>
+    このファイルを天翔記フォルダへとコピーしましょう。<br>
+    </p>
+    <fieldset class="alert alert-info"><legend>天翔記フォルダ</legend>%(tshd)sの実行ファイルがある場所のこと。<br>
+    <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_04.png"><br>
+    </fieldset>
+    <fieldset class="alert alert-info"><legend>version.dllとHD.version.dll</legend>SDKに元々添付されているversion.dllとHD.version.dllのコピーも忘れないでください。<br>
+    %(tshd)sがversion.dllを呼び出し、<br>
+    version.dllが「どのプログラムから呼び出されたのか」を判断し、<br>
+    呼び出したのが%(tshd)sであれば、HD.version.dllを呼び出します。<br>
+    そして、HD.version.dllは、User.version.dllの状態が正しければ、<br>
+    実装されているイベントハンドラだけ呼び出します。</fieldset>
+    <fieldset class="alert alert-info"><legend>コピーバッチの必要性</legend>開発をし始めると、１日100回はUser.version.dllをコピーすることになるハズです。
+    コピー用のバッチファイルなどを制作しておくのをお勧めします。</fieldset>
+    </li>
+</ul>
+

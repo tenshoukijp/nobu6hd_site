@@ -1,0 +1,89 @@
+%(hilight)s
+
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>HD.version.SDKからIronPythonModを使う場合②</h2>
+<ul class="checklist">
+    <li>
+    <h3>概要</h3>
+    <p>前節では、HD.version.SDKからIronPythonを呼び出すサンプルでした。<br>
+    ここでは、HD.version.SDKの値そのものをIronPythonとやりとりする例をみてみましょう。</p>
+    <p>HD.version.SDKのほとんどすべてのインスタンス(クラスオブジェクト)は、<br>
+    CLI(CLR)に沿ったものですので、IronPythonとインスタンスやクラスをやり取りし、<br>
+    直接情報を扱うことが出来ます。</p>
+    <li>
+    <h3>HD.version.SDK側</h3>
+
+    <fieldset class="code"><legend>HD.version.SDK側のソース</legend><pre class="brush:cpp;">
+#include &quot;天翔記クラス.h&quot;
+#include &quot;天翔記クラス_初期化.h&quot;
+
+
+using namespace System::Collections;
+
+using namespace IronPython::Hosting;
+using namespace Microsoft::Scripting::Hosting;
+
+
+ref class GREF {
+public:
+  static ScriptEngine^ pe;
+  static ScriptScope^ scope;
+};
+
+
+void 天翔記クラス::On_ゲームウィンドウ起動時() {
+  try {
+    GREF::pe = Python::CreateEngine();
+
+    // ファイルを実行。
+    GREF::scope = GREF::pe-&gt;ExecuteFile(&quot;script.py&quot;);
+  }
+  catch (Exception^ e) {
+    デバッグ出力 &lt;&lt; e-&gt;Message &lt;&lt; endl;
+  }
+}
+
+
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+
+  // スクリプトエラー等をキャッチできるようにしよう。
+  try {
+    // 「武将」のインスタンスを引数として、渡して、ArrayList^型を受け取る。
+    // ArrayList型の各要素は、武将情報型 (=武将->配列[i]の１人の武将分の型)とする。
+    auto funcDoBushouSomething = GREF::pe-&gt;Operations-&gt;GetMember&lt; Func&lt;武将リスト情報型^, ArrayList^&gt;^ &gt;(GREF::scope, &quot;DoBushouSomething&quot;);
+    ArrayList^ blist = funcDoBushouSomething(武将);
+    for each (Object^ o in blist) {
+      武将情報型^ b = (武将情報型^)o;
+      デバッグ出力 &lt;&lt; b-&gt;姓名 &lt;&lt; endl;
+    }
+  }
+  catch (Exception^ e) {
+    デバッグ出力 &lt;&lt; e-&gt;Message &lt;&lt; endl;
+  }
+
+
+}
+</pre></fieldset>
+    <li>
+    <h3>Python側</h3>
+    <p>「武将」クラスオブジェクトを受け取って、50歳を超える年齢の武将だけをArrayListに追加して返しています。</p>
+    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;">
+# coding: cp932
+
+from System.Collections import *
+
+def DoBushouSomething(武将):
+    blist = []
+    for b in 武将.配列:
+        if b.年齢 &gt; 50:
+            blist.append(b)
+
+    blist_array = ArrayList(blist)
+    return blist_array
+
+</pre>
+    </fieldset>
+    <p>以上となります。</p>
+    <p>今回の例をみてもわかるように、HD.versino.SDKのほどんど全てのクラスオブジェクトは<br>
+    IronPython側のスクリプトでも直接操作可能です。
+    </p>
+</ul>

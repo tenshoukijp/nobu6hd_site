@@ -1,0 +1,99 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～県～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>県の概念</h3>
+    <p>県とは、現代の日本の県のことです。<br>
+    天翔記の古い戦国時代のプログラムと、<br>
+    現代の何らかの日本全国関連のプログラムと相互に情報リンクさせる際などに、<br>
+    便利に利用することが出来ます。<br>
+    </p>
+    <p>県と一言で言っても３つの概念で構成されます。<br>
+    </p>
+    <ul class="pointlist">
+        <li>
+        <h4>県</h4>
+        <p>県という抽象的なカテゴリの概念。</p>
+        <li>
+        <h4>県.配列</h4>
+        <p>県リストという、天翔記に存在するすべての県のリストの概念。</p>
+        <li>
+        <h4>県.配列[ix]</h4>
+        <p>県１つの概念</p>
+    </ul>
+    <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>県オブジェクトの使い方は主に２つしかありません。<br>
+    ひとつは、県に含まれている城のリストを求める方法です。<br>
+    県→城を求めるものとなります。</p>
+    <fieldset class="code"><legend>県に所属する城を求める</legend> <pre class="brush:csharp;">
+    public static void My_シナリオ選択直後(string シナリオファイル名)
+    {
+        // 全ての県の名前や、その県に所属している城名を出す
+        foreach (var k in 県.配列)
+        {
+            デバッグ出力(&quot;---------------------------------&quot;);
+            デバッグ出力(k.県名);
+            var clist = k.所属城番号リスト;
+            foreach (int iCastleID in clist)
+            {
+                デバッグ出力(城.配列[iCastleID].城名称);
+            }
+        }
+    }
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>SDKでは、全ての県番号が列挙として定義済みです。<br>
+    なお、この県番号は、日本の正式な「都道府県番号」と完全に一致するものです。<br>
+    </p>
+    <fieldset class="code"><legend>指定の県に所属する城を求める</legend> <pre class="brush:csharp;">
+    public static void My_シナリオ選択直後(string シナリオファイル名)
+    {
+        int iKuniID = 列挙.県.県番号.新潟県;
+        デバッグ出力(&quot;---------------------------------&quot;);
+        デバッグ出力(県.配列[iKuniID].県名);
+        var clist = 県.配列[iKuniID].所属城番号リスト;
+        foreach (int iCastleID in clist)
+        {
+            デバッグ出力(城.配列[iCastleID].城名称);
+        }
+    }
+</pre></fieldset>
+    </li>
+
+    <li>
+    <h3>使用例③</h3>
+    <p>もう一つは、逆の流れで城→県を求めるものです。</p>
+    <fieldset class="code"><legend>城が所属する県を求める</legend> <pre class="brush:csharp;">
+    public static void My_シナリオ選択直後(string シナリオファイル名)
+    {
+        // 今天翔記に信長がいるか、居るなら武将番号を得る
+        int iBushouID = 武将.Find_武将番号(列挙.武将.列伝番号.織田信長);
+
+        if (武将.配列.Exists(iBushouID))
+        {
+            // 信長が居る城の番号
+            int iCastleID = 武将.配列[iBushouID].所属城番号;
+
+            if (城.配列.Exists(iCastleID))
+            {
+                int iKuniID = 城.配列[iCastleID].所属県番号;
+                デバッグ出力(&quot;信長は&quot; + 県.配列[iKuniID].県名 + &quot;に居る&quot;);
+            }
+        }
+    }
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>県について、主な解説は以上となります。<br>
+    県関連には他にもプロパティがあります。<br>
+    詳しくはHD.version.SDKソース内の「県.h」や「県列挙.h」を参照してみてください。</p>
+    </li>
+</ul>
+

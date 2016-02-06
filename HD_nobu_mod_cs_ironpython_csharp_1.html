@@ -1,0 +1,161 @@
+%(hilight)s
+
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる</h2>
+<ul class="checklist">
+    <li>
+    <h3>概要</h3>
+    <p>ここでは、C#からIronPythonを利用する例を記載しています。</p>
+    <p>最終的な目的は、IronPythonをUser.veresion.SDKから利用することにありますが、<br>
+    まずは、雰囲気を理解するため、IronPythonとC#の連携がいかに自然で強力であるか見てみましょう。</p>
+    <li>
+
+    <h3>プロジェクトの作成</h3>
+    <p>適当にC#のコンソールアプリケーションを作成してみましょう。<br>
+    .NET FrameWorkのバージョンは、HD.veresion.SDKと合わせて4.6としておきましょう。<br>
+    </p>
+    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_03.png"></p>
+    <p>HD.IronPythonMod.dllを参照に加えてください。<br>
+    <span class="posotive">合体DLLですので、他のネット上のIronPythonに関する記事とは異なり、「これ１つの参照を追加するだけでOK」</span>です。</p>
+    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_02.png"></p>
+    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_01.png"></p>
+
+    <li>
+    <h3>例１</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>C#側</h4>
+        <fieldset class="code"><legend>C#からIronPython関数の呼び出し</legend><pre class="brush:csharp;">
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ScriptRuntime pythonRuntime = Python.CreateRuntime();
+            dynamic scope = pythonRuntime.UseFile(&quot;script1.py&quot;);
+            scope.Hello();
+        }
+    }
+}
+
+</pre></fieldset>
+        <li>
+        <h4>Python側</h4>
+        <p>スクリプト側となるPython側のソースも用意します。<br>
+        Pythonは「空白やインデント」も文法に含まれますので、注意してください。</p>
+        <p><span class="negative">C#から呼ばれますので、「script1.pyのソースコードの文字コードをutf8」で保存</span>してください。<br>
+        (テキストエディタなどで実際に確認してください。間違っているとSyntax Errorが出ます)</p>
+
+        <fieldset class="code"><legend>IronPythonのソース:script1.py</legend><pre class="brush:python;">
+# coding: utf-8
+
+def Hello():
+  print(&quot;こんにちわ&quot;)
+</pre></fieldset>
+        <p>C#にあるdynamicは強力です。<br>
+        C#とIronPythonは、「ほぼシームレス」といって良いレベルで<br>
+        「関数」を実行できています。</p>
+    </ul>
+
+    <li>
+    <h3>例２</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>C#側</h4>
+        <fieldset class="code"><legend>C# からIronPythonクラスのインスタンス化</legend><pre class="brush:csharp;">
+using System;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+
+namespace ConsoleApplication3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ScriptRuntime pythonRuntime = Python.CreateRuntime();
+            dynamic scope = pythonRuntime.UseFile(@&quot;script2.py&quot;);
+            dynamic person = scope.ユーザー武将情報(&quot;武田&quot;, &quot;信玄&quot;);
+            string 姓名 = person.姓名();
+            Console.WriteLine(&quot;姓名:&quot; + 姓名);
+        }
+    }
+}
+
+</pre></fieldset>
+
+        <li>
+        <h4>Python側</h4>
+        <fieldset class="code"><legend>IronPythonのソース:script2.py</legend><pre class="brush:python;">
+# coding: utf-8
+
+class ユーザー武将情報:
+    def __init__(self, 名字, 名前):
+        self.名字 = 名字
+        self.名前 = 名前
+
+    def Hello(self):
+        print &quot;こんにちわ&quot;
+
+    def 姓名(self):
+        return self.名字 + &quot; &quot; + self.名前
+
+  </pre></fieldset>
+        <p>dynamicの力が発揮されています。</p>
+        <p>PythonのクラスのC#にてインスタンスを生成し、そのインスタンスのメソッドにアクセスできます。</p>
+    </ul>
+
+    <li>
+    <h3>例３</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>C#側</h4>
+        <fieldset class="code"><legend>C# からIronPythonクラスのインスタンス化</legend><pre class="brush:csharp;">
+using System;
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+
+namespace ConsoleApplication3
+{
+  class ユーザー武将情報 {
+    public string 名字 { set; get; }
+    public string 名前 { set; get; }
+
+    public string 姓名()
+    {
+      return this.名前 + &quot; &quot; + this.名字
+    }
+  }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            ScriptRuntime pythonRuntime = Python.CreateRuntime();
+            ユーザー武将情報 i武将 = new ユーザー武将情報 { 名字 = &quot;上杉&quot;, 名前 = &quot;景虎&quot; }
+
+            dynamic scope = pythonRuntime.UseFile(@&quot;script3.py&quot;);
+            scope.情報出力(i武将);
+        }
+    }
+}
+
+
+</pre></fieldset>
+
+        <li>
+        <h4>Python側</h4>
+        <fieldset class="code"><legend>IronPythonのソース:script3.py</legend><pre class="brush:python;">
+# coding: utf-8
+
+def 情報出力(武将):
+    return 武将.名字 + " " + 武将.名前
+
+  </pre></fieldset>
+        <p>このようにC#側のオブジェクトをそのままIronPythonに渡してもかまいません。</p>
+    </ul>
+</ul>
+

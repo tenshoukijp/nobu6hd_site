@@ -1,0 +1,54 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～暦～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>暦の概念</h3>
+    <p>暦の概念は、主として年・季節を取得するためのAPI用オブジェクトです。<br>
+    西暦と和暦の両方が得られる仕組みとなっています。</p>
+
+    <li>
+    <h3>使用例</h3>
+    <fieldset class="code"><legend>西暦・季節・和暦を得る</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        デバッグ出力(&quot;天翔記基準年&quot; + 暦.天翔記基準年);
+        デバッグ出力(&quot;西暦&quot; + 暦.西暦);
+
+
+        string[] list = { &quot;春&quot;, &quot;夏&quot;, &quot;秋&quot;, &quot;冬&quot; };
+        if (列挙.暦.季節.春 &lt;= 暦.季節 &amp;&amp; 暦.季節 &lt;= 列挙.暦.季節.冬)
+        {
+            デバッグ出力(&quot;季節&quot; + list[暦.季節]);
+        }
+
+        デバッグ出力(&quot;天翔記の現在の和暦&quot;);
+        var w = 暦.Get_和暦();
+        デバッグ出力(&quot;元号&quot; + w.元号);
+        デバッグ出力(w.数値紀年);
+        デバッグ出力(w.漢字紀年);
+
+        デバッグ出力(&quot;天翔記の1520年7月21の和暦&quot;);
+        var cw = 暦.Get_和暦(1520, 7, 21);
+        デバッグ出力(&quot;元号&quot; + cw.元号);
+        デバッグ出力(cw.数値紀年);
+        デバッグ出力(cw.漢字紀年);
+
+        デバッグ出力(&quot;天翔記の1950年3月3の和暦&quot;);
+        var kw = 暦.Get_和暦(1950, 3, 3);
+        デバッグ出力(&quot;元号&quot; + kw.元号);
+        デバッグ出力(kw.数値紀年);
+        デバッグ出力(kw.漢字紀年);
+    }
+
+  </pre></fieldset>
+
+    </li>
+
+    <li>
+    <h3>その他</h3>
+    <p>暦に関する主な所は以上となります。<br>
+    詳しくはHD.version.SDKソース内の「暦.h」や「暦列挙.h」などを参照してください。<br>
+    </p>
+    </li>
+</ul>
+

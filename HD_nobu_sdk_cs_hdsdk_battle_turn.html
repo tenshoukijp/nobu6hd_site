@@ -1,0 +1,35 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～戦争.ターン～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>戦争.ターンの概念</h3>
+    <p>戦争.ターンとは、戦争画面の様々ターンを扱うオブジェクトのことです。<br>
+    </p>
+    <li>
+    <h3>使用例①</h3>
+    <p>現在の所、戦争.ターンオブジェクトが提供するものは、<br>
+    戦争画面の「残りターン数」情報のみの提供となります。<br>
+    「<a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_remain_turn_change">My_戦争_残りターン変更時</a>」のメソッドの「残りターン数」の情報を、<br>
+    どのイベントハンドラでも利用可能にしていると考えれば良いでしょう。</p>
+    <p><img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_on_battle_remain_turn_change_01.png"></p>
+    <fieldset class="code"><legend>戦争時の残りターン数を得る</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
+        {
+            デバッグ出力(&quot;残りターン:&quot; + 戦争.ターン.残りターン);
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>戦争.ターンに関する主な所は以上となります。<br>
+    詳しくはHD.version.SDKソース内の「戦争_ターン.h」を参照してください。<br>
+    </p>
+    </li>
+</ul>
+

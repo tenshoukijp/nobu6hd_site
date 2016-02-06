@@ -1,0 +1,242 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～武将～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>武将の概念</h3>
+    <p>武将と一言で言っても３つの概念で構成されます。<br>
+    </p>
+    <ul class="pointlist">
+        <li>
+        <h4>武将</h4>
+        <p>武将という抽象的なカテゴリの概念。</p>
+        <li>
+        <h4>武将.配列</h4>
+        <p>武将リストという、「その瞬間」天翔記に登場している武将全員(姫含む)の概念</p>
+        <li>
+        <h4>武将.配列[ix]</h4>
+        <p>武将１人の概念</p>
+    </ul>
+    <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>最も単純な例は、やはり武将全員分をforループで回して順次処理をするというものです。<br>
+    以下は武将が持つプロパティのほんの一部です。</p>
+    <fieldset class="code"><legend>武将のプロパティの利用</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        foreach (var b in 武将.配列)
+        {
+
+            // 「Is_プレイヤ麾下武将」とはプレイヤの配下の武将のこと。
+            // プレイヤ大名の第２軍団の武将達も含む概念。
+            //
+            // プレイヤが直接操作することが可能な武将には、
+            // 別途「Is_プレイヤ担当武将」というのもある。
+            if (b.Is_プレイヤ麾下武将)
+            {
+                b.兵士 = 100;
+                b.騎馬鉄砲 = true;
+                b.兵科 = 列挙.武将.兵科.鉄砲;
+                b.職業 = 列挙.武将.職業.僧侶;
+                b.技能暗殺 = true;
+                b.水軍適性 = 列挙.武将.水軍適性.Ｓ;
+            }
+        }
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>次によくあるのが「特定の武将」を名指して何か処理を施すというものです。<br>
+    天翔記の武将は、名前が途中で変わってしまう武将もいるため、<br>
+    <span class="positive">最も強力な武将指定手段は、「原則不動にして1300人分の通し番号」と言える「列伝番号」</span>となります。<br>
+    </p>
+    <fieldset class="code"><legend>原始的な記述例</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        // 自分で全部書く原始的な方法
+        int iBushouID = 0xFFFF;
+
+        // forを回して、武田晴信の武将列伝の人と合致すれば…
+        // 武将番号を控える
+        foreach (var b in 武将.配列)
+        {
+            if (b.列伝番号 == 列挙.武将.列伝番号.武田晴信)
+            {
+                iBushouID = b.番号;
+            }
+        }
+
+        // その番号が配列の範囲に入っていれば…
+        if (0 &lt;= iBushouID &amp;&amp; iBushouID &lt; 武将.配列.Count)
+        {
+            武将.配列[iBushouID].士気 = 100;
+        }
+    }
+</pre></fieldset>
+    <p>このような記述が自力で出来ることは重要ですが、<br>
+    より簡単に逆引きする手段が提供されています。</p>
+    <fieldset class="code"><legend>列伝番号での逆引きを使った記述例</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        // 列伝から武将番号を逆引きする方法
+        int iBushouID = 武将.Find_武将番号(列挙.武将.列伝番号.武田晴信);
+
+        // 武田晴信が居るならば…
+        if (0 &lt;= iBushouID &amp;&amp; iBushouID &lt; 武将.配列.Count)
+        {
+            武将.配列[iBushouID].士気 = 100;
+        }
+    }
+</pre></fieldset>
+    <p>「列伝」を持たない自作武将の場合には、「姓名」による指定となるでしょう。<br>
+    但し、姓名を使用した逆引きは慎重を要します。<br>
+    その通りの姓名でなければ、逆引きが成立しないためです。<br>
+    又、姓名は被る武将がいる可能性を否定できません。<br>
+    それでも、新規武将などには列伝が存在しないため、<br>
+    以下のような姓名に頼る形の逆引きとなりやすいでしょう。</p>
+    <fieldset class="code"><legend>姓名での逆引きを使った記述例</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        // 姓名から武将番号を逆引きする方法
+        // もし&quot;武田信玄&quot;という名前に改名していると逆引きが成立せず0xFFFFが返ってくる。
+        int iBushouID = 武将.Find_武将番号(&quot;武田晴信&quot;);
+
+        // &quot;武田晴信&quot;という姓名の人物が居るならば…
+        if (0 &lt;= iBushouID &amp;&amp; iBushouID &lt; 武将.配列.Count)
+        {
+            武将.配列[iBushouID].士気 = 100;
+        }
+    }
+</pre></fieldset>
+    <p>又、Exists関数を利用すれば、「0 &lt;= 番号 &amp;&amp; 番号 &lt; ○○.配列.Count」のチェックが楽になります。</p>
+    <fieldset class="code"><legend>姓名での逆引きを使った記述例</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        // 姓名から武将番号を逆引きする方法
+        // もし&quot;武田信玄&quot;という名前に改名していると逆引きが成立せず0xFFFFが返ってくる。
+        int iBushouID = 武将.Find_武将番号(&quot;武田晴信&quot;);
+
+        // &quot;武田晴信&quot;という姓名の人物が居るならば…
+        if (武将.配列.Exists(iBushouID))
+        {
+            武将.配列[iBushouID].士気 = 100;
+        }
+    }
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例③</h3>
+    <p>特定の武将１人ではなく、２人の間柄をどうこう、といった処理をすることも多いものです。</p>
+    <fieldset class="code"><legend>別の女性と結婚する(離婚伴う)</legend> <pre class="brush:csharp;">
+        public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        // 列伝から武将番号を逆引きする方法
+        int 一人目武将ID = 武将.Find_武将番号(列挙.武将.列伝番号.織田信長);
+        int 二人目武将ID = 武将.Find_武将番号(列挙.武将.列伝番号.前田松);
+
+        // 両方とも配列内に収まっている
+        if (武将.配列.Exists(一人目武将ID) &amp;&amp; 武将.配列.Exists(二人目武将ID) )
+        {
+            武将.配列[一人目武将ID].Do_結婚(二人目武将ID);
+        }
+    }
+</pre></fieldset>
+    <p>２人の相性なども重要かもしれません。</p>
+    <fieldset class="code"><legend>２人の相性差をデバッグ出力</legend> <pre class="brush:csharp;">void 天翔記クラス::My_戦略_軍団ターン変更時(int 軍団番号) {
+
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        // 列伝から武将番号を逆引きする方法
+        int 一人目武将ID = 武将.Find_武将番号(列挙.武将.列伝番号.織田信長);
+        int 二人目武将ID = 武将.Find_武将番号(列挙.武将.列伝番号.長尾景虎);
+
+        // 両方とも配列内に収まっている
+        if (武将.配列.Exists(一人目武将ID) &amp;&amp; 武将.配列.Exists(二人目武将ID) )
+        {
+            デバッグ出力 (&quot;★相性差&quot; + 武将.配列[一人目武将ID].Get_相性差(二人目武将ID) );
+        }
+    }
+
+</pre></fieldset>
+    <p>これら以外にも、数十個の２人の関係性を判定する関数等を提供しています。</p>
+    </li>
+    <li>
+    <h3>使用例④</h3>
+    <p>顔グラを自動で「取込み画像」のものへと差換えたい、といったことも<br>
+    よくある要望のうちの一つでしょう。<br>
+    </p>
+    <p>顔グラの取込み自体は、HD版付属の顔グラツールで行えますので、<br>
+    ここでは大量の顔グラを自動で差し替える場合の記述例となります。</p>
+    <p>「My_噴出メッセージ直前」のイベントハンドラに記述するのは、<br>
+    このイベントハンドラが比較的頻繁に呼ばれるイベントハンドラであり、<br>
+    このイベントハンドラが１度も呼ばれることなく、<br>
+    武将の顔を見るといった機会はゲーム構成上、まずありえないからです。
+    </p>
+<fieldset class="code"><legend>全ての武将の顔グラ差し替えを自動化</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        // 全ての武将に対して…
+        foreach (var b in 武将.配列)
+        {
+
+            // 天翔記に元々存在する武将であれば…
+            if (0 &lt;= b.列伝番号 &amp;&amp; b.列伝番号 &lt; 1300)
+            {
+                // 差換えの顔が反映されていなければ…
+                if (b.差換顔番号 == 0)
+                {
+                    // 列伝番号に対応させて取込み画像を1300人分用意したので、それへと差換える、といった場合の記述
+                    b.差換顔番号 = 列挙.武将.差換顔番号.取込１ + b.列伝番号 + 1;
+                }
+            }
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    <p>全員分を用意しているといったことはまずなく、<br>
+    特定の人物分のみを用意していることが多いものです。<br>
+    そういった場合には、下記のように列伝と値を対応させたキーと値の対応表を作るなどして<br>
+    順次反映させる形となります。</p>
+    <fieldset class="code"><legend>特定の武将の顔グラ差し替えを自動化</legend> <pre class="brush:csharp;">
+using System.Collections.Generic;
+
+
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        Dictionary&lt;int, int&gt; dict = new Dictionary&lt;int, int&gt;();
+
+        dict[列挙.武将.列伝番号.長尾景虎] = 3; // 長尾景虎には取込み画像の0003番を
+        dict[列挙.武将.列伝番号.松平元康] = 2; // 徳川家康には取込み画像の0002番を
+
+        foreach (var b in 武将.配列)
+        {
+            // 辞書に登録されている。
+            if (dict.ContainsKey(b.列伝番号))
+            {
+                // まだ差換えたことがなければ
+                if (b.差換顔番号 == 0)
+                {
+                    // 差換えの顔番号は、取込み画像のスタート基点＋上の辞書の「キーに対応する値の部分」
+                    b.差換顔番号 = 列挙.武将.差換顔番号.取込１ + dict[b.列伝番号];
+                }
+            }
+        }
+
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>    <li>
+    <h3>その他</h3>
+<p>武将について、主な解説は以上となります。<br>
+武将関連には他にも非常に多数のプロパティやメソッドがあります。<br>
+詳しくはHD.version.SDKソース内の「武将.h」や「武将列挙.h」を参照してみてください。</p>
+</li>
+</ul>
+

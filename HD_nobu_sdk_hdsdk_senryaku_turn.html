@@ -1,0 +1,102 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>HD.version.SDK ～戦略-&gt;ターン～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>戦略-&gt;ターンの概念</h3>
+    <p>戦略-&gt;ターンとは、戦略画面の大名ターンもしくは軍団ターンのことです。<br>
+    </p>
+    <p>「現在ターンが回っている大名」「ターンが回っている軍団」<br>
+    を簡単に得ることが出来るよう、「戦略-&gt;ターン」オブジェクトが提供されています。<br>
+    </p>
+    <li>
+    <h3>使い処</h3>
+    <p>専用のイベントハンドラとして、「<a href="?page=HD_nobu_sdk_hdsdk_on_main_gundan_turn_change">On_戦略_軍団ターン変更時</a>」<br>
+    というイベントハンドラがあります。<br>
+    </p>
+    <p>よって、「戦略-&gt;ターン」オブジェクトを利用するのは、<br>
+    「On_戦略_軍団ターン変更時」以外のイベントハンドラで、 ターン情報を得たい時、というのがほとんどとなります。</p>
+    <h3>注意点</h3>
+    <p><span class="negative">「大名ターン」と「大名ターン」の「間」</span>など、「どの軍団のターンでもない」といった状態は頻繁に発生します。<br>
+    そういった場合、<span class="negative">ターン軍団番号やターン大名番号には「0xFFFF」</span>が入った状態となります。<br>
+    </p>
+    <p><span class="posotive">なお、戦争自体も「戦争を仕掛けた軍団」の行動の一部分ですから、<br>
+    戦争をしかけた軍団の「戦略-&gt;ターン」に含まれます。注意してください。</span></p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <fieldset class="code"><legend>ターン大名番号とターン軍団番号</legend> <pre class="brush:cpp;">
+String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+
+  int iGundanID = 戦略-&gt;ターン-&gt;ターン軍団番号;
+  if (0 &lt;= iGundanID &amp;&amp; iGundanID &lt; 軍団-&gt;配列-&gt;Count) {
+
+    auto g = 軍団-&gt;配列[iGundanID];
+
+    int iBushouID = g-&gt;軍団長_武将番号;
+
+    if (0 &lt;= iBushouID &amp;&amp; iBushouID &lt; 武将-&gt;配列-&gt;Count) {
+      auto b = 武将-&gt;配列[iBushouID];
+      デバッグ出力 &lt;&lt; &quot;軍団長&quot; &lt;&lt; b-&gt;姓名 &lt;&lt; &quot;ターン内のメッセージです。&quot; &lt;&lt; endl;
+    }
+  }
+
+  int iDaimyoID = 戦略-&gt;ターン-&gt;ターン大名番号;
+  if (0 &lt;= iDaimyoID &amp;&amp; iDaimyoID &lt; 大名-&gt;配列-&gt;Count) {
+
+    auto d = 大名-&gt;配列[iDaimyoID];
+
+    int iBushouID = d-&gt;大名_武将番号;
+
+    if (0 &lt;= iBushouID &amp;&amp; iBushouID &lt; 武将-&gt;配列-&gt;Count) {
+      auto b = 武将-&gt;配列[iBushouID];
+      デバッグ出力 &lt;&lt; &quot;大名:&quot; &lt;&lt; b-&gt;姓名 &lt;&lt; &quot;ターン内のメッセージです。&quot; &lt;&lt; endl;
+    }
+  }
+
+  return &quot;&quot;;
+}
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>最も多い使用例の１つは、やはり、現在プレイヤのターンなのか？<br>
+    といった判定でしょう。</p>
+    <fieldset class="code"><legend>ターンが回ってきているのはプレイヤ操作の軍団か？</legend> <pre class="brush:cpp;">
+String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+
+  int iGundanID = 戦略-&gt;ターン-&gt;ターン軍団番号;
+  if (0 &lt;= iGundanID &amp;&amp; iGundanID &lt; 軍団-&gt;配列-&gt;Count) {
+
+    auto g = 軍団-&gt;配列[iGundanID];
+
+    if (g-&gt;Is_プレイヤ担当軍団) {
+      デバッグ出力 &lt;&lt; &quot;プレイヤが直接操作している軍団のターン&quot; &lt;&lt; endl;
+    }
+    if (g-&gt;Is_プレイヤ麾下軍団) {
+      デバッグ出力 &lt;&lt; &quot;プレイヤが支配下に置いている軍団(直接担当している第１軍団含む)のターン&quot; &lt;&lt; endl;
+    }
+  }
+
+  int iDaimyoID = 戦略-&gt;ターン-&gt;ターン大名番号;
+  if (0 &lt;= iDaimyoID &amp;&amp; iDaimyoID &lt; 大名-&gt;配列-&gt;Count) {
+
+    auto d = 大名-&gt;配列[iDaimyoID];
+
+    if (d-&gt;Is_プレイヤ担当大名) {
+      デバッグ出力 &lt;&lt; &quot;プレイヤの大名のターン&quot; &lt;&lt; endl;
+    }
+  }
+
+  return &quot;&quot;;
+}
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>戦略-&gt;ターンに関する主な所は以上となります。<br>
+    詳細は「戦略_ターン.h」を参照してください。<br>
+    </p>
+    </li>
+</ul>
+

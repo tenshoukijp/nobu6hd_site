@@ -1,0 +1,84 @@
+%(hilight)s
+
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる③</h2>
+<ul class="checklist">
+    <li>
+    <h3>概要</h3>
+    <p>前節までで、C#とIronPythonとのやりとりの基本は理解できました。<br>
+    今節では実際に使用してみましょう。<br>
+    <li>
+    <h3>HD.version.SDK側</h3>
+
+    <fieldset class="code"><legend>HD.version.SDK側のソース</legend><pre class="brush:cpp;">
+using System;
+using System.Collections.Generic;
+
+
+using IronPython.Hosting;
+using Microsoft.Scripting.Hosting;
+
+
+    /// これ以降は原則的には全て扱える。
+    public static void My_ゲームウィンドウ起動時()
+    {
+        try
+        {
+            pe = Python.CreateEngine();
+            scope = pe.ExecuteFile(&quot;script.py&quot;);
+            // UseFile メソッドは Python 側で指定された検索パス上のファイルも探する。
+            // ExecuteFile メソッドはそのような探索の機能を持っていない。指定の通りのファイルを読みこんで実行する。
+        }
+        catch (Exception ex)
+        {
+            デバッグ出力(ex.Message);
+        }
+    }
+
+
+    private static ScriptEngine pe;
+    private static dynamic scope;
+
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        try {
+            var blist = scope.武将フィルター(武将);
+            foreach (int ix in blist)
+            {
+                デバッグ出力(武将.配列[ix].姓名);
+            }
+        } catch (Exception ex)
+        {
+            デバッグ出力(ex.Message);
+        }
+
+    }
+
+
+
+</pre></fieldset>
+    <li>
+    <h3>Python側</h3>
+    <p>「武将」クラスオブジェクトを受け取って、50歳を超える年齢の武将だけをList&lt;int&gt;に追加して返しています。</p>
+    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;">
+# coding: utf8
+
+from System.Collections.Generic import List
+
+def 武将フィルター(武将):
+    blist = []
+    for b in 武将.配列:
+        if b.年齢 > 50:
+            blist.append(b.番号)
+
+    blist_list = List[int](blist)
+    return blist_list
+
+</pre></fieldset>
+    <p>これまでと変わるところはありません。</p>
+    <p>IronPythonのList[int](python_array)の部分は、C#のList&lt;int&gt;(int[])に相当します。<br>
+    </p>
+    <p>以上となります。<br></p>
+    <p>
+    C#自体が優れているため、なかなかスクリプト言語に頼るといった機会は少ないかもしれませんが、<br>
+    検討材料のひとつにしてください。</p>
+</ul>

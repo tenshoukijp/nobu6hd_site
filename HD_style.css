@@ -1,0 +1,686 @@
+/**************************/ /* 全体設定 */ /**************************/
+body {
+    margin: 0;
+    padding: 0px;
+    background-color: #fafafa;
+}
+
+/**************************/ /* 画像系 */ /**************************/
+img {
+    border:1px solid #666666;
+    box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 2px 3px 1px rgba(0, 0, 0, .5);
+}
+
+/* noedge が付いているアトリビュートは打消し */
+img[attr='noedge'] {
+    border-width: 0px;
+    border:0px solid #ffffff;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+/* イメージをクリックした時用の背景 */
+.overlay {
+    position: absolute;
+    display: none;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.6);
+}
+.overlay img {
+    display: inline-block;
+    position: absolute;
+    border:2px solid #666666;
+    box-shadow: 0px 4px 6px 2px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0px 4px 6px 3px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 4px 6px 3px rgba(0, 0, 0, .5);
+}
+.overlay img[attr='noedge'] {
+    display: inline-block;
+    position: absolute;
+    border-width: 0px;
+    border:0px solid #ffffff;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+span.img_seperator {
+    margin-left:5px;
+    margin-right:5px;
+}
+
+span.underline {
+    text-decoration: underline;
+}
+
+span.keyword {
+    border:2px solid #99f;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+div.head_continue {
+    height:100px;
+}
+
+
+tr,th,td {
+    vertical-align: top;
+}
+
+div.paragraph {
+    font-size: 1.5em;
+    line-height: 1.4em;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-right: 20px;
+    min-width: 1100px;
+}
+
+/**************************/ /* パラグラフ内のヘッダー系 */ /**************************/
+div.paragraph h2 {
+    font-size: 1.9em;
+    line-height: 1.5em;
+    position: relative;
+    font-weight: bold;
+    margin: 0;
+    padding-left:10px;
+    border-bottom: 7px solid #2C2AB9;
+}
+
+
+/* 先頭以外のh2ヘッダなら上部にマージン */
+div.paragraph h2:not(:first-child) {
+    margin-top:100px;
+    font-size: 1.7em;
+}
+
+div.paragraph > h2 > i {
+    margin-left  : 0px;
+    margin-right : 7px;
+}
+
+/* パラグラフ内のトップリスト */
+div.paragraph ul.checklist {
+    list-style: none;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+div.paragraph ul.checklist>li {
+    margin-bottom: 50px;
+}
+
+div.paragraph ul.checklist li h3:before {
+    color: #1f4164;
+    font-size: 1.0em;
+    position: relative;
+    left: -0.2em;
+    font-family: 'FontAwesome';
+    content: '\f14a';
+}
+
+div.paragraph ul.pointlist {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+div.paragraph ul.pointlist li h4:before {
+    color: #1f4164;
+    font-size: 1.0em;
+    position: relative;
+    left: -0.1em;
+    font-family: 'FontAwesome';
+    content: '\f0a9';
+}
+
+div.paragraph ul.arrowlist {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+div.paragraph ul.arrowlist li h5:before {
+    color: #1f4164;
+    font-size: 0.9em;
+    position: relative;
+    left: -0.1em;
+    font-family: 'FontAwesome';
+    content: '\f101';
+}
+
+
+/**************************/ /* パラグラフ内のコンポーネント */ /**************************/
+div.paragraph p {
+    padding-left: 20px;
+}
+
+div.paragraph h3 {
+    font-size: 1.5em;
+    line-height: 1.2em;
+    border-bottom: 2px solid #2C2AB9;
+}
+
+div.paragraph h4 {
+    font-size: 1.3em;
+    line-height: 1.1em;
+    border-bottom: 1px dotted #2C2AB9;
+    margin: 5px;
+}
+
+div.paragraph h5 {
+    font-size: 1.1em;
+    line-height: 1.1em;
+    border-bottom: 1px dotted #2C2AB9;
+    margin: 2px;
+}
+
+div.paragraph a:hover {
+    color: #9999ff;
+}
+
+div.paragraph i#link_icon {
+    font-family: 'FontAwesome';
+    font-size: 0.8em;
+    vertical-align: top;
+    color: #333399;
+}
+
+div.paragraph span.positive {
+    color: #000099;
+    font-weight: bold;
+}
+
+div.paragraph span.negative {
+    color: red;
+}
+
+div.paragraph table#matrix_table {
+    border: 1px #333333 solid;
+    border-collapse: collapse;
+}
+
+/**************************/ /* メモ */ /**************************/
+
+div.paragraph .memo {
+    min-width : 600px;
+    max-width : 1200px;
+    display: block;
+    position: relative;
+    color: #000000;
+    background: #ffffff;
+    font-size: 16pt;
+    border: 2px solid #bbbbbb;
+    margin: 10px 150px 15px 10px;
+    padding: 10px 5px 10px 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 0 2px rgba(255, 255, 255, 0.3) inset,
+                0 0 10px rgba(0, 0, 0, 0.1) inset,
+                0 1px 20px rgba(0, 0, 0, 0.1);
+}
+
+div.paragraph .memo:after,div.paragraph .memo:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    height: 0;
+    width: 0;
+}
+
+div.paragraph .memo:after {
+    left: 40px;
+    border: 10px solid transparent;
+    border-top: 10px solid #ffffff;
+}
+
+div.paragraph .memo:before {
+    left: 37px;
+    border: 13px solid transparent;
+    border-top: 13px solid #cccccc;
+}
+
+/**************************/ /* プログラムコード */ /**************************/
+fieldset.code {
+    display: block;
+    min-width : 600px;
+    max-width : 1200px;
+    background-color: #fcfcfc;
+    padding: 1px;
+    border:1px solid #bbb;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 0 2px rgba(255, 255, 255, 0.3) inset,
+                0 0 10px rgba(0, 0, 0, 0.1) inset,
+                0 1px 20px rgba(0, 0, 0, 0.1);
+    margin: 10px 70px 10px 10px;
+}
+
+fieldset.code legend {
+    margin-left: 15px;
+}
+
+/**************************/ /* 引用 */ /**************************/
+blockquote{
+    min-width : 600px;
+    max-width : 1200px;
+    position:relative;
+    z-index:2;
+    background: #ffffff;
+    font-size: 16pt;
+    border: 2px solid #bbbbbb;
+    margin: 10px 150px 15px 10px;
+    padding: 10px 30px 10px 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 0 2px rgba(255, 255, 255, 0.3) inset,
+                0 0 10px rgba(0, 0, 0, 0.1) inset,
+                0 1px 20px rgba(0, 0, 0, 0.1);
+}
+blockquote:before, blockquote:after{
+    font-family:"FontAwesome";
+    font-size:0.8em;
+    line-height:1.0em;
+    color:#999;
+    position:absolute;
+    z-index:1;
+}
+blockquote:before{
+    content:"\f10d";
+    left:5px;
+    top:5px;
+}
+blockquote:after{
+    content:"\f10e";
+    right:5px;
+    bottom:5px;
+}
+
+/**************************/ /* 警告 */ /**************************/
+fieldset.alert {
+    display: block;
+    min-width : 600px;
+    max-width : 1200px;
+    background-color: #fcfcfc;
+    padding-top: 0px;
+    border:1px solid #966;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 0 2px rgba(255, 255, 255, 0.3) inset,
+                0 0 10px rgba(0, 0, 0, 0.1) inset,
+                0 1px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px 150px 20px 10px;
+}
+
+fieldset.alert-warning legend {
+    color:#a94442;
+    margin-left: 0px;
+}
+
+fieldset.alert-warning {
+    color:#a94442;
+    background-color:#f2dede;
+}
+fieldset.alert-warning legend:before {
+    content: "\f071";
+    font-family: FontAwesome;
+    margin-right:3px;
+}
+
+fieldset.alert-success legend {
+    color:#3c763d;
+    margin-left: 0px;
+}
+
+fieldset.alert-success {
+    color:#3c763d;
+    background-color:#dff0d8;
+
+}
+fieldset.alert-success legend:before {
+    content: "\f06c";
+    font-family: FontAwesome;
+    margin-right:3px;
+}
+
+fieldset.alert-info legend {
+    color:#31708f;
+    margin-left: 0px;
+}
+
+fieldset.alert-info {
+    color:#31708f;
+    background-color:#d9edf7;
+
+}
+fieldset.alert-info legend:before {
+    content: "\f05a";
+    font-family: FontAwesome;
+    margin-right:3px;
+}
+
+fieldset.alert-question legend {
+    color:#3c763d;
+    margin-left: 0px;
+}
+
+fieldset.alert-question {
+    color:#3c763d;
+    background-color:#dff0d8;
+
+}
+fieldset.alert-question legend:before {
+    content: "\f059";
+    font-family: FontAwesome;
+    margin-right:3px;
+}
+
+/**************************/ /* coder Table */ /**************************/
+.tbl_v_bgcolor tr td:nth-of-type(1) {
+    background: #d5d5ff;
+    border-bottom: solid 1px #BBB;
+    border-top: 0;
+    color: #000;
+}
+
+.coder {
+    font-size: 0.9em;
+    border-spacing: 0;
+    border:1px solid #966;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 0 2px rgba(255, 255, 255, 0.3) inset,
+                0 0 10px rgba(0, 0, 0, 0.1) inset,
+                0 1px 20px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+.coder th {
+    padding: 10px;
+    background: #FFF;
+    border-bottom: solid 1px #BBB;
+    border-right: solid 1px #BBB;
+}
+
+.coder td {
+    padding: 10px;
+    background: #FFF;
+    border-bottom: solid 1px #CCC;
+    border-right: solid 1px #CCC;
+}
+
+.coder th {
+    background: #d5d5ff;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+    color: #000;
+}
+
+/* 左上角丸　最初の行の最初のセル */
+.coder tr:first-child th:first-child,.coder tr:first-child td:first-child {
+    -webkit-border-radius: 6px 0 0 0;
+    -moz-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+}
+
+/* 右上角丸　最初の行の最後のセル */
+.coder tr:first-child th:last-child,.coder tr:first-child td:last-child {
+    -webkit-border-radius: 0 6px 0 0;
+    -moz-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+/* 左下角丸　最後の行の最初のセル */
+.coder tr:last-child th:first-child,.coder tr:last-child td:first-child {
+    -webkit-border-radius: 0 0 0 6px;
+    -moz-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+/* 右下角丸　最後の行の最後のセル */
+.coder tr:last-child th:last-child,.coder tr:last-child td:last-child {
+    -webkit-border-radius: 0 0 6px 0;
+    -moz-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+/* thaed,tbodyを使う場合の設定 */
+.coder thead th {
+    background: #e3dcd5;
+}
+
+.coder thead+tbody th {
+    background: #f4ede6;
+}
+
+.coder tbody th {
+    text-align: left;
+}
+
+/* 左上角丸 thead内　最初の行の最初のセル */
+.coder thead tr:first-child th:first-child,.coder thead tr:first-child td:first-child {
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+    border-radius: 5px 0 0 0;
+}
+
+/* 右上角丸 thead内　最初の行の最後のセル */
+.coder thead tr:first-child th:last-child,.coder thead tr:first-child td:last-child {
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5x 0 0;
+    border-radius: 0 5px 0 0;
+}
+
+/* 角丸なし　thaedの後のtbody 最初の行の最初のセル */ /* 角丸なし　thaedの後のtbody 最初の行の最後のセル */
+.coder thead+tbody tr:first-child th:first-child,.coder thead+tbody tr:first-child td:first-child,.coder thead+tbody tr:first-child th:last-child,.coder thead+tbody tr:first-child td:last-child
+    {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+/* 左下角丸　thaedの後のtbody 最後の行の最初のセル */
+.coder thead+tbody tr:last-child th:first-child,.coder thead+tbody tr:last-child td:first-child {
+    -webkit-border-radius: 0 0 0 5px;
+    -moz-border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 5px;
+}
+
+/* 右下角丸　thaedの後のtbody 最後の行の最後のセル */
+.coder thead+tbody tr:last-child th:last-child,.coder thead+tbody tr:last-child td:last-child {
+    -webkit-border-radius: 0 0 5px 0;
+    -moz-border-radius: 0 0 5px 0;
+    border-radius: 0 0 5px 0;
+}
+
+/**************************/ /* パラグラフ内のダウンロードボタン */ /**************************/
+div.paragraph div.download_file {
+    margin-top: 30px;
+}
+
+div.paragraph div.download_file a {
+    color: #f5f5f5;
+}
+
+div.paragraph div.download_file a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 2px #bbb, 0 0 4px #bbb;
+    /* グラデーション */
+    background: -webkit-gradient(linear, left top, left bottom, from(#336cc8), to(#2e61B8) );
+    background: -moz-linear-gradient(top, #336cc8, #2e61B8);
+    background: linear-gradient(180deg, #336cc8, #2e61B8);
+}
+
+div.paragraph div.download_file a {
+    background-color: #2e61B8;
+    padding: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    /* テキスト */
+    font-size: 1.5em;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 -1px 3px rgba(0, 0, 0, .3);
+    /* 角丸 */
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+
+    /* ドロップシャドウ */
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .3);
+    border: solid 1px #0078a5;
+    /* グラデーション */
+    background: -webkit-gradient(linear, left top, left bottom, from(#336cc8), to(#1f4164) );
+    background: -moz-linear-gradient(top, #336cc8, #1f4164);
+    background: linear-gradient(180deg, #336cc8, #1f4164);
+    /* アニメ */
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
+div.paragraph .update_time {
+    padding-top: 15px;
+    padding-left: 200px;
+}
+
+
+/* 吹き出し*/
+table.hukidashi {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 450px;
+    box-shadow: 1px 2px 7px 3px rgba(0, 0, 0, .3);
+    -webkit-box-shadow: 1px 2px 7px 3px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 1px 2px 7px 3px rgba(0, 0, 0, .3);
+    margin-right:30px;
+    margin-bottom:30px;
+    float:left;
+}
+
+table.hukidashi th {
+    background-color:#a6b39f;
+    height:20px;
+}
+
+table.hukidashi td {
+    padding-top:10px;
+    padding-bottom:10px;
+    background-color:#d4e2ce;
+}
+table.hukidashi td.hukidashi_kao_lt {
+    padding-top:15px;
+    padding-left:18px;
+}
+
+table.hukidashi td.hukidashi_kao_rt {
+    padding-top:15px;
+    padding-right:18px;
+}
+
+table.hukidashi td.hukidashi_message {
+    padding-top:15px;
+    width:302px;
+}
+
+table.hukidashi td > img {
+    width: 96px;
+    height: 120px;
+}
+
+.left_balloon, .right_balloon {
+    width:320px;
+    height:100px;
+    position: relative;
+    background: #fffff7;
+    border: 1px solid #777;
+    margin-left: 14px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 7px;
+    font-size:1.3em;
+    font-height:1.1em;
+}
+.left_balloon:after,
+.left_balloon:before {
+    right: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0px;
+    width: 0px;
+    position: absolute;
+    pointer-events: none;
+}
+.left_balloon:after {
+    bottom: 18px;
+    border-color: rgba(255, 255, 255, 0);
+    border-top: 0px solid transparent;
+    border-right: 13px solid #fffff7;
+    border-bottom: 5px solid transparent;
+    border-left: 13px solid transparent;
+    margin-top: -13px;
+}
+.left_balloon:before {
+    bottom: 17px;
+    border-color: rgba(0, 0, 0, 0);
+    border-top: 0px solid transparent;
+    border-right: 14px solid #000;
+    border-bottom: 7px solid transparent;
+    border-left: 14px solid transparent;
+    margin-top: -14px;
+}
+
+
+.right_balloon:after,
+.right_balloon:before {
+    left: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.right_balloon:after {
+    bottom: 18px;
+    border-color: rgba(255, 255, 255, 0);
+    border-top: 0px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 13px solid #fffff7;
+    margin-top: -13px;
+}
+.right_balloon:before {
+    bottom: 17px;
+    border-color: rgba(0, 0, 0, 0);
+    border-top: 0px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 14px solid #000;
+    margin-top: -14px;
+}
+
+/* floatのクリア */
+br.clear {
+    clear: both; visibility: hidden; height: 0;
+}

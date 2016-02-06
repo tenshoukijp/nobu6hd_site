@@ -1,0 +1,135 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～軍団～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>軍団の概念</h3>
+    <p>軍団と一言で言っても３つの概念で構成されます。<br>
+    </p>
+    <ul class="pointlist">
+        <li>
+        <h4>軍団</h4>
+        <p>軍団という抽象的なカテゴリの概念。</p>
+        <li>
+        <h4>軍団.配列</h4>
+        <p>全ての軍団リスト。最大で214存在する。<br>
+        各大名は第１軍団～第８軍団まで持つが、大名直轄かどうかなど関係なく、<br>
+        全ての大名麾下の全ての軍団を横に並べたもの、それが「軍団.配列」という概念です。
+        </p>
+        <li>
+        <h4>軍団.配列[ix]</h4>
+        <p>特定の軍団１つの概念</p>
+    </ul>
+    <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>軍団の代表的なプロパティの制御は以下のようなものでしょう。
+    </p>
+    <fieldset class="code"><legend>軍団のプロパティの利用</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        foreach (var g in 軍団.配列)
+        {
+            if (g.Is_プレイヤ麾下軍団)
+            {
+                g.金 = 30000;
+                g.米 = 30000;
+                g.行動力 = 200;
+                g.鉄砲 = 2000;
+
+                // その軍団麾下の武将達の兵士の総数
+                デバッグ出力(g.兵士);
+
+                int iBushouID = g.軍団長_武将番号;
+                if (武将.配列.Exists(iBushouID))
+                {
+                    // 軍団長の名前
+                    デバッグ出力(武将.配列[iBushouID].姓名);
+                }
+            }
+        }
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>軍団に割り当てられている１～８の番号は「任命番号」というプロパティ名にしました。<br>
+    軍団番号と混同しないように注意しましょう。<br>
+    </p>
+    <fieldset class="code"><legend>軍団の任命番号</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        foreach (var g in 軍団.配列)
+        {
+            if (g.Is_プレイヤ麾下軍団)
+            {
+                デバッグ出力(g.任命番号);
+
+                int iBushouID = g.軍団長_武将番号;
+                if (武将.配列.Exists(iBushouID))
+                {
+                    // 軍団長の名前
+                    デバッグ出力(武将.配列[iBushouID].姓名);
+                }
+            }
+        }
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例③</h3>
+    <p>軍団に所属する麾下の武将の一覧や、同じく軍団支配下にある城の一覧などを<br>
+    得たい場合もあることでしょう。<br>
+    「武将.配列.所属軍団番号」や「城.配列.所属軍団番号」と比較しながら、<br>
+    １つずつ回収しても良いですが、専用のプロパティが軍団側にも用意されています。</p>
+
+    <fieldset class="code"><legend>織田信長の軍団の「麾下の武将」や「麾下の城」</legend> <pre class="brush:csharp;">
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+        // 今ターンが切り替わった軍団番号の…
+        if (軍団.配列.Exists(軍団番号))
+        {
+
+            // 軍団番号→１つの軍団の情報へ
+            var g = 軍団.配列[軍団番号];
+
+            // 軍団長を求める
+            int iLeaderBushouID = g.軍団長_武将番号;
+            if (武将.配列.Exists(iLeaderBushouID))
+            {
+
+                // 軍団長が織田信長の列伝番号の人だ
+                if (武将.配列[iLeaderBushouID].列伝番号 == 列挙.武将.列伝番号.織田信長)
+                {
+
+                    var blist = g.麾下武将番号リスト;
+                    デバッグ出力(&quot;織田信長麾下の武将リスト&quot;);
+                    foreach (int iBushouID in blist)
+                    {
+                        デバッグ出力(武将.配列[iBushouID].姓名);
+                    }
+
+                    var clist = g.麾下城番号リスト;
+                    デバッグ出力(&quot;織田信長麾下の城リスト&quot;);
+                    foreach (int iCastleID in clist)
+                    {
+                        デバッグ出力(城.配列[iCastleID].城名称);
+                    }
+                }
+            }
+        }
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>軍団について、主な解説は以上となります。<br>
+    軍団関連には他にもプロパティやメソッドがあります。<br>
+    詳しくはHD.version.SDKソース内の「軍団.h」を参照してみてください。</p>
+    </li>
+</ul>
+

@@ -1,0 +1,69 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～戦争～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>戦争の概念</h3>
+    <p>戦争とは、PC勢・NPC勢力に関わらず、<br>
+    戦争関連の判定をするためのAPIオブジェクトです。<br>
+    </p>
+    <p>ここでは、そのうちの「戦争」という概念のトップ系の概念を取り上げます。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>「戦争」には「Is_戦争中」というプロパティがあり、<br>
+    これが最も広義の戦争という概念となります。<br>
+    </p>
+    <p>戦争が始まると決まった直後から「Is_戦争中がtrue」となり、戦争画面を抜け、<br>
+    捕虜の処遇などもすべて終わって、戦争に関するすべての処理が終了した後、<br>
+    初めて「Is_戦争中がfalse」となります。</p>
+    <fieldset class="code"><legend>戦争中という大きなくくり</legend> <pre class="brush:csharp;">
+  public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+  {
+    if (戦争.Is_戦争中)
+    {
+      return &quot;戦争中のメッセージ&quot;;
+    }
+    return &quot;&quot;;
+  }
+</pre></fieldset>
+
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>Is_戦争中に次いで、大きな区分けとなるのが「野戦」と「籠城戦」の区分けでしょう。<br>
+    </p>
+    <p>「野戦」とは「野戦」に突入する直前と「野戦」での戦争中の両方を指し、<br>
+    「籠城戦」とは「籠城戦」に突入する直前と、「籠城戦」での戦争中の両方を指します。<br>
+    </p>
+    <fieldset class="code"><legend>野戦と籠城戦のくくり</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        int i1st = パラメタ.第１人称_武将番号;
+
+        if (武将.配列.Exists(i1st))
+        {
+            if (戦争.Is_野戦中)
+            {
+                return &quot;野戦中のメッセージ&quot;;
+            }
+
+            else if (戦争.Is_籠城戦中)
+            {
+                return &quot;籠城戦中のメッセージ&quot;;
+            }
+
+        }
+        return &quot;&quot;;
+    }
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>「戦争」について、主な解説は以上となります。<br>
+    戦争関連には他にもプロパティがあります。<br>
+    詳しくはHD.version.SDKソース内の「戦争.h」を参照してみてください。</p>
+    </li>
+</ul>
+

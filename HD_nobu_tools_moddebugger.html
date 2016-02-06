@@ -1,0 +1,82 @@
+<h2><i class="fa fa-bug fa-fw"></i>HD版 ModDebugger</h2>
+<div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>HD.ModDebugger.zip</a><br>
+<div class="update_time">└更新日 %(year)04d/%(mon)02d/%(mday)02d</div>
+</div>
+
+<ul class="checklist">
+    <li>
+    <h3>ModDebuggerとは？</h3>
+    <p>このツールは、%(tshd)sのMod開発者、及び、HD.version.SDK開発者に向けた<br>
+    <span class="positive">デバッグ用途コンソールモニター</span>です。<br>
+    アプリケーションなどの<span class="positive">デバッグ出力の受信機</span>です。</p>
+    <p><img src="./cnt_tool/mod_debugger/cnt_tool_moddebugger_01.png"></p>
+    <fieldset class="alert alert-question"><legend>なぜこのようなツールが必要なの？</legend> %(tshd)sは「アンチデバッグ」という機構がコーエーテクモ社によって組み込まれています。<br>
+    このため、%(tshd)sの内部に組み込むようなプログラムを独自に作成したとしても、<br>
+    Visual Studio 等で直接デバッガを用いたデバッグが出来ません。<br>
+    ほぼ確実に、不正終了するようになっており、デバッグが非常にやりにくくなっています。<br>
+    <span class="negative">即ち「リバースエンジニアリングをさせないための機構」がゲームに組み込まれている</span>のです。<br>
+    そこで、原始的な「print文によるデバッグ」のような仕組みを利用して、<br>
+    デバッグを可能にしようというものです。<br>
+    </fieldset>
+    <li>
+    <h3>動作環境</h3>
+    <table class="coder tbl_v_bgcolor">
+        %(environment_os)s
+        %(environment_rt)s
+    </table>
+    %(environment_rt_warn)s
+    </li>
+    <li>
+    <h3>使い方</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>ファイルの置き場所と実行方法</h4>
+        <p>上記、.zipファイルを解凍し、HD.ModDebugger.exe を「天翔記フォルダ」に入れる。<br>
+        HD.ModDebugger.exe を実行。<br>
+        </p>
+        </li>
+        <li>
+        <h4>その他</h4>
+        <p>「src.zip」は、HD.ModDebugger.exe を作成するためのC++ソースファイルとなります。<br>
+        実行する上では必要ありません。<br>
+        ご自分で機能を変更したい場合などの用途に利用してください。<br>
+        </p>
+        </li>
+    </ul>
+    <li>
+    <h3>補足事項</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>%(tshd)s専用のモード</h4>
+        <p>%(tshd)sが立ち上がっていると、%(tshd)sの<label id="hovercard_L_moddebugger01"><span class="underline">デバッグ出力</span></label>のみを監視するようになります。<br>
+        この際は、%(tshd)s専用の、｢デバッグモニター監視ツール｣になります。<br>
+        この間、他のアプリケーションの情報は拾いません。<br>
+        </p>
+        </li>
+        <li>
+        <h4>汎用のモード</h4>
+        <p>%(tshd)sが立ち上がっていない間は、その他のアプリケーションのデバッグ情報を拾います。<br>
+        </p>
+        </li>
+    </ul>
+    <li>
+    <h3>関連ツール</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>%(ts95)s用のModDebugger</h4>
+        <p>%(ts95)s用のModDebuggerは%(home)sの<a href="/?page=nobu_mod_the_debugger">ModDebugger</a>となります。
+        </p>
+        </li>
+    </ul>
+</ul>
+
+
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#hovercard_L_moddebugger01").hovercard({
+        detailsHTML: '<p>C言語のWin32APIのOutputDebugString(LPCTSTR lpOutputString);<br>や、<br>C#言語のSystem.Diagnostics.Trace.WriteLine(Object);<br>など</p>',
+        width: 600,
+    });
+});
+</script>

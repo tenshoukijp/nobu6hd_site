@@ -1,0 +1,99 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>On_データファイル読込直前</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>On_データファイル読込直前</h3>
+    <p>データファイルが読み込まれる度に<br>
+    呼びだされるイベントハンドラとなります。<br>
+    </p>
+    <p>データファイルとは、イベント用メッセージや、UI用のメッセージ、<br>
+    戦国武将列伝、戦国名城物語、戦国名物事典など、<br>
+    野戦や籠城戦の構成データ<br>
+    などを指します。<br>
+    </p>
+    <p>BGMやMovieなどは別途それ専用のイベントハンドラが存在します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>注意点</h3>
+    <p><span class="positive">このメソッドは極めて重要な働きをします。<br>
+    </span></p>
+    <p>Steam配信のゲームは全て、Steamの機能「ゲームキャッシュの整合性を確認」を実行すると、<br>
+    <span class="negative">ファイルが全てオリジナルのものへと戻ります</span>。<br>
+    この機能は重要なエラー修復の機能であり、利用は必須であり<br>
+    「改造してるから利用するな」などといった横暴な言い分は現実的ではありません。</p>
+    <p>そこで便利なのが、このメソッドように、<br>
+    何かファイルを読み込もうとした時に、<span class="positive">状況に応じてその場その場で</span>別ファイルを読み込む<br>
+    リダイレクトという考え方です。<br>
+    </p>
+
+    <li>
+    <h3>使い処</h3>
+    <p>武将列伝や家宝列伝を書き換えた。<br>
+    Steamの「ゲームキャッシュの整合性を確認」の影響を受けないようにしたい。<br>
+    </p>
+    <li>
+    <h3>使用例</h3>
+    <fieldset class="code"><legend>武将列伝・家宝列伝・HEXMAPの構成データを別ファイルから読み込めるようにする</legend><pre class="brush:cpp;">
+
+String^ 天翔記クラス::On_データファイル読込直前(String^ 元ファイル名) {
+
+  // 武将列伝だ
+  // 既存武将を、ちょっと編集しちゃったんで
+  //「bfile*.dat」ではなく、「my_bfile*.dat」という別ファイルから読み込むようにする。
+  if ( 元ファイル名-&gt;ToLower()-&gt;Contains(&quot;\\bfile&quot;) ) {
+
+    // 新たなファイル名を構築 bfile*.datではなく、my_bfile*.datとする
+    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace(&quot;bfile&quot;, &quot;my_bfile&quot;);
+
+    // その新しいファイル名が実際に存在するのなら
+    if (System::IO::File::Exists(新ファイル名)) {
+
+      // 元のファイルではなく、新ファイルの方を読み込む
+      return 新ファイル名;
+    }
+  }
+
+  // 家宝列伝だ
+  // 独自家宝を作るなど、ちょっと編集しちゃったんで
+  //「ifile*.dat」ではなく、「my_ifile*.dat」という別ファイルから読み込むようにする。
+  if (元ファイル名-&gt;ToLower()-&gt;Contains(&quot;\\ifile&quot;)) {
+
+    // 新たなファイル名を構築 ifile*.datではなく、my_ifile*.datとする
+    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace(&quot;ifile&quot;, &quot;my_ifile&quot;);
+
+    // その新しいファイル名が実際に存在するのなら
+    if (System::IO::File::Exists(新ファイル名)) {
+
+      // 元のファイルではなく、新ファイルの方を読み込む
+      return 新ファイル名;
+    }
+  }
+
+  // ヘックス系データだ。
+  // ちょっと編集しちゃったんで
+  //「hexmap.nb6」ではなく、「my_hexmap.nb6」という別のファイルから読み込むようにする。
+  if (元ファイル名-&gt;ToLower()-&gt;Contains(&quot;\\hexmap.nb6&quot;)) {
+
+    // 新たなファイル名を構築 hexmap.nb6ではなく、my_hexmap.nb6とする
+    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace(&quot;hexmap&quot;, &quot;my_hexmap&quot;);
+
+    // その新しいファイル名が実際に存在するのなら
+    if (System::IO::File::Exists(新ファイル名)) {
+
+      // 元のファイルではなく、新ファイルの方を読み込む
+      return 新ファイル名;
+    }
+  }
+
+  return &quot;&quot;;
+}
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>「On_データファイル読込直前」イベントハンドラについて、主な解説は以上となります。<br>
+    </p>
+    </li>
+</ul>
+

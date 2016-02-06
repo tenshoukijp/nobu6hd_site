@@ -1,0 +1,161 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>HD.version.SDK ～城～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>城の概念</h3>
+    <p>城と一言で言っても３つの概念で構成されます。<br>
+    </p>
+    <ul class="pointlist">
+        <li>
+        <h4>城</h4>
+        <p>城という抽象的なカテゴリの概念。</p>
+        <li>
+        <h4>城->配列</h4>
+        <p>城リストという、214存在する「城アイコンの場所」に対応する概念。</p>
+        <li>
+        <h4>城->配列[ix]</h4>
+        <p>特定の城１つ(厳密には214のうちの特定の城)の概念</p>
+    </ul>
+    <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>最も単純な例は、やはり全ての城をforループで回して順次処理をするというものです。<br>
+    あまり「全ての城のプロパティを変更する」といったことはやらないかもしれませんが、<br>
+    仕組みを理解をする上ではとても重要です。<br>
+    以下は、各城が持つプロパティのほんの一部です。</p>
+    <fieldset class="code"><legend>城のプロパティの利用</legend> <pre class="brush:cpp;">
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    for each (auto c in 城-&gt;配列) {
+
+      c-&gt;兵質 = 列挙::城::兵質::良;
+
+      if (c-&gt;港) {
+        c-&gt;金山 = true;
+        c-&gt;国際港 = true;
+        c-&gt;鍛冶 = true;
+        c-&gt;人口 = 5000;
+        c-&gt;石高 = 2500;
+      }
+
+      if (c-&gt;巨城) {
+        c-&gt;城郭 = 200;
+      }
+      else {
+        c-&gt;城郭 = 150;
+      }
+    }
+}
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>よくあるのが「特定の武将」がどこに居るのか？<br>
+    といった情報と絡めて利用するシーンでしょう。<br>
+    </p>
+    <fieldset class="code"><legend>武将が居る城名</legend> <pre class="brush:cpp;">
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+
+  int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::柴田勝家);
+
+  if (0 &lt;= iBushouID &amp;&amp; iBushouID &lt; (武将-&gt;配列-&gt;Count) ) {
+    int iCastleID = 武将-&gt;配列[iBushouID]-&gt;所属城番号;
+
+    if (0 &lt;= iCastleID &amp;&amp; iCastleID &lt; (城-&gt;配列-&gt;Count) ) {
+      // 「城名」だけだと本来の名前部分だけとなる。
+      // 「城名称」までつけると「～城、～御坊」など城称も含めた形となる。
+      デバッグ出力 &lt;&lt; 城-&gt;配列[iCastleID]-&gt;城名 &lt;&lt; endl;
+      デバッグ出力 &lt;&lt; 城-&gt;配列[iCastleID]-&gt;城名称 &lt;&lt; endl;
+    }
+  }
+
+}
+</pre></fieldset>
+    <p>城が214の場所にあるといっても、「何番がどの城に対応するのか？」などを<br>
+    覚えている人はさすがに居ないことでしょう。<br>
+    そこでSDK内では、天翔記に登場する全ての城(名前の変更分も含む)がすでに<br>
+    列挙定義済みとなっており、これを番号代わりに利用することができます。</p>
+
+    <fieldset class="code"><legend>列挙を使って城番号を得る</legend> <pre class="brush:cpp;">
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+
+  // 二条城の位置の城番号(位置だけなので、室町御所かもしれないし、伏見城かもしれない)
+  int iCastleID = 列挙::城::城番号::二条城;
+
+  auto c = 城-&gt;配列[iCastleID];
+  デバッグ出力 &lt;&lt; c-&gt;城名称 &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; 国-&gt;配列[c-&gt;所属国番号]-&gt;国名 &lt;&lt; endl;
+
+}
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例③</h3>
+    <p>日本全国の地図は実は、「グリッド」というラインで区切られています。<br>
+    １つのグリッドあたり、最大でも城は１つしか置かれていません。(城が１つも無いグリッドもたくさんあります)</p>
+    <fieldset class="alert alert-info"><legend>グリッドと城</legend>「城の隣接」「城の連絡経路」などを取り扱う際には、<br>
+    グリッドの概念の理解が不可欠となります。<br>
+    <a href="/?page=nobu_mod_the_mapobgk">戦場グリッドマップ</a>に付属している画像や、<br>
+    <a href="/?page=nobu_mod_the_hexmap_editor">ヘックスエディタ</a>の野戦エディタとなるFieldEditor.exe<br>
+    などを見て、どういったことなのか理解を深めましょう。<br>
+    天翔記HD版でもn6dataフォルダに、<br>
+    「CastleEditor.exe、FieldEditor.exe、LS11DotNet.dll」をコピーすれば、<br>
+    日本地図が「どういったグリッド単位で区切られているのか」を、視覚的に理解できます。
+    <br>
+    %(ts95)sも所持していたなら、全国切替地図の線を意識下で利用しているので、<br>
+    「グリッドで切られている＝城が隣接している」を自然と理解していることでしょう。
+    </fieldset>
+
+    <fieldset class="code"><legend>城のグリッド位置</legend> <pre class="brush:cpp;">
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+
+  城グリッド位置型^ pos = 城-&gt;配列[列挙::城::城番号::春日山城]-&gt;グリッド位置;
+  デバッグ出力 &lt;&lt; &quot;春日山城のグリッドの位置&quot; &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; &quot;X:&quot; &lt;&lt; pos-&gt;Ｘ &lt;&lt; &quot;Y:&quot; &lt;&lt; pos-&gt;Ｙ &lt;&lt; endl;
+}</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例④</h3>    <p>「隣接しているグリッドに存在する城が、隣接している城」です。<br>
+    グリッドの場合は「斜めに隣接している」時も隣接とみなされます。</p>
+    <fieldset class="code"><legend>とある城に隣接している城一覧</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+
+  auto list = 城-&gt;配列[列挙::城::城番号::二条城]-&gt;隣接城番号リスト;
+  for each (int iCastleID in list) {
+    デバッグ出力 &lt;&lt; 城-&gt;配列[iCastleID]-&gt;城名称 &lt;&lt; endl;
+  }
+}
+</pre></fieldset>
+    <p>隣接しているというだけでは不十分で、「経路で繋がっていて隣接している」といった情報が欲しい場合もあります。
+    <br>そういった場合には「経路隣接城番号リスト」を利用しましょう。</p>
+    <fieldset class="code"><legend>とある城に経路で繋がっていて、かつ、隣接している城一覧</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+
+  auto list = 城-&gt;配列[列挙::城::城番号::躑躅ケ崎館]-&gt;経路隣接城番号リスト;
+  for each (int iCastleID in list) {
+    デバッグ出力 &lt;&lt; 城-&gt;配列[iCastleID]-&gt;城名称 &lt;&lt; endl;
+  }
+}
+</pre></fieldset>
+    <p>さらには、とある城から別の城まで一体どういう経路で辿っていくのが理想なのか？<br>
+    といった情報を取得したいかもしれません。<br>
+    SDKはこういった経路グラフを得ることも可能です。<br></p>
+    <fieldset class="code"><legend>とある城から、とある城までの、理想経路上の城一覧</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+
+    auto graphlist = 城-&gt;Get_経路上の城番号リスト(列挙::城::城番号::春日山城, 列挙::城::城番号::安土城);
+    デバッグ出力 &lt;&lt; &quot;-------------------------------------&quot; &lt;&lt; endl;
+    for each (int iCastleID in graphlist) {
+        デバッグ出力 &lt;&lt; 城-&gt;配列[iCastleID]-&gt;城名称 &lt;&lt; endl;
+    }
+}
+</pre></fieldset>
+    <p>詳細となるため、ここでは触れませんが、全ての城から経路グラフを得るのではなく、<br>
+    特定の範囲に限定して経路グラフを得ることも可能です。</p>
+    </li>
+    <li>
+    <h3>その他</h3>
+<p>城について、主な解説は以上となります。<br>
+城関連には他にも非常に多数のプロパティやメソッドがあります。<br>
+「城.h」や「城列挙.h」を参照してみてください。</p>
+</li>
+</ul>
+

@@ -1,0 +1,74 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～語句変化～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>語句変化の概念</h3>
+    <p>語句変化とは、不定な人物同士の会話メッセージを作成する際に、<br>
+    「自分・相手」の呼称や、語尾変化等をサポートするAPIです。<br>
+    </p>
+    <p>後述のソース中の、第１人称武将番号, 第２人称武将番号 を、様々な武将で試し、<br>
+    一体どのような概念なのか理解して使いましょう。</p>
+    <p>男性・女性、上司・部下、年寄と若君主、様々な職業など、考慮されたメッセージへと語句が変化します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>ほとんどの使用シーンは、「<a href="?page=HD_nobu_sdk_cs_hdsdk_on_fukidashi_message">My_噴出メッセージ直前</a>」<br>
+    にて、すりかえるメッセージを作る際に利用されます。
+    <fieldset class="code"><legend>デフォルトの会見のメッセージを、語句変化を伴ってすり替える</legend> <pre class="brush:csharp;">
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        int 第１人称_武将番号 = パラメタ.第１人称_武将番号;
+        int 第２人称_武将番号 = パラメタ.第２人称_武将番号;
+        Random r = new Random();
+        if (武将.配列.Exists(第１人称_武将番号) &amp;&amp; 武将.配列.Exists(第２人称_武将番号))
+        {
+
+            // 会見のメッセージのひとつ
+            if (Regex.Match(元メッセージ, &quot;^何をするか|^はて…\xAこれから&quot;).Success)
+            {
+                噴出メッセージパラメタ型 humans = new 噴出メッセージパラメタ型(第１人称_武将番号, 第２人称_武将番号);
+                int rnd = r.Next() % 3;
+                if (rnd == 0)
+                {
+                    string mes = 語句変化.相手(humans) +&quot;、商人に\x0A&quot; + &quot;米を売&quot; + 語句変化.りましょう(humans);
+
+                    return mes;
+                }
+                else if (rnd == 1)
+                {
+                    string mes = 語句変化.ははは(humans) +&quot;、&quot; + 語句変化.相手(humans) +&quot;\x0A&quot; + &quot;一度の失敗では\x0A&quot; + &quot;懲りぬよう&quot; + 語句変化.です(humans) + 語句変化.な_２(humans);
+
+                    return mes;
+                }
+                else if (rnd == 2)
+                {
+
+                    string mes = &quot;おのれ、&quot; + 語句変化.罵倒相手(humans) +&quot;\x0A&quot; + &quot;覚えておれ！&quot;;
+
+                    return mes;
+                }
+            }
+
+        }
+
+        return &quot;&quot;;
+    }
+</pre></fieldset>
+    <p>第１人称と第２人称の「性格」「口調」「人間関係」などを全て含んで、<br>
+    言葉遣いが変化していることが確認できるかと思います。<br>
+    相手が居ないような独り言に近いメッセージをしゃべらせたい場合は、<br>
+    第２人称として、第１人称と同じ値を渡すと、<br>
+    概ねは妥当な語句変化になるハズです。</p>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>語句変化関連には非常に多数のメソッドがあります。<br>
+    詳しくはHD.version.SDKソース内の「語句変化.h」を参照してみてください。</p>
+    <p>また、語句変化については、「どういった関係性」で「どういう変化なのか？」の<br>
+    具体的な実装の確認をしたい場合などもあるかと思います。<br>
+    そういった裏方事情を知りたい場合は、「語句変化.cpp」を見て確認してください。</p>
+    <p>語句変化について、主な解説は以上となります。</p>
+    </li>
+</ul>
+

@@ -1,0 +1,99 @@
+<h2><i class="fa fa-plug fa-fw"></i>HD.version.SDK</h2>
+<div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>HD.version.SDK.zip</a><br>
+<div class="update_time">└更新日 %(year)04d/%(mon)02d/%(mday)02d</div>
+</div>
+
+<ul class="checklist">
+    <li>
+    <h3>HD.version.SDKとは？</h3>
+    <p>これは「天翔記HD版ソフトウェア開発キット」となります。<br>
+    <fieldset class="alert alert-info"><legend>プログラム経験が必要</legend> プログラム用のSDKですので、ある程度はプログラムの心得があることが前提となります。<br>
+    プログラム未経験の方は対象とはしていません。<br>
+    </fieldset>
+    <h3>主に出来ること</h3>
+    <ul class="pointlist">
+        <li><h4>戦略画面や戦争画面の様々な値の取得や書換</h4>
+        <p>武将・軍団・大名・家宝・官位・城・国・県・暦・戦略・戦争・<br>
+        音楽・演出・効果音・ダイアログ・環境設定</p>
+        <li><h4>読込ファイル名の変更</h4>
+        <p>ファイルを別にしておくことで、編集したファイルが更新当の影響を受けるのを回避出来る</p>
+        <li><h4>メッセージの変更</h4>
+        <p>元のメッセージを状況に応じて新メッセージへと振り分け<br>
+        人物関係に応じた自動語句変化用API付</p>
+        <li><h4>顔グラ変更</h4>
+        <p>取込画像への変更含む</p>
+        <li><h4>音楽変更、新たなタイミングで音楽や効果音を再生</h4>
+        <p>状況に応じて13曲ではなく150曲に振り分けるなど自由</p>
+        <li><h4>簡易なイベントの作成</h4>
+        <p>ダイアログ・フェイドアウト・フェイドイン・カメラ等</p>
+    </ul>
+    これらを<span class="positive">元のデータファイルを一切変更することなく</span>行うことが出来ます。<br>
+    <li>
+    <h3>動作環境</h3>
+    <table class="coder tbl_v_bgcolor">
+        %(environment_os)s
+        <tr>
+            <td>開発環境</td>
+            <td>Visual Studio 2015 Update1 以上</td>
+            <td>より新しい開発環境でも問題は無いと思われます。</td>
+        </tr>
+        <tr>
+            <td>使用言語</td>
+            <td><label id="hovercard_L_hdsdk_install_01"><span class="underline">C++/CLI</span></label></td>
+            <td>ユーザー編集対象部分は、C++/CLIのCLI寄りとなります。</td>
+        </tr>
+        %(environment_dnet)s
+    </table>
+    </li>
+    <li>
+    <h3>使い方</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>ファイルの置き場所と実行方法</h4>
+        <p><span class="positive">version.dll</span>と<span class="positive">HD.version.dll</span>を天翔記ディレクトリへと配置。<br>
+        天翔記HD版を実行。<br>
+        </p>
+        </li>
+        <li>
+        <h4>HD.version.dll</h4>
+        <p>ご自身でVisual Studio 2015を使い、<br>
+        「天翔記クラス.cpp」などのソースへ「自分で行いたいことを」を記述。<br>
+        コンパイルしてdllを作成することとなります。<br>
+        </p>
+        </li>
+    </ul>
+    <h3>注意点</h3>
+    <ul class="pointlist">
+        <span class="negative">コンパイル済みHD.version.dllのバイナリは決して配布しないで下さい!!</span>
+        <br>
+        バイナリとSDKが競合してどちらか一方が使えなくなり、混乱の元となるためです。
+        <br>
+        <span class="positive">配布は必ず「ソースで」行ってください。</span>
+        <br>
+    </ul>
+    <h3>関連ツール</h3>
+    <ul class="pointlist">
+        <li>
+        <h4>%(ts95)s用のScenarioMod</h4>
+        <p>%(ts95)s用として、<a href="/?page=nobu_mod_the_snmod">ScenarioMod</a>という本SDKに類似したものを提供しています。<br>
+        </p>
+        <p>「%(ts95)s用のScenarioMod」と「%(tshd)s用のHD.version.SDK」では、<br>
+        ScenarioModの方が約２倍ほど出来ることが多くなっています。<br>
+        特に「ユーザー独自に新たなイベントを作成する」という部分ではAPI提供数に大きな開きがあります。<br>
+        </p>
+        <p>
+        しかし、HD.version.SDKは、現代的な.NET Framework の考え方に沿っており、<br>
+        ScnearioModの反省点も踏まえ、構成全体がよく整理されています。<br>
+        </li>
+    </ul>
+</ul>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#hovercard_L_hdsdk_install_01").hovercard({
+        detailsHTML: '<p>.NET Frameworkの共通言語基盤 (CLI)上で実行するプログラムを作るためにC++を拡張したプログラミング言語<br>詳細は<a href="https://ja.wikipedia.org/wiki/C%2B%2B/CLI">こちら</a></p>',
+        width: 600,
+    });
+});
+</script>
+

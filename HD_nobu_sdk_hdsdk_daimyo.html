@@ -1,0 +1,136 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>HD.version.SDK ～大名～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>大名の概念</h3>
+    <p>大名と一言で言っても３つの概念で構成されます。<br>
+    </p>
+    <ul class="pointlist">
+        <li>
+        <h4>大名</h4>
+        <p>大名勢力という抽象的なカテゴリの概念。</p>
+        <li>
+        <h4>大名->配列</h4>
+        <p>全ての大名勢力リスト。最大で72存在する。<br>
+        </p>
+        <li>
+        <h4>大名->配列[ix]</h4>
+        <p>特定の大名勢力１つの概念</p>
+    </ul>
+    <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <p>大名の代表的なプロパティの制御は以下のようなものでしょう。
+    </p>
+    <fieldset class="code"><legend>大名のプロパティの利用</legend> <pre class="brush:cpp;">
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+  if (0 &lt;= 軍団番号 &amp;&amp; 軍団番号 &lt; 軍団-&gt;配列-&gt;Count) {
+    if ( 軍団-&gt;配列[軍団番号]-&gt;Is_プレイヤ担当軍団 ) {
+      for each (auto d in 大名-&gt;配列) {
+        if (d-&gt;Is_プレイヤ担当大名) {
+
+          d-&gt;御用商人 = 列挙::大名::御用商人::小西隆佐;
+          d-&gt;商人不在 = false;
+
+          int iBushouID = d-&gt;大名_武将番号;
+          デバッグ出力 &lt;&lt; &quot;プレイヤが担当している大名の武将名:&quot; &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; endl;
+
+          int iCastleID = d-&gt;居城番号;
+          デバッグ出力 &lt;&lt; &quot;大名の居城&quot; &lt;&lt; 城-&gt;配列[iCastleID]-&gt;城名称 &lt;&lt; endl;
+
+          // 役職を管領に
+          d-&gt;役職 = 列挙::大名::役職::管領;
+        }
+      }
+    }
+  }
+}
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例②</h3>
+    <p>大名勢力と大名勢力の間では、「同盟」や「婚姻」といったものが存在します。<br>
+    姫が居るか居ないかに関わらず、婚姻なども結ぶことが可能です。<br>
+    </p>
+    <fieldset class="code"><legend>大名勢力の同盟や婚姻</legend> <pre class="brush:cpp;">
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+  if (0 &lt;= 軍団番号 &amp;&amp; 軍団番号 &lt; 軍団-&gt;配列-&gt;Count) {
+    if ( 軍団-&gt;配列[軍団番号]-&gt;Is_プレイヤ担当軍団 ) {
+      int 信長 = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::織田信長);
+      int 義輝 = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::足利義輝);
+
+      // 両者ともに登場している。
+      if (0 &lt;= 信長 &amp;&amp; 信長 &lt; 武将-&gt;配列-&gt;Count &amp;&amp;
+        0 &lt;= 義輝 &amp;&amp; 義輝 &lt; 武将-&gt;配列-&gt;Count) {
+
+        // 両者ともに大名である。
+        if (武将-&gt;配列[信長]-&gt;状態 == 列挙::武将::状態::大名 &amp;&amp;
+          武将-&gt;配列[義輝]-&gt;状態 == 列挙::武将::状態::大名) {
+
+          int 信長大名勢力ID = 武将-&gt;配列[信長]-&gt;所属大名番号;
+          int 義輝大名勢力ID = 武将-&gt;配列[義輝]-&gt;所属大名番号;
+
+          // 両大名勢力を同盟関係にする。
+          大名-&gt;配列[信長大名勢力ID]-&gt;Set_同盟関係(義輝大名勢力ID);
+
+          // 両大名勢力を婚姻関係にする。
+          大名-&gt;配列[信長大名勢力ID]-&gt;Set_婚姻関係(義輝大名勢力ID);
+
+          // 友好関係は実際には設定した通りの値とはならない。
+          // 天翔記の仕様では、友好値は「0, 10, 20, 30, 40, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100」のいずれかであるため。
+          // 自由に値を設定した場合、小さい側の規定値(例えば98と指定したら95)が採用される。
+          大名-&gt;配列[信長大名勢力ID]-&gt;Set_友好関係(義輝大名勢力ID, 90);
+
+
+          if (大名-&gt;配列[信長大名勢力ID]-&gt;Is_婚姻関係(義輝大名勢力ID)) {
+            デバッグ出力 &lt;&lt; &quot;信長と義輝は婚姻関係です。&quot; &lt;&lt; endl;
+          }
+        }
+      }
+    }
+  }
+}
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>使用例③</h3>
+    <p>大名に所属する麾下の軍団の一覧や、同じく大名支配下にある城の一覧などを<br>
+    得たい場合もあることでしょう。<br>
+
+    <fieldset class="code"><legend>織田信長の大名の「麾下の軍団」や「麾下の城」</legend> <pre class="brush:cpp;">
+void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+  if (0 &lt;= 軍団番号 &amp;&amp; 軍団番号 &lt; 軍団-&gt;配列-&gt;Count) {
+    if (軍団-&gt;配列[軍団番号]-&gt;Is_プレイヤ担当軍団) {
+      int iDaimyoID = 軍団-&gt;配列[軍団番号]-&gt;所属大名番号;
+
+      デバッグ出力 &lt;&lt; &quot;配下軍団長名&quot; &lt;&lt; endl;
+      auto 麾下glist = 大名-&gt;配列[iDaimyoID]-&gt;麾下軍団番号リスト;
+      for each (auto g in 麾下glist) {
+        int iGLeaderBushouID = 軍団-&gt;配列[g]-&gt;軍団長_武将番号;
+        デバッグ出力 &lt;&lt; 武将-&gt;配列[iGLeaderBushouID]-&gt;姓名 &lt;&lt; endl;
+      }
+
+      デバッグ出力 &lt;&lt; &quot;麾下の城&quot; &lt;&lt; endl;
+      auto 麾下clist = 大名-&gt;配列[iDaimyoID]-&gt;麾下城番号リスト;
+      for each (auto c in 麾下clist) {
+        デバッグ出力 &lt;&lt; 城-&gt;配列[c]-&gt;城名称 &lt;&lt; endl;
+      }
+
+    }
+  }
+}
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>大名について、主な解説は以上となります。<br>
+    大名関連には他にも多くのプロパティやメソッドがあります。<br>
+    「大名.h」や「大名列挙.h」を参照してみてください。</p>
+    </li>
+</ul>
+

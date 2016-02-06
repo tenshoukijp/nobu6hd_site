@@ -1,0 +1,61 @@
+<h2><i class="fa fa-pencil-square-o fa-fw"></i>HD.version.SDK ～武将-&gt;戦争～</h2>
+
+<ul class="checklist">
+    <li>
+    <h3>武将-&gt;戦争の概念</h3>
+    <p>武将-&gt;戦争とは、<br>
+    武将情報の中で、戦争に関するものを集めたオブジェクトです。<br>
+    </p>
+    </li>
+    <li>
+    <h3>使用例①</h3>
+    <fieldset class="code"><legend>武将の戦争関連のプロパティ</legend> <pre class="brush:cpp;">
+String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+
+  if (戦争-&gt;Is_野戦中 || 戦争-&gt;Is_籠城戦中) {
+
+    auto blist = 武将-&gt;戦争-&gt;出陣中_表示戦場_武将番号リスト;
+    for each (int iBushouID in blist) {
+      auto b = 武将-&gt;配列[iBushouID];
+
+      デバッグ出力 &lt;&lt; &quot;-------------------------&quot; &lt;&lt; endl;
+      デバッグ出力 &lt;&lt; b-&gt;姓名 &lt;&lt; &quot;についての情報&quot; &lt;&lt; endl;
+
+      if (b-&gt;戦争-&gt;行動済) {
+        デバッグ出力 &lt;&lt; &quot;行動済です。&quot; &lt;&lt; endl;
+      }
+      else {
+        デバッグ出力 &lt;&lt; &quot;未行動です。&quot; &lt;&lt; endl;
+      }
+
+      デバッグ出力 &lt;&lt; &quot;機動力の残り:&quot; &lt;&lt; b-&gt;戦争-&gt;機動力 &lt;&lt; endl;
+
+      if (b-&gt;戦争-&gt;混乱状態 == 列挙::武将::戦争::混乱状態::混乱) {
+        デバッグ出力 &lt;&lt; b-&gt;姓名 &lt;&lt; &quot;は混乱しています&quot; &lt;&lt; endl;
+      }
+      else if (b-&gt;戦争-&gt;混乱状態 == 列挙::武将::戦争::混乱状態::大混乱) {
+        デバッグ出力 &lt;&lt; b-&gt;姓名 &lt;&lt; &quot;は大混乱しています&quot; &lt;&lt; endl;
+      }
+      if (b-&gt;戦争-&gt;混乱状態 == 列挙::武将::戦争::混乱状態::挑発混乱) {
+        デバッグ出力 &lt;&lt; b-&gt;姓名 &lt;&lt; &quot;は挑発混乱しています&quot; &lt;&lt; endl;
+      }
+    }
+
+    for each (auto b in 武将-&gt;配列) {
+      if (b-&gt;戦争-&gt;退却済) {
+        デバッグ出力 &lt;&lt; b-&gt;姓名 &lt;&lt; &quot;は退却済です&quot; &lt;&lt; endl;
+      }
+    }
+  }
+  return &quot;&quot;;
+}
+
+</pre></fieldset>
+    </li>
+    <li>
+    <h3>その他</h3>
+    <p>武将-&gt;戦争について、主な解説は以上となります。<br>
+    詳しくは「武将.h」や「武将列挙.h」の戦争関連のものを参照してみてください。</p>
+    </li>
+</ul>
+
