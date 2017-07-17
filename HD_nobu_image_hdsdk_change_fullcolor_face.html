@@ -1,0 +1,193 @@
+<h2><i class="fa fa-image fa-fw"></i>%(ts95)sのフルカラー顔グラテイストに入れ替える</h2>
+<ul class="checklist">
+    <li>
+        <h3>%(ts95)sのフルカラー顔グラキットと同じ構成の顔画像をHD版で利用する</h3>
+        <p>
+            %(home)sの<a href="/?page=nobu_face_kaoswap_td_full">%(ts95)sのフルカラー顔グラキット</a>とほぼ同じ構成・テイストの<br>
+            %(tshd)sとなります。<br>
+        </p>
+        <img src="./cnt_image/fullcolor_face/cnt_image_face_ts95_fullcolor_face_01.png">
+    <li>
+        <h3>必要なものや置き場所</h3>
+        <ul class="pointlist">
+            <li>
+                <h4>顔グラ追加ツールで追加した顔グラデータ</h4>
+                <p><div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>NOBU6HD_EDIT_KAO.zip</a><br></div></p>
+                <p>これらは、「C:\Users\%USERNAME%\Documents\KoeiTecmo\NOBU6HD\GRP」へと上書きする。<br>
+                個人的に登録している顔グラがある場合は、元のものはバックアップを取っておくこと!!</p>
+            <li>
+                <h4>HD版で挙動変更のためのプログラムを組むための基礎基盤</h4>
+                <p><a href="?page=HD_nobu_sdk_hdsdk_install">HD.version.SDK</a>のページでダウンロードファイルの.zip内に含まれる「version.dll」と「HD.version.dll」が必要となります。</p>
+                <p>これらは、「天翔記ディレクトリへ」へと配置してください。</p>
+            <li>
+                <h4>HD版で挙動変更のためのC#でプログラムを組むためのセット</h4>
+                <p><a href="?page=HD_nobu_sdk_cs_hdsdk_install">User.version.SDK</a>のページでダウンロードファイルの.zip内に含まれるSDKに<br>下記ソースを書いてコンパイルする必要があります。<br></p>
+                <p><span class="negative">お試しセットとしてNOBU6HD_EDIT_KAO.zipの中に、コンパイル済みのUser.version.dllが入っています。<br>
+                <p>しかし、別途提供された（あるいは自作した）User.version.dllがあると、dllを上書きすると以前の内容は消えてしまうので、<br>
+                本筋としては、User.version.SDKをダウンロードし、以下のソースを元に合成して構成し、<br>コンパイルしたUser.version.dllを利用してください<br></p>
+                <p>User.version.dllも「天翔記ディレクトリへ」へと配置してください。</span></p>
+                <fieldset class="code">
+                    <legend>ユーザー天翔記クラス.cs</legend><pre class="brush:csharp;">
+// Visual Studio 上で、System.Drawingのアセンブリを、User.version.SDKの参照に加えること!!
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using System.Drawing;
+
+
+public partial class ユーザー天翔記クラス : 天翔記クラス
+{
+    /// 起動環境設定オブジェクトだけ扱える。
+    public static void My_ランチャーウィンドウ起動時()
+    {
+        const int MaxW = 1600;
+        const int MaxH = 900;
+
+        // まずはMAXと仮定
+        int currentW = MaxW;
+        int currentH = MaxH;
+
+        //ディスプレイの幅
+        int ScreenW = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
+
+        //ディスプレイの高さ
+        int ScreenH = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
+
+        // 画面サイズを超えていたら、それよりは少し狭くする
+        if (currentW &gt; (ScreenW - 100))
+        {
+            currentW = ScreenW - 100;
+        }
+
+        // 画面サイズを超えていたら、それよりは少し狭くする
+        if (currentH &gt; (ScreenH - 60))
+        {
+            currentH = ScreenH - 60;
+        }
+        
+        // 天翔記のウィンドウ解像度をダイナミックに決定する
+        起動環境設定.画面サイズ = new 環境解像度型(currentW, currentH);
+
+        // 天翔記のゲーム起動モードをウィンドウモードにする。
+        起動環境設定.ウィンドウモード = 列挙.起動環境設定.ウィンドウモード.ウィンドウ;
+    }
+
+    /// これ以降は原則的には全て扱える。
+    public static void My_ゲームウィンドウ起動時()
+    {
+    }
+
+    public static string My_データファイル読込直前(string 元ファイル名)
+    {
+        return &quot;&quot;;
+    }
+
+    public static string My_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, string 元ファイル名)
+    {
+        return &quot;&quot;;
+    }
+
+    public static string My_ＭＯＶＩＥ再生直前(int ＭＯＶＩＥ番号, string 元ファイル名)
+    {
+        return &quot;&quot;;
+    }
+
+    public static void My_シナリオ選択直後(string シナリオファイル名)
+    {
+    }
+
+    private static void 顔入替()
+    {
+        // 全ての武将に対して…
+        foreach (var b in 武将.配列)
+        {
+            /* 朝廷で外交すれば、すぐに顔番号が確認できる
+            if (b.名字 == &quot;山科&quot;)
+            {
+                デバッグ出力($&quot;名前:{b.名前}&quot;);
+                デバッグ出力($&quot;差し替え顔番号:{b.差換顔番号}&quot;);
+                デバッグ出力($&quot;列伝番号:{b.列伝番号}&quot;);
+                b.差換顔番号 = 1363;
+                b.列伝番号 = 1363;
+            }
+            */
+
+            //----------------------------------------------------------
+            // すでにその人物の顔画像が差し替えられているなら、何もしない
+            if (b.差換顔番号 != 0)
+            {
+                // 次の人
+                continue;
+            }
+
+            // 天翔記に元々存在する武将であれば…
+            if (0 &lt;= b.列伝番号 &amp;&amp; b.列伝番号 &lt; 1300)
+            {
+                // 列伝番号に対応させて取込み画像を1300人分用意したので、それへと差換える、といった場合の記述
+                b.差換顔番号 = 列挙.武将.差換顔番号.取込１ + b.列伝番号 + 1;
+            }
+
+
+            //----------------------------------------------------------
+            // 姫100の顔
+            const int 汎用姫の顔開始番号 = 2804;
+            const int 汎用姫の顔終了番号 = 2903;
+
+            const int 追加画像の姫開始番号 = 1501;
+            if (汎用姫の顔開始番号 &lt;= b.列伝番号 &amp;&amp; b.列伝番号 &lt;= 汎用姫の顔終了番号)
+            {
+                int 差分 = b.列伝番号 - 汎用姫の顔開始番号;
+                b.差換顔番号 = 列挙.武将.差換顔番号.取込１ + 差分 + 追加画像の姫開始番号;
+            }
+
+
+            //----------------------------------------------------------
+            // 商人・朝廷・披露・農民の人達
+            const int イベント人の顔開始番号 = 1333;
+            const int イベント人の顔終了番号 = 1363;
+
+            if (イベント人の顔開始番号 &lt;= b.列伝番号 &amp;&amp; b.列伝番号 &lt;= イベント人の顔終了番号)
+            {
+                int 差分 = b.列伝番号 - イベント人の顔開始番号;
+                b.差換顔番号 = 列挙.武将.差換顔番号.取込１ + 差分 + イベント人の顔開始番号;
+            }
+
+        }
+    }
+
+    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    {
+        顔入替();
+        return &quot;&quot;;
+    }
+
+    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    {
+    }
+
+    public static void My_戦争開始時(int 城番号, 戦争開始パラメタ型 パラメタ)
+    {
+    }
+
+    public static void My_戦争参加勢力決定直後()
+    {
+    }
+
+    public static void My_戦争_残りターン変更時(int 残りターン数)
+    {
+    }
+
+    public static void My_戦争終了時()
+    {
+    }
+}
+
+</pre>
+                </fieldset>
+        </ul>
+    </li>
+    <li>
+        <h3>既知の不具合</h3>
+        <p>「披露」でゲストの顔が、最初のセリフの間、元の顔グラが表示されてしまう。</p>
+</ul>

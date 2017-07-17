@@ -209,6 +209,8 @@ $content_hash = [
     'HD_nobu_mod_cs_excel_1' =>
         [ 'html'=>'HD_nobu_mod_cs_excel_1.html', 'title'=>'C#とExcelの利用' , 'dir'=>'C#で記述する場合'],
 
+    'HD_nobu_image_hdsdk_change_fullcolor_face' =>
+        [ 'html'=>'HD_nobu_image_hdsdk_change_fullcolor_face.html', 'title'=>'画像の拡大と縮小' , 'dir'=>'画像入替'],
     'HD_nobu_image_expand_and_reduce' =>
         [ 'html'=>'HD_nobu_image_expand_and_reduce.html', 'title'=>'画像の拡大と縮小' , 'dir'=>'画像入替'],
     'HD_nobu_image_main_mapdata_convert_to_95' =>
@@ -235,6 +237,9 @@ $filetime_hash = [
         'cnt_txt/武将一覧.zip',
     'HD_nobu_tools_retsuden' =>
         'cnt_tool/mod_retsuden/HD.RetsudenEditor.zip',
+
+    'HD_nobu_image_hdsdk_change_fullcolor_face' =>
+        'cnt_image/fullcolor_face/NOBU6HD_EDIT_KAO.zip',
 
     'HD_nobu_sdk_hdsdk_install' =>
         'cnt_sdk/hd_version/HD.version.SDK.zip',
