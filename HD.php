@@ -9,6 +9,18 @@ require("../hd.xn--rssu31gj1g.jp/LIB_pagetree.php");
 $urlParamPage = $_GET['page'];
 $orgParamPage = $_GET['page'];
 
+if ($_SERVER['HTTP_HOST']=="usr.s602.xrea.com") {
+    if (str_contains($_SERVER["REQUEST_URI"], "/hd.xn--rssu31gj1g.jp")) {
+        $OldRequest = $_SERVER["REQUEST_URI"];
+        $NewRequest = str_replace("/hd.xn--rssu31gj1g.jp", "", $OldRequest);
+	    $NewUrl = "https://hd.xn--rssu31gj1g.jp".$NewRequest;
+        header( "HTTP/1.1 301 Moved Permanently" );
+	    header( "Location: ".$NewUrl);
+        exit;
+    } 
+}
+
+
 // デフォルトのページ
 if ( $urlParamPage == "" ) {
   $urlParamPage = "HD_nobu_top";
@@ -35,12 +47,15 @@ $strPageTemplate = preg_replace('/<img\s+src/ms', '<img src', $strPageTemplate);
 $strPageTemplate = str_replace('%(vs2013runtime)s', 'https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads', $strPageTemplate);
 $strPageTemplate = str_replace('%(vs2015runtime)s', 'https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads', $strPageTemplate);
 $strPageTemplate = str_replace('%(vs2017runtime)s', 'https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads', $strPageTemplate);
+$strPageTemplate = str_replace('%(vs2019runtime)s', 'https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads', $strPageTemplate);
+$strPageTemplate = str_replace('%(vs2022runtime)s', 'https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads', $strPageTemplate);
 
+/*
 // hrefにタグ
 $strPageTemplate = preg_replace_callback("/(<a\s+href=[\"'])([^\"']+?)([\"'])(>)(.+?)(<\/a>)/",
                                    function ($matches) {
                                        // httpが含まれている。が、http://hd. は含まれていない(=外部サイトのリンク)
-                                       if ( strpos($matches[0],'http') !== false && strpos($matches[0],'http://hd.') === false ) {
+                                       if ( strpos($matches[0],'http') !== false && strpos($matches[0],'https://hd.') === false ) {
                                            return $matches[1] . $matches[2] . $matches[3] . $matches[4] . $matches[5] . "%(olink)s" . $matches[6];
                                        // 「/」と同じか、「/?page」が含まれている。(=95サイトへのリンクだ)
                                        } else if ($matches[2] == '/' || strpos($matches[0],'/?page') !== false ) {
@@ -51,7 +66,7 @@ $strPageTemplate = preg_replace_callback("/(<a\s+href=[\"'])([^\"']+?)([\"'])(>)
                                            return $matches[0];
                                        }
                                    }, $strPageTemplate);
-
+*/
 // widthやheightが無いイメージタグにマッチしたら、 画像の半分のサイズでwidthやheightを入れる。
 $strPageTemplate = preg_replace_callback("/(<img src=[\"'])([^\"']+?)([\"'])(>)/",
                                    function ($matches) {
@@ -92,8 +107,8 @@ $strPageTemplate = preg_replace_callback("/(cardImgSrc\s*:\s*[\"'])([^\"']+?)([\
                                        }
                                    }, $strPageTemplate);
 
-// cnt_は HD.verからは相対では見えないので、「./cnt_***」⇒「http://hd.xn--rssu31gj1g.jp/cnt_***」というように、hd系をつける
-$strPageTemplate = preg_replace('/"(\.\/)?cnt_/', '"http://hd.xn--rssu31gj1g.jp/cnt_', $strPageTemplate);
+// cnt_は HD.verからは相対では見えないので、「./cnt_***」⇒「https://hd.xn--rssu31gj1g.jp/cnt_***」というように、hd系をつける
+// $strPageTemplate = preg_replace('/"(\.\/)?cnt_/', '"https://hd.xn--rssu31gj1g.jp/cnt_', $strPageTemplate);
 
 
 // 遅延イメージロード(LazyLoad)用への置き換え処理
@@ -103,10 +118,10 @@ $strLazyLoad = "";
 // 「クローラー(Bot系)」以外であれば、イメージタグにマッチしたら、LazyLoad風に置き換える。
 if ( !isCrawler() && preg_match("/img src=[\"']([^\"']+?)[\"']/", $strPageTemplate ) ) {
   $isLazyLoad = true;
-  $strPageTemplate = preg_replace("/img src=[\"']([^\"']+?)[\"']/", "img class='lazy' src='http://hd.xn--rssu31gj1g.jp/web_img/dummy.png' data-original='$1'", $strPageTemplate);
+  $strPageTemplate = preg_replace("/img src=[\"']([^\"']+?)[\"']/", "img class='lazy' src='./web_img/dummy.png' data-original='$1'", $strPageTemplate);
 
   $strLazyLoad = "" . // LazyLoad
-                 "<script type='text/javascript' src='http://hd.xn--rssu31gj1g.jp/jquery/HD_jquery.lazyload-1.9.7.overlay.min.js?v=%(lazycustomupdate)s'></script>\n" .
+                 "<script type='text/javascript' src='./jquery/HD_jquery.lazyload-1.9.7.overlay.min.js?v=%(lazycustomupdate)s'></script>\n" .
                  "<script type='text/javascript'>\n" .
                  "$(document).ready(function(){\n" .
                  "    $('img.lazy').lazyload({ threshold: 200 , effect: 'fadeIn' , effect_speed: 300 });\n" .
@@ -119,7 +134,7 @@ $strShCoreFooter = "";
 
 // このbrush:があれば、シンタックスハイライトする必要があるページ。上部と下部に必要なCSSやJSを足しこむ
 if ( strpos($strPageTemplate, "brush:") != false ) {
-    $strShCoreHeader = '<link rel="stylesheet" type="text/css" href="http://hd.xn--rssu31gj1g.jp/hilight/styles/HD_shcore-3.0.83.min.css?v=%(shcorecssupdate)s">' . "\n";
+    $strShCoreHeader = '<link rel="stylesheet" type="text/css" href="./hilight/styles/HD_shcore-3.0.83.min.css?v=%(shcorecssupdate)s">' . "\n";
 
     // shcoreのスタイルシート
     $timeShcoreCSSUpdate = filemtime("../hd.xn--rssu31gj1g.jp/hilight/styles/HD_shcore-3.0.83.min.css");
@@ -138,15 +153,15 @@ if ( strpos($strPageTemplate, "brush:") != false ) {
 //-------------- ホバーカードここから
 $strHoverCard = "";
 if ( strpos($strPageTemplate, "hovercard") != false ) {
-    $strHoverCard = '<script type="text/javascript" src="http://hd.xn--rssu31gj1g.jp/jquery/HD_jquery.hovercard-2.4.0.min.js"></script>';
+    $strHoverCard = '<script type="text/javascript" src="./jquery/HD_jquery.hovercard-2.4.0.min.js"></script>';
 }
 
 
 
 //-------------- 単純な単語の置き換え。 --------------
 // １つのコンテンツページに関して、各種置き換え
-$replaceNameKeys = Array("%(hilight)s", "%(home)s", "%(tshd)s", "%(ts95)s", "%(olink)s", "%(ilink)s", "%(environment_os)s", "%(environment_dnet)s", "%(environment_rt)s", "%(environment_rt_warn)s" );
-$replaceNameVals = Array($strHilightJS, '<i class="fa fa-ts95 fa-fw"></i>サイト', "天翔記HD版", "天翔記95PK版", '<i class="fa fa-external-link fa-fw" id="link_icon"></i>', '<i class="fa fa-internal-link-95 fa-fw" id="link_icon"></i>',
+$replaceNameKeys = array("%(hilight)s", "%(home)s", "%(tshd)s", "%(ts95)s", "%(olink)s", "%(ilink)s", "%(environment_os)s", "%(environment_dnet)s", "%(environment_rt)s", "%(environment_rt_warn)s" );
+$replaceNameVals = array($strHilightJS, '<i class="fa fa-ts95 fa-fw"></i>サイト', "天翔記HD版", "天翔記95PK版", '<i class="fa fa-external-link fa-fw" id="link_icon"></i>', '<i class="fa fa-internal-link-95 fa-fw" id="link_icon"></i>',
                                         '<tr><td>OS</td><td>Windows10以上</td><td>それ未満のバージョンのOSでも動作する可能性はありますが、<br>対象外となります。</td></tr>',
                                         '<tr><td>.NET</td><td>.NET FrameWork 4.6以上</td><td>(※ Windows10には最初から入っています。)</td></tr>',
                                         '<tr><td>再頒布<br>パッケージ</td><td>VS2015 Runtime x86版<br>Update 3</td><td><a href="https://www.microsoft.com/ja-JP/download/details.aspx?id=48145"><b>Visual Studio 2015 Runtime Update 3</b></a> をインストールしたことがない人は、 <br>インストールしてください。<br></td></tr>',
@@ -161,8 +176,8 @@ $strPageTemplate = str_replace($replaceNameKeys, $replaceNameVals, $strPageTempl
 $fileArchieve = $filetime_hash[$urlParamPage];
 if ($fileArchieve) {
    $filetime = filemtime("../hd.xn--rssu31gj1g.jp/".$fileArchieve);
-   $fileKeys   = Array( "%(file)s", "%(year)04d", "%(mon)02d", "%(mday)02d" );
-   $fileValues = Array("http://hd.xn--rssu31gj1g.jp/".$fileArchieve, date("Y", $filetime), date("m", $filetime), date("d", $filetime) );
+   $fileKeys   = array( "%(file)s", "%(year)04d", "%(mon)02d", "%(mday)02d" );
+   $fileValues = array("./".$fileArchieve, date("Y", $filetime), date("m", $filetime), date("d", $filetime) );
 
   $strPageTemplate = str_replace($fileKeys, $fileValues, $strPageTemplate);
 }
@@ -208,20 +223,23 @@ $strWebFontLoader  = "";
 // セッションにフォントの日時が代入されているということは、フォントのキャッシュがすでにある可能性が極めて高い。
 // 最初から埋め込みCSSとしてユトリロを表示する。
 if ( $_SESSION['FontUpdate'] == $strFontUpdate ) {
+/*
     $strWebFontCSSLink = "" .
                          "<style type='text/css'>\n" .
                            "@font-face {\n" .
                            "    font-family: 'utrillo_sub';\n" .
-                           "    src: url('http://xn--rssu31gj1g.jp/font/utrillo_sub.woff?v=%(fontupdate)s') format('woff'),\n" .
-                           "         url('http://xn--rssu31gj1g.jp/font/utrillo_sub.otf?v=%(fontupdate)s') format('opentype');\n" .
+                           "    src: url('./font/utrillo_sub.woff?v=%(fontupdate)s') format('woff'),\n" .
+                           "         url('./font/utrillo_sub.otf?v=%(fontupdate)s') format('opentype');\n" .
                            "}\n" .
                            "body { font-family: 'utrillo_sub', serif; }\n" .
                          "</style>";
 
     $strWebFontLoader = "";
+*/
 
 // 多分フォントのキャッシュが無い。非同期で表示。
 } else {
+/*                         
 
     // 上部にリンクだけ。この段階では、このリンクの正体は不明
     // フォントローダー。そして、対象のフォントが読み終わったら、実態がphpである webfontloaded.js.ver を実行して、フォントが読み終わったことをPHPセッションとして書き込む
@@ -241,6 +259,7 @@ if ( $_SESSION['FontUpdate'] == $strFontUpdate ) {
                          ".wf-inactive body { font-family: serif; }\n" .
                          ".wf-active   body { font-family: 'utrillo_sub', serif; }\n" .
                          "</style>";
+*/
 }
 
 $_SESSION['FontUpdate'] = $strFontUpdate;

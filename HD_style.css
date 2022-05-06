@@ -5,6 +5,7 @@ body {
     background-color: #fafafa;
 }
 
+
 /**************************/ /* 画像系 */ /**************************/
 img {
     border:1px solid #666666;
@@ -387,7 +388,19 @@ fieldset.alert-question legend:before {
     font-family: FontAwesome;
     margin-right:3px;
 }
-
+.paragraph a[href^="http://"]:after,
+.paragraph a[href^="https://"]:after,
+.paragraph a[target="_blank"]:after {
+    content:"\f08e";
+    display:inline-block;
+    font-family:"FontAwesome";
+    font-weight:400;
+    font-style:normal;
+    margin:0.3em;
+    text-decoration:none;
+    vertical-align:super;
+    font-size:.7em;
+}
 /**************************/ /* coder Table */ /**************************/
 .tbl_v_bgcolor tr td:nth-of-type(1) {
     background: #d5d5ff;
@@ -555,7 +568,7 @@ div.paragraph div.download_file a {
 }
 
 div.paragraph .update_time {
-    padding-top: 15px;
+    padding-top: 17px;
     padding-left: 200px;
 }
 

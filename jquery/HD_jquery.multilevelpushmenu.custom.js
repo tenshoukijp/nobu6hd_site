@@ -1,7 +1,7 @@
 var menuMoveMode = false;
 var isViewingPageLoading = false; // ページロードの表示中
 
-$(document).ready(function () {
+$(document).ready(function(){
   $( '#eventpanel' ).empty();
 
   $( '#menu' ).multilevelpushmenu({

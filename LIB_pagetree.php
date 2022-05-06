@@ -16,6 +16,13 @@ $content_hash = [
     'HD_nobu_folder_and_file_list' =>
         [ 'html'=>'HD_nobu_folder_and_file_list.html', 'title'=>'ファイル構成' , 'dir'=>'ファイル構成'],
 
+    'HD_nobu_tool_get_resource_bin' =>
+        [ 'html'=>'HD_nobu_tool_get_resource_bin.html', 'title'=>'リソースの取得' , 'dir'=>'ファイル構成'],
+
+    'HD_nobu_high_resolution' =>
+        [ 'html'=>'HD_nobu_high_resolution.html', 'title'=>'高解像度での起動' , 'dir'=>'初期設置'],
+
+        
     'HD_nobu_tools_retsuden' =>
         [ 'html'=>'HD_nobu_tools_retsuden.html', 'title'=>'列伝エディタ' , 'dir'=>'各種エディタ'],
 
