@@ -16,9 +16,6 @@ $content_hash = [
     'HD_nobu_folder_and_file_list' =>
         [ 'html'=>'HD_nobu_folder_and_file_list.html', 'title'=>'ファイル構成' , 'dir'=>'ファイル構成'],
 
-    'HD_nobu_tool_get_resource_bin' =>
-        [ 'html'=>'HD_nobu_tool_get_resource_bin.html', 'title'=>'リソースの取得' , 'dir'=>'ファイル構成'],
-
     'HD_nobu_high_resolution' =>
         [ 'html'=>'HD_nobu_high_resolution.html', 'title'=>'高解像度での起動' , 'dir'=>'初期設置'],
 
@@ -222,6 +219,9 @@ $content_hash = [
         [ 'html'=>'HD_nobu_image_expand_and_reduce.html', 'title'=>'画像の拡大と縮小' , 'dir'=>'画像入替'],
     'HD_nobu_image_main_mapdata_convert_to_95' =>
         [ 'html'=>'HD_nobu_image_main_mapdata_convert_to_95.html', 'title'=>'全国地図 旧版→新版' , 'dir'=>'画像入替'],
+
+    'HD_nobu_tool_get_resource_bin' =>
+        [ 'html'=>'HD_nobu_tool_get_resource_bin.html', 'title'=>'リソースの取得' , 'dir'=>'画像入替'],
 
     'HD_nobu_movie_convert_to_hd' =>
         [ 'html'=>'HD_nobu_movie_convert_to_hd.html', 'title'=>'映像入替 他物→新版' , 'dir'=>'映像入替'],
