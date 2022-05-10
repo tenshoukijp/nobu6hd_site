@@ -256,6 +256,8 @@ $filetime_hash = [
     'HD_nobu_sdk_cs_hdsdk_install' =>
         'cnt_sdk/hd_version/User.version.SDK.zip',
 
+    'HD_nobu_mod_cs_ironpython_init' =>
+        'cnt_mod/mod_ironpython/HD.IronPythonMod.zip',
 
     'HD_nobu_mod_ironpython_init' =>
         'cnt_mod/mod_ironpython/HD.IronPythonMod.zip'
