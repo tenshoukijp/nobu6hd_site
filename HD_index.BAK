@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <!-- %(japanese_webfont_css)s -->
 <style type="text/css">
-body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;}
+body {font-family: "UD Digi Kyokasho N-R", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;}
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="./HD_style.min.css?v=%(styleupdate)s">
@@ -38,6 +38,7 @@ body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho"
             <h2><i class="fa fa-lightbulb-o fa-fw"></i>更新履歴</h2>
             <ul>
                 <li><a href="https://twitter.com/tenshouki_jp"><i class="fa fa-twitter fa-fw"></i>Twitter</a></li>
+                <li><a href="https://github.com/search?q=tenshoukijp%2Fnobu6hd_&type=repositories"><i class="fa fa-github fa-fw"></i>Github</a></li>
             </ul>
 
         <li>
@@ -75,6 +76,7 @@ body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho"
             <a href="#"><i class="fa fa-image fa-fw"></i>画像入替</a>
             <h2><i class="fa fa-image fa-fw"></i>画像入替</h2>
             <ul>
+                <li id="HD_nobu_tool_get_resource_bin"><a href="?page=HD_nobu_tool_get_resource_bin"><i class="fa fa-image fa-fw"></i>HD版の画像の抽出や編集</a></li>
                 <li id="HD_nobu_image_expand_and_reduce"><a href="?page=HD_nobu_image_expand_and_reduce"><i class="fa fa-image fa-fw"></i>画像の縮小・拡大</a></li>
                 <li id="HD_nobu_image_hdsdk_change_fullcolor_face">
                    
@@ -84,7 +86,6 @@ body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho"
     &nbsp;&nbsp;→&nbsp;天翔記HD版の顔グラに反映
 </span></a>
                 </li>
-                <li id="HD_nobu_tool_get_resource_bin"><a href="?page=HD_nobu_tool_get_resource_bin"><i class="fa fa-image fa-fw"></i>HD版の画像の抽出や編集</a></li>
                 <li id="HD_nobu_image_main_mapdata_convert_to_95">
                     <a href="?page=HD_nobu_image_main_mapdata_convert_to_95">
                         <i class="fa fa-map-o fa-fw"></i>天翔記HD版の全国地図を<br>
