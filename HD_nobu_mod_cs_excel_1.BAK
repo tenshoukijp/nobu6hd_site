@@ -8,7 +8,7 @@
     <p>C#からExcelを利用するサンプル例はたくさんネット上に存在しますが、<br>
     記述方法が幾通りにもわかれています。<br>
     <p>その中で2016年現在、最も利用価値が高いのは、Excelのバージョンなどに依存しない<br>
-    下記のような<span class="my_keyword">Type.GetTypeFromProgID</span>と<span class="my_keyword">dynamic</span>とを使った形です。<br>
+    下記のような<span class="my_keyword">Type.GetTypeFromProgID</span>と<span class="keyword">dynamic</span>とを使った形です。<br>
     この形をベースにネットを検索してみましょう。</p>
     <li>
     <h3>Type.GetTypeFromProgIDとdynamic</h3>

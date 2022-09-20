@@ -59,7 +59,7 @@ span.underline {
     text-decoration: underline;
 }
 
-span.keyword {
+span.my_keyword {
     border:2px solid #99f;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
