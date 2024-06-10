@@ -35,8 +35,13 @@ require("../hd.xn--rssu31gj1g.jp/LIB_crawler.php");
 // ソースハイライト用。"%(heilight)s"がある時だけ埋め込まれる
 $strHilightJS = "";
 
+
+$strPageFileFullPath = "../hd.xn--rssu31gj1g.jp/".$content_hash[$urlParamPage]['html'];
+
 // コンテンツのページテンプレート読み込み
-$strPageTemplate = file_get_contents("../hd.xn--rssu31gj1g.jp/".$content_hash[$urlParamPage]['html']);
+$strPageTemplate = file_get_contents($strPageFileFullPath);
+
+$strPageDate = date('Y-m-d\TH:i:s', filectime($strPageFileFullPath));
 
 // まずBOMの除去
 $strPageTemplate = preg_replace('/^\xEF\xBB\xBF/', '', $strPageTemplate);
@@ -288,6 +293,7 @@ $strLazyCustomUpdate = date("YmdHis", $timeLazyCustomUpdate);
 // index内にある、スタイル、コンテンツ、階層の開きをそれぞれ、具体的な文字列へと置き換える
 $array_style    = array(
      "%(japanese_webfont_css)s",
+     "%(pagedate)s",
      "%(webfont_loader)s",
      "%(style_dynamic)s",
      "%(expand)s",
@@ -305,6 +311,7 @@ $array_style    = array(
      "%(content_dynamic)s" );
 $array_template = array(
       $strWebFontCSSLink,
+      $strPageDate, 
       $strWebFontLoader,
       $strStyleTemplate,
       $strMenuExpand,
