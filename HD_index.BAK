@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--nobanner-->
 <html>
 <head>
@@ -8,18 +8,20 @@
 <!-- meta name=viewport content="width=device-width, initial-scale=1" -->
 <meta http-equiv="content-style-type" content="text/css">
 <meta name="description" content="天翔記 HD Versionの改造・Mod">
+<meta name="author" content="翔.jp">
+<meta name="date" content="%(pagedate)s">
 <link rel="shortcut icon" href="./favicon.ico">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <!-- %(japanese_webfont_css)s -->
 <style type="text/css">
-body {font-family: "UD Digi Kyokasho N-R", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;}
+body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;}
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="./HD_style.min.css?v=%(styleupdate)s">
 <link rel="stylesheet" type="text/css" href="./font-awesome/css/font-awesome-plugin.css?v=%(fontpluginupdate)s">
 <link rel="stylesheet" type="text/css" href="./jquery/HD_jquery.multilevelpushmenu.min.css?v=%(mlpmcssdate)s">
 %(style_dynamic)s %(webfont_loader)s
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 %(shcore_head)s
 </head>
 <body>
@@ -334,5 +336,6 @@ function doMenuExpand() {
 %(shcore_foot)s
 %(lazy_load)s
 %(hover_card)s
+<script type="text/javascript" src="./jquery/multilevelpushmenu-breadcrump.js"></script>
 </body>
 </html>
