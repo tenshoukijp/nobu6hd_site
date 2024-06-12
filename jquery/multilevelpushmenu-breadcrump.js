@@ -28,7 +28,7 @@ function findPreviousULSibling(element) {
     }
 
     var previousUL = ancestorElement.previousElementSibling;
-    if (previousUL) {
+    if (previousUL && previousUL.tagName == 'H2') {
         return previousUL;
     } else {
         return null;
@@ -42,16 +42,23 @@ function createBreadCrumbs() {
 
         // パンくずリストを格納する配列
         let breadcrumbs = [];
-        breadcrumbs.push(currentElement.innerText);
+        let text = currentElement.innerText.replace(/\n/g, ' ');
+        text = text.replace(/&nbsp;/g, '');
+        breadcrumbs.push(text);
         let targetItem = currentElement;
         // 最大でも8層程度でしょ
         for (let i = 0; i < 8; i++) {
             targetItem = findPreviousULSibling(targetItem);
             if (!targetItem) { break; }
-            breadcrumbs.push(targetItem.innerText);
+            let text = targetItem.innerText.replace(/\n/g, ' ');
+            text = text.replace(/&nbsp;/g, '');
+            breadcrumbs.push(text);
         }
         breadcrumbs.reverse(); // 子供⇒親の順番で格納されているので、反対のして親⇒子供の順番にする。
-        return breadcrumbs.join(' > '); // ぱんくず文字列化
+        for(let b=0; b<breadcrumbs.length; b++) {
+            breadcrumbs[b] = "<li>" + breadcrumbs[b] + "</li>"
+        }
+        return breadcrumbs.join("\n"); // ぱんくず文字列化
     } catch(q) {
 
     }
@@ -60,4 +67,4 @@ function createBreadCrumbs() {
 }
 
 let strBreadCrumb = createBreadCrumbs();
-document.getElementById('breadcrump').innerText = strBreadCrumb;
+document.getElementById('breadcrump').innerHTML = strBreadCrumb;

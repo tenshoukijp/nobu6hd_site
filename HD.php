@@ -290,6 +290,10 @@ $strMLPMCustomUpdate = date("YmdHis", $timeMLPMCustomUpdate);
 $timeLazyCustomUpdate = filemtime("../hd.xn--rssu31gj1g.jp/jquery/HD_jquery.lazyload-1.9.7.overlay.min.js");
 $strLazyCustomUpdate = date("YmdHis", $timeLazyCustomUpdate);
 
+// パンくずリストJS
+$timeBreadCrumpUpdate = filemtime("jquery/multilevelpushmenu-breadcrump.js");
+$strBreadCrumpUpdate = date("YmdHis", $timeBreadCrumpUpdate);
+
 
 // index内にある、スタイル、コンテンツ、階層の開きをそれぞれ、具体的な文字列へと置き換える
 $array_style    = array(
@@ -310,6 +314,7 @@ $array_style    = array(
      "%(lazy_load)s",
      "%(lazycustomupdate)s",
      "%(hover_card)s",
+     "%(breadcrump)s",
      "%(content_dynamic)s" );
 $array_template = array(
       $strWebFontCSSLink,
@@ -329,6 +334,7 @@ $array_template = array(
       $strLazyLoad,
       $strLazyCustomUpdate,
       $strHoverCard,
+      $strBreadCrumpUpdate,
       $strPageTemplate );
 $strIndexEvaluated = str_replace($array_style, $array_template, $strIndexTemplate);
 

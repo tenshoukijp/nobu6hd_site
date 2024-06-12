@@ -27,7 +27,7 @@ body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho"
 <body>
 <div id="pushobj">
     <div id="eventpanel"></div>
-    <div class="paragraph">%(content_dynamic)s</div>
+    <div class="paragraph"><nav><ol class="breadcrumb" id="breadcrump"></ol></nav>%(content_dynamic)s</div>
 </div>
 
 <div id="menu">
@@ -336,6 +336,6 @@ function doMenuExpand() {
 %(shcore_foot)s
 %(lazy_load)s
 %(hover_card)s
-<script type="text/javascript" src="./jquery/multilevelpushmenu-breadcrump.js"></script>
+<script type="text/javascript" src="./jquery/multilevelpushmenu-breadcrump.js?v=%(breadcrump)s"></script>
 </body>
 </html>

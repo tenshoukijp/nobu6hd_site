@@ -75,6 +75,18 @@ tr,th,td {
     vertical-align: top;
 }
 
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    background:#fafafa
+}
+.breadcrumb li:not(:last-of-type)::after {
+    content: ">";
+    margin:0 .6em;
+    color: #222;
+}
+
 div.paragraph {
     font-size: 1.5em;
     line-height: 1.4em;
