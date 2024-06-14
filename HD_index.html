@@ -9,7 +9,7 @@
 <meta http-equiv="content-style-type" content="text/css">
 <meta name="description" content="天翔記 HD Versionの改造・Mod">
 <meta name="author" content="翔.jp">
-<meta name="date" content="%(pagedate)s">
+<meta name="last-modified" content="%(pagedate)s">
 <link rel="shortcut icon" href="./favicon.ico">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <!-- %(japanese_webfont_css)s -->
@@ -27,6 +27,7 @@ body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho"
 <body>
 <div id="pushobj">
     <div id="eventpanel"></div>
+    <div class="last_modified" style="float:right; padding:12px">%(pageymd)s</div>
     <nav><ol class="breadcrumb" id="breadcrump"></ol></nav>
     <div class="paragraph">%(content_dynamic)s</div>
 </div>
@@ -320,7 +321,7 @@ body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho"
                 </li>
             </ul>
         </li>
-        <li id="menu_separator"></li>
+        <li class="menu_separator"></li>
 
         <li><a href="https://xn--rssu31gj1g.jp"><i class="fa-ts95 fa-fw"></i>95 version ホーム</a></li>
     </ul>

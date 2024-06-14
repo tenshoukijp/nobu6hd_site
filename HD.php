@@ -295,10 +295,26 @@ $timeBreadCrumpUpdate = filemtime("jquery/multilevelpushmenu-breadcrump.js");
 $strBreadCrumpUpdate = date("YmdHis", $timeBreadCrumpUpdate);
 
 
+// 最終更新日時関連
+$pageCTimeObj = filemtime($strPageFileFullPath);
+if (isset($filetime) && $filetime > $pageCTimeObj) {
+     $pageCTimeObj = $filetime;
+}
+$strPageDate = date('Y-m-d\TH:i:s', $pageCTimeObj);
+$strCurrentYear = date("Y");
+$strPageYMD = date('最終更新日 Y-m-d', $pageCTimeObj);
+// デフォルトのページ
+if ( $urlParamPage == "HD_nobu_top" ) {
+    $strPageYMD = "";
+}
+
+
+
 // index内にある、スタイル、コンテンツ、階層の開きをそれぞれ、具体的な文字列へと置き換える
 $array_style    = array(
      "%(japanese_webfont_css)s",
      "%(pagedate)s",
+     "%(pageymd)s",
      "%(year)s",
      "%(webfont_loader)s",
      "%(style_dynamic)s",
@@ -319,6 +335,7 @@ $array_style    = array(
 $array_template = array(
       $strWebFontCSSLink,
       $strPageDate, 
+      $strPageYMD,
       $strCurrentYear,
       $strWebFontLoader,
       $strStyleTemplate,

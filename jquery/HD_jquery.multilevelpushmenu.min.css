@@ -8,7 +8,7 @@
 .multilevelpushmenu_wrapper li{cursor:pointer;border-top:1px solid #2956A7;padding:10px 10px 10px 20px;}
 .multilevelpushmenu_wrapper li:last-child{border-bottom:1px solid #2956A7;}
 .multilevelpushmenu_wrapper li:hover{background-color:#2956A7;}
-.multilevelpushmenu_wrapper li#menu_separator:hover{background:#336cc8;}
+.multilevelpushmenu_wrapper li.menu_separator:hover{background:#336cc8;}
 .multilevelpushmenu_wrapper a{display:block;outline:none;overflow:hidden;font-size:1.8em;line-height:1em;text-decoration:none;color:#fff;padding:.2em;}
 .multilevelpushmenu_wrapper a:hover{text-shadow:0 0 2px #bbb, 0 0 8px #bbb;}
 .multilevelpushmenu_wrapper .backItemClass{display:block;background:#2e61B8;border-top:1px solid #2956A7;padding:10px 10px 10px 20px;}
