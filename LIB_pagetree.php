@@ -1,7 +1,7 @@
 <?php
 $content_hash = [
     'HD_nobu_top' =>
-        [ 'html'=>'HD_nobu_top.html', 'title'=>'トップページ' , 'dir'=>'初期設置'],
+        [ 'html'=>'HD_nobu_top.html', 'title'=>'トップページ' , 'dir'=>''],
 
     'HD_nobu_init_steam' =>
         [ 'html'=>'HD_nobu_init_steam.html', 'title'=>'Steamで知っておくべきこと' , 'dir'=>'初期設置'],

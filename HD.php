@@ -13,13 +13,15 @@ if ($_SERVER['HTTP_HOST']=="usr.s602.xrea.com") {
     if (str_contains($_SERVER["REQUEST_URI"], "/hd.xn--rssu31gj1g.jp")) {
         $OldRequest = $_SERVER["REQUEST_URI"];
         $NewRequest = str_replace("/hd.xn--rssu31gj1g.jp", "", $OldRequest);
-	    $NewUrl = "https://hd.xn--rssu31gj1g.jp".$NewRequest;
+        $NewUrl = "https://hd.xn--rssu31gj1g.jp".$NewRequest;
         header( "HTTP/1.1 301 Moved Permanently" );
-	    header( "Location: ".$NewUrl);
+        header( "Location: ".$NewUrl);
         exit;
     } 
 }
 
+
+$strTitle = "天翔記.jp (HD版)";
 
 // デフォルトのページ
 if ( $urlParamPage == "" ) {
@@ -58,60 +60,63 @@ $strPageTemplate = str_replace('%(vs2022runtime)s', 'https://support.microsoft.c
 
 /*
 // hrefにタグ
-$strPageTemplate = preg_replace_callback("/(<a\s+href=[\"'])([^\"']+?)([\"'])(>)(.+?)(<\/a>)/",
-                                   function ($matches) {
-                                       // httpが含まれている。が、http://hd. は含まれていない(=外部サイトのリンク)
-                                       if ( strpos($matches[0],'http') !== false && strpos($matches[0],'https://hd.') === false ) {
-                                           return $matches[1] . $matches[2] . $matches[3] . $matches[4] . $matches[5] . "%(olink)s" . $matches[6];
-                                       // 「/」と同じか、「/?page」が含まれている。(=95サイトへのリンクだ)
-                                       } else if ($matches[2] == '/' || strpos($matches[0],'/?page') !== false ) {
-                                           return $matches[1] . $matches[2] . $matches[3] . $matches[4] . $matches[5] . "%(ilink)s" . $matches[6];
+$strPageTemplate = preg_replace_callback(
+   "/(<a\s+href=[\"'])([^\"']+?)([\"'])(>)(.+?)(<\/a>)/",
+   function ($matches) {
+       // httpが含まれている。が、http://hd. は含まれていない(=外部サイトのリンク)
+       if ( strpos($matches[0],'http') !== false && strpos($matches[0],'https://hd.') === false ) {
+           return $matches[1] . $matches[2] . $matches[3] . $matches[4] . $matches[5] . "%(olink)s" . $matches[6];
+       // 「/」と同じか、「/?page」が含まれている。(=95サイトへのリンクだ)
+       } else if ($matches[2] == '/' || strpos($matches[0],'/?page') !== false ) {
+           return $matches[1] . $matches[2] . $matches[3] . $matches[4] . $matches[5] . "%(ilink)s" . $matches[6];
 
-                                       // HD内のリンクだ。
-                                       } else {
-                                           return $matches[0];
-                                       }
-                                   }, $strPageTemplate);
+       // HD内のリンクだ。
+       } else {
+           return $matches[0];
+       }
+   }, $strPageTemplate);
 */
 // widthやheightが無いイメージタグにマッチしたら、 画像の半分のサイズでwidthやheightを入れる。
-$strPageTemplate = preg_replace_callback("/(<img src=[\"'])([^\"']+?)([\"'])(>)/",
-                                   function ($matches) {
-                                       // httpが含まれている。
-                                       if (strpos($matches[0],'http') !== false) {
-                                           return $matches[0];
+$strPageTemplate = preg_replace_callback(
+   "/(<img src=[\"'])([^\"']+?)([\"'])(>)/",
+   function ($matches) {
+       // httpが含まれている。
+       if (strpos($matches[0],'http') !== false) {
+           return $matches[0];
 
-                                       // サイト内の画像
-                                       } else {
-                                           $strTargetImageFileName = "/virtual/usr/public_html/hd.xn--rssu31gj1g.jp/" . $matches[2];
-                                           $timeTargetImageUpdate = filemtime($strTargetImageFileName);
-                                           $strTargetImageUpdate = date("YmdHis", $timeTargetImageUpdate);
-                                           list($width, $height, $type, $attr) = getimagesize($strTargetImageFileName);
-                                           // エッジが無い(=shadowするべきではない場合)
-                                           if (strpos($matches[2], "noedge") != false ) {
-                                               return $matches[1] . $matches[2] . "?v=". $strTargetImageUpdate . $matches[3] . " width='".(int)($width/2)."' height='".(int)($height/2)."'" . " attr='noedge' " . $matches[4];
-                                           // 通常のイメージ(エッジがある)
-                                           } else {
-                                               return $matches[1] . $matches[2] . "?v=". $strTargetImageUpdate . $matches[3] . " width='".(int)($width/2)."' height='".(int)($height/2)."'" . $matches[4];
-                                           }
-                                       }
-                                   }, $strPageTemplate);
+       // サイト内の画像
+       } else {
+           $strTargetImageFileName = "/virtual/usr/public_html/hd.xn--rssu31gj1g.jp/" . $matches[2];
+           $timeTargetImageUpdate = filemtime($strTargetImageFileName);
+           $strTargetImageUpdate = date("YmdHis", $timeTargetImageUpdate);
+           list($width, $height, $type, $attr) = getimagesize($strTargetImageFileName);
+           // エッジが無い(=shadowするべきではない場合)
+           if (strpos($matches[2], "noedge") != false ) {
+               return $matches[1] . $matches[2] . "?v=". $strTargetImageUpdate . $matches[3] . " width='".(int)($width/2)."' height='".(int)($height/2)."'" . " attr='noedge' " . $matches[4];
+           // 通常のイメージ(エッジがある)
+           } else {
+               return $matches[1] . $matches[2] . "?v=". $strTargetImageUpdate . $matches[3] . " width='".(int)($width/2)."' height='".(int)($height/2)."'" . $matches[4];
+           }
+       }
+   }, $strPageTemplate);
 
 
 // CardImageのcardImgsrcハッシュにマッチしたら、 ファイル更新時を入れる
-$strPageTemplate = preg_replace_callback("/(cardImgSrc\s*:\s*[\"'])([^\"']+?)([\"'])/",
-                                   function ($matches) {
-                                       // httpが含まれている。
-                                       if (strpos($matches[0],'http') !== false) {
-                                           return $matches[0];
+$strPageTemplate = preg_replace_callback(
+   "/(cardImgSrc\s*:\s*[\"'])([^\"']+?)([\"'])/",
+   function ($matches) {
+       // httpが含まれている。
+       if (strpos($matches[0],'http') !== false) {
+           return $matches[0];
 
-                                       // サイト内の画像
-                                       } else {
-                                           $strTargetCardImageFileName = "/virtual/usr/public_html/hd.xn--rssu31gj1g.jp/" . $matches[2];
-                                           $timeTargetCardImageUpdate = filemtime($strTargetCardImageFileName);
-                                           $strTargetCardImageUpdate = date("YmdHis", $timeTargetCardImageUpdate);
-                                           return $matches[1] . $matches[2] . "?v=". $strTargetCardImageUpdate . $matches[3];
-                                       }
-                                   }, $strPageTemplate);
+       // サイト内の画像
+       } else {
+           $strTargetCardImageFileName = "/virtual/usr/public_html/hd.xn--rssu31gj1g.jp/" . $matches[2];
+           $timeTargetCardImageUpdate = filemtime($strTargetCardImageFileName);
+           $strTargetCardImageUpdate = date("YmdHis", $timeTargetCardImageUpdate);
+           return $matches[1] . $matches[2] . "?v=". $strTargetCardImageUpdate . $matches[3];
+       }
+   }, $strPageTemplate);
 
 // cnt_は HD.verからは相対では見えないので、「./cnt_***」⇒「https://hd.xn--rssu31gj1g.jp/cnt_***」というように、hd系をつける
 // $strPageTemplate = preg_replace('/"(\.\/)?cnt_/', '"https://hd.xn--rssu31gj1g.jp/cnt_', $strPageTemplate);
@@ -310,9 +315,38 @@ if ( $urlParamPage == "HD_nobu_top" ) {
 
 
 
+// <h2>タグ内の文字列を取得する
+preg_match('/<h2>(.*?)<\/h2>/s', $strPageTemplate, $matchesTitle);
+if (isset($matchesTitle[1])) {
+    $strH2Content = $matchesTitle[1];
+
+    // タグと改行を削除
+    $strH2ContentCleaned = strip_tags($strH2Content); // タグを削除
+    $strH2ContentCleaned = preg_replace('/\s+/', ' ', $strH2ContentCleaned); // 改行を削除
+
+    // ページ自体が属しているメニューカテゴリ名を取得
+    $strParentDir = $content_hash[$urlParamPage]['dir'];
+
+    // ページのH2要素内の文字列と、カテゴリ名の文字列が類似していれば、「ページのH2の中身」だけ
+    // 全然違うようなら、「カテゴリ | ページのH2の中身」という構成にして妥当性を上げる
+    $lvsDistance = levenshtein($strParentDir, $strH2ContentCleaned);
+    $lvsSimilarity = 1 - $lvsDistance / max(strlen($strParentDir), strlen($strH2ContentCleaned));
+    if ($lvsSimilarity > 0.7) {
+        $strTitle = "天翔記.jp (HD版) | " . $strH2ContentCleaned;
+    } else if (strlen($strParentDir)>1) {
+        $strTitle = "天翔記.jp (HD版) | " . $strParentDir . " | " . $strH2ContentCleaned;
+    } else {
+        $strTitle = "天翔記.jp (HD版) | " . $strH2ContentCleaned;
+    }
+}
+
+
+
+
 // index内にある、スタイル、コンテンツ、階層の開きをそれぞれ、具体的な文字列へと置き換える
 $array_style    = array(
      "%(japanese_webfont_css)s",
+     "%(title)s",
      "%(pagedate)s",
      "%(pageymd)s",
      "%(year)s",
@@ -334,6 +368,7 @@ $array_style    = array(
      "%(content_dynamic)s" );
 $array_template = array(
       $strWebFontCSSLink,
+      $strTitle, 
       $strPageDate, 
       $strPageYMD,
       $strCurrentYear,
@@ -355,7 +390,7 @@ $array_template = array(
       $strPageTemplate );
 $strIndexEvaluated = str_replace($array_style, $array_template, $strIndexTemplate);
 
-require("../hd.xn--rssu31gj1g.jp/LIB_remain_days.php");
+// require("../hd.xn--rssu31gj1g.jp/LIB_remain_days.php");
 
 // トップページとして表示
 echo($strIndexEvaluated);
