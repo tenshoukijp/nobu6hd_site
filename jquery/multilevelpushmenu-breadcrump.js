@@ -14,15 +14,8 @@ function getPageParam() {
 
 function findPreviousULSibling(element) {
     if (!element) { return null; }
-    var ancestorElement = element.parentElement;
-    if (!ancestorElement) { return null; }
 
-    for (let i = 0; i < 8; i++) {
-        if (ancestorElement !== null && ancestorElement.tagName !== 'UL') {
-            ancestorElement = ancestorElement.parentElement;
-        }
-    }
-
+    var ancestorElement = element.closest('ul');
     if (!ancestorElement) {
         return null;
     }
