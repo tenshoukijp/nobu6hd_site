@@ -3,42 +3,49 @@ header("Content-type: text/html; charset=UTF-8");
 
 session_start();
 
-require("../hd.xn--rssu31gj1g.jp/LIB_pagetree.php");
+require("LIB_pagetree.php");
 
+$punnyAddress = "hd.xn--rssu31gj1g.jp";
+
+$defaultHomePage = "HD_nobu_top";
+
+$indexFileName = "HD_index.html";
+
+$strTitle = "天翔記.jp (HD版)";
 
 $urlParamPage = $_GET['page'];
 $orgParamPage = $_GET['page'];
 
-if ($_SERVER['HTTP_HOST']=="usr.s602.xrea.com") {
-    if (str_contains($_SERVER["REQUEST_URI"], "/hd.xn--rssu31gj1g.jp")) {
+if ($_SERVER['HTTP_HOST'] == "usr.s602.xrea.com") {
+    if (str_contains($_SERVER["REQUEST_URI"], "/" . $punnyAddress)) {
         $OldRequest = $_SERVER["REQUEST_URI"];
-        $NewRequest = str_replace("/hd.xn--rssu31gj1g.jp", "", $OldRequest);
-        $NewUrl = "https://hd.xn--rssu31gj1g.jp".$NewRequest;
-        header( "HTTP/1.1 301 Moved Permanently" );
-        header( "Location: ".$NewUrl);
+        $NewRequest = str_replace("/".$punnyAddress, "", $OldRequest);
+        $NewUrl = "https://" . $punnyAddress . $NewRequest;
+        header("HTTP/1.1 301 Moved Permanently");
+        header("Location: " . $NewUrl);
         exit;
-    } 
+    }
 }
 
 
-$strTitle = "天翔記.jp (HD版)";
-
 // デフォルトのページ
 if ( $urlParamPage == "" ) {
-  $urlParamPage = "HD_nobu_top";
+    $urlParamPage = $defaultHomePage;
 }
 
 
 
 //-------------- クローラーの判定関数。LazyLoadをしない。 --------------
-require("../hd.xn--rssu31gj1g.jp/LIB_crawler.php");
-
-//-------------- シンタックスハイライター系の処理 --------------
-// ソースハイライト用。"%(heilight)s"がある時だけ埋め込まれる
-$strHilightJS = "";
+require("LIB_crawler.php");
 
 
-$strPageFileFullPath = "../hd.xn--rssu31gj1g.jp/".$content_hash[$urlParamPage]['html'];
+
+$strMenuTemplate = file_get_contents("menu.html");
+// まずBOMの除去
+$strMenuTemplate = preg_replace('/^\xEF\xBB\xBF/', '', $strMenuTemplate);
+
+
+$strPageFileFullPath = $content_hash[$urlParamPage]['html'];
 
 // コンテンツのページテンプレート読み込み
 $strPageTemplate = file_get_contents($strPageFileFullPath);
@@ -168,6 +175,9 @@ if ( strpos($strPageTemplate, "hovercard") != false ) {
 }
 
 
+//-------------- シンタックスハイライター系の処理 --------------
+// ソースハイライト用。"%(heilight)s"がある時だけ埋め込まれる
+$strHilightJS = "";
 
 //-------------- 単純な単語の置き換え。 --------------
 // １つのコンテンツページに関して、各種置き換え
@@ -197,7 +207,7 @@ if ($fileArchieve) {
 
 //-------------- 今開いているページを、メニュー上で強調するための処理 --------------
 // css系を読み込んで、置き換える置き換え
-$strStyleTemplate = file_get_contents("../hd.xn--rssu31gj1g.jp/"."HD_style_dynamic.css");
+$strStyleTemplate = file_get_contents("HD_style_dynamic.css");
 // 今表示しているページへの太字等
 $strStyleTemplate = str_replace("%(menu_style_dynamic)s", $urlParamPage, $strStyleTemplate);
 //-------------- 今開いているページを、メニュー上で強調するための処理ここまで --------------
@@ -206,7 +216,7 @@ $strStyleTemplate = str_replace("%(menu_style_dynamic)s", $urlParamPage, $strSty
 
 
 // トップページのテンプレートの読み込み
-$strIndexTemplate = file_get_contents("../hd.xn--rssu31gj1g.jp/HD_index.html");
+$strIndexTemplate = file_get_contents($indexFileName );
 
 
 
@@ -309,7 +319,7 @@ $strPageDate = date('Y-m-d\TH:i:s', $pageCTimeObj);
 $strCurrentYear = date("Y");
 $strPageYMD = date('最終更新日 Y-m-d', $pageCTimeObj);
 // デフォルトのページ
-if ( $urlParamPage == "HD_nobu_top" ) {
+if ( $urlParamPage == $defaultHomePage ) {
     $strPageYMD = "";
 }
 
@@ -332,11 +342,11 @@ if (isset($matchesTitle[1])) {
     $lvsDistance = levenshtein($strParentDir, $strH2ContentCleaned);
     $lvsSimilarity = 1 - $lvsDistance / max(strlen($strParentDir), strlen($strH2ContentCleaned));
     if ($lvsSimilarity > 0.7) {
-        $strTitle = "天翔記.jp (HD版) | " . $strH2ContentCleaned;
+        $strTitle = $strTitle . " | " . $strH2ContentCleaned;
     } else if (strlen($strParentDir)>1) {
-        $strTitle = "天翔記.jp (HD版) | " . $strParentDir . " | " . $strH2ContentCleaned;
+        $strTitle = $strTitle . " | " . $strParentDir . " | " . $strH2ContentCleaned;
     } else {
-        $strTitle = "天翔記.jp (HD版) | " . $strH2ContentCleaned;
+        $strTitle = $strTitle . " | " . $strH2ContentCleaned;
     }
 }
 
@@ -350,6 +360,7 @@ $array_style    = array(
      "%(pagedate)s",
      "%(pageymd)s",
      "%(year)s",
+     "%(menu)s",
      "%(webfont_loader)s",
      "%(style_dynamic)s",
      "%(expand)s",
@@ -372,6 +383,7 @@ $array_template = array(
       $strPageDate, 
       $strPageYMD,
       $strCurrentYear,
+      $strMenuTemplate,
       $strWebFontLoader,
       $strStyleTemplate,
       $strMenuExpand,
