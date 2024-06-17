@@ -15,8 +15,7 @@
     <h3>使用例①</h3>
     <p>ほとんどの使用シーンは、「<a href="?page=HD_nobu_sdk_cs_hdsdk_on_fukidashi_message">My_噴出メッセージ直前</a>」<br>
     にて、すりかえるメッセージを作る際に利用されます。
-    <fieldset class="code"><legend>デフォルトの会見のメッセージを、語句変化を伴ってすり替える</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    </p><fieldset class="code"><legend>デフォルトの会見のメッセージを、語句変化を伴ってすり替える</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         int 第１人称_武将番号 = パラメタ.第１人称_武将番号;
         int 第２人称_武将番号 = パラメタ.第２人称_武将番号;
@@ -25,26 +24,26 @@
         {
 
             // 会見のメッセージのひとつ
-            if (Regex.Match(元メッセージ, &quot;^何をするか|^はて…\xAこれから&quot;).Success)
+            if (Regex.Match(元メッセージ, "^何をするか|^はて…\xAこれから").Success)
             {
                 噴出メッセージパラメタ型 humans = new 噴出メッセージパラメタ型(第１人称_武将番号, 第２人称_武将番号);
                 int rnd = r.Next() % 3;
                 if (rnd == 0)
                 {
-                    string mes = 語句変化.相手(humans) +&quot;、商人に\x0A&quot; + &quot;米を売&quot; + 語句変化.りましょう(humans);
+                    string mes = 語句変化.相手(humans) +"、商人に\x0A" + "米を売" + 語句変化.りましょう(humans);
 
                     return mes;
                 }
                 else if (rnd == 1)
                 {
-                    string mes = 語句変化.ははは(humans) +&quot;、&quot; + 語句変化.相手(humans) +&quot;\x0A&quot; + &quot;一度の失敗では\x0A&quot; + &quot;懲りぬよう&quot; + 語句変化.です(humans) + 語句変化.な_２(humans);
+                    string mes = 語句変化.ははは(humans) +"、" + 語句変化.相手(humans) +"\x0A" + "一度の失敗では\x0A" + "懲りぬよう" + 語句変化.です(humans) + 語句変化.な_２(humans);
 
                     return mes;
                 }
                 else if (rnd == 2)
                 {
 
-                    string mes = &quot;おのれ、&quot; + 語句変化.罵倒相手(humans) +&quot;\x0A&quot; + &quot;覚えておれ！&quot;;
+                    string mes = "おのれ、" + 語句変化.罵倒相手(humans) +"\x0A" + "覚えておれ！";
 
                     return mes;
                 }
@@ -52,7 +51,7 @@
 
         }
 
-        return &quot;&quot;;
+        return "";
     }
 </pre></fieldset>
     <p>第１人称と第２人称の「性格」「口調」「人間関係」などを全て含んで、<br>

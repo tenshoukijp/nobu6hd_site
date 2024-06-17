@@ -5,28 +5,27 @@
     <h3>戦争-&gt;気象の概念</h3>
     <p>戦争-&gt;気象とは、戦争画面の天気を扱うオブジェクトのことです。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
     <p>現在の所、戦争-&gt;気象オブジェクトが提供するものは、<br>
     戦争画面の「天気」情報のみの提供となります。<br>
-    <fieldset class="code"><legend>天気の情報を得る</legend> <pre class="brush:cpp;">
-String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+    </p><fieldset class="code"><legend>天気の情報を得る</legend> <pre class="brush:cpp;">String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
 
   if (戦争-&gt;Is_野戦中 || 戦争-&gt;Is_籠城戦中) {
     if (戦争-&gt;気象-&gt;天候 == 列挙::戦争::気象::天候::晴れ) {
-      return &quot;晴れです。&quot;;
+      return "晴れです。";
     }
     else if (戦争-&gt;気象-&gt;天候 == 列挙::戦争::気象::天候::曇り) {
-      return &quot;曇りです。&quot;;
+      return "曇りです。";
     }
     if (戦争-&gt;気象-&gt;天候 == 列挙::戦争::気象::天候::雨) {
-      return &quot;雨です。&quot;;
+      return "雨です。";
     }
     if (戦争-&gt;気象-&gt;天候 == 列挙::戦争::気象::天候::雪) {
-      return &quot;雪です。&quot;;
+      return "雪です。";
     }
   }
-  return &quot;&quot;;
+  return "";
 }
 
 </pre></fieldset>

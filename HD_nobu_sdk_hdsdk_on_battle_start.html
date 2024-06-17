@@ -16,21 +16,20 @@
   全ての戦争において、戦争が発生したタイミングでこのイベントハンドラは呼ばれます。<br>
 </p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>一般的には、「戦争が発生した時、どこの軍団が、どこの城に攻めたのか？」<br>
   の情報を保持しておきたい場合に、このイベントハンドラを利用します。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
-    <fieldset class="code"><legend>戦端が開かれた城と、攻め込んだ軍団、攻められた軍団を得る。</legend><pre class="brush:cpp;">
-void 天翔記クラス::On_戦争開始時(int 城番号, 戦争開始パラメタ型^ パラメタ) {
+    <fieldset class="code"><legend>戦端が開かれた城と、攻め込んだ軍団、攻められた軍団を得る。</legend><pre class="brush:cpp;">void 天翔記クラス::On_戦争開始時(int 城番号, 戦争開始パラメタ型^ パラメタ) {
   int iTargetCastleID = 城番号;
   int iAttackGundanID = パラメタ-&gt;攻撃側軍団番号;
   int iDefendGundanID = パラメタ-&gt;守備側軍団番号;
 
   if (0 &lt;= iTargetCastleID &amp;&amp; iTargetCastleID &lt; 城-&gt;配列-&gt;Count) {
-    デバッグ出力 &lt;&lt; &quot;戦争が発生しました。&quot; &lt;&lt; &quot;対象は&quot; &lt;&lt; 城-&gt;配列[iTargetCastleID]-&gt;城名称 &lt;&lt; &quot;です&quot; &lt;&lt; endl;
+    デバッグ出力 &lt;&lt; "戦争が発生しました。" &lt;&lt; "対象は" &lt;&lt; 城-&gt;配列[iTargetCastleID]-&gt;城名称 &lt;&lt; "です" &lt;&lt; endl;
 
     // それぞれの軍団長
     if (0 &lt;= iAttackGundanID &amp;&amp; iAttackGundanID &lt; 軍団-&gt;配列-&gt;Count &amp;&amp;
@@ -40,8 +39,8 @@ void 天翔記クラス::On_戦争開始時(int 城番号, 戦争開始パラメ
 
       if (0 &lt;= iAttackLeader &amp;&amp; iAttackLeader &lt; 武将-&gt;配列-&gt;Count &amp;&amp;
         0 &lt;= iDefendLeader &amp;&amp; iDefendLeader &lt; 武将-&gt;配列-&gt;Count) {
-        デバッグ出力 &lt;&lt; &quot;攻撃軍団:&quot; &lt;&lt; 武将-&gt;配列[iAttackLeader]-&gt;姓名 &lt;&lt; endl;
-        デバッグ出力 &lt;&lt; &quot;守備軍団:&quot; &lt;&lt; 武将-&gt;配列[iDefendLeader]-&gt;姓名 &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "攻撃軍団:" &lt;&lt; 武将-&gt;配列[iAttackLeader]-&gt;姓名 &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "守備軍団:" &lt;&lt; 武将-&gt;配列[iDefendLeader]-&gt;姓名 &lt;&lt; endl;
       }
     }
   }
@@ -53,8 +52,7 @@ void 天翔記クラス::On_戦争開始時(int 城番号, 戦争開始パラメ
   <p>何か戦争が始まる前に、値を保持しておき、戦争が終わったら元へと戻す、<br>
   といったような目的でも利用することが可能です。<br>
   </p>
-    <fieldset class="code"><legend>戦争開始時に値を控えておき、戦争終了時に変動値を一定以内に抑える。</legend><pre class="brush:cpp;">
-int 熟練値控え[532] = { 0 };
+    <fieldset class="code"><legend>戦争開始時に値を控えておき、戦争終了時に変動値を一定以内に抑える。</legend><pre class="brush:cpp;">int 熟練値控え[532] = { 0 };
 void 天翔記クラス::On_戦争開始時(int 城番号, 戦争開始パラメタ型^ パラメタ) {
 
   // 戦争が始まる前に戦争の熟練値を保存しておき…

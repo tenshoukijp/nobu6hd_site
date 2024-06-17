@@ -5,7 +5,7 @@
     <h3>音楽の概念</h3>
     <p>音楽の概念は、主としてBGMを再生するためのAPI用オブジェクトです。</p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>独自に何らかのBGMを再生したい場合に利用します。<br>
     </p>
@@ -18,16 +18,14 @@
     </li>
     <li>
     <h3>使用例</h3>
-    <fieldset class="code"><legend>列挙を使った番号指定方法</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>列挙を使った番号指定方法</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
     // 夏疾風(=3)に割り当てられているスロットのBGMを再生する。
     音楽-&gt;Do_ＢＧＭ再生(列挙::音楽::ＢＧＭ番号::夏疾風);
 }
 </pre></fieldset>
     <p>普通は、何番のBGMがなんという曲名かといったことを覚えている人は少ないと思いますので、<br>
     以下のように番号を指定するのが普通でしょう。</p>
-    <fieldset class="code"><legend>普通に数値で番号を指定</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>普通に数値で番号を指定</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
     // 番号は天翔記フォルダのBGM以下の「BGM00.kvs～BGM11.kvs」の番号と一致しています。
     // この例であれば、デフォルトであればBGM03.kvsを再生する。
     音楽-&gt;Do_ＢＧＭ再生(3);
@@ -43,7 +41,7 @@ void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオ�
     数十・数百といった新たなBGMファイルでも問題なく細かく振り分けられるようになっています。<br>
     </p>
     <p>詳細→<a href="?page=HD_nobu_sdk_hdsdk_on_bgm_play">On_ＢＧＭ再生直前</a>
-    </li>
+    </p></li>
     <li>
     <h3>その他</h3>
 

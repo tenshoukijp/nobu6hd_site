@@ -11,15 +11,14 @@
     <h3>デバッグ出力</h3>
     <p>初めにデバッグ出力を覚えましょう。<br>
     デバッグ出力は、C++のcoutと全く同じ使い方となります。</p>
-    <fieldset class="code"><legend>デバッグ出力のテスト</legend> <pre class="brush:cpp;">
-/// 起動環境設定オブジェクトだけ扱える。
+    <fieldset class="code"><legend>デバッグ出力のテスト</legend> <pre class="brush:cpp;">/// 起動環境設定オブジェクトだけ扱える。
 void 天翔記クラス::On_ランチャーウィンドウ起動時() {
-  デバッグ出力 &lt;&lt; &quot;★On_ランチャーウィンドウ起動時★&quot; &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; "★On_ランチャーウィンドウ起動時★" &lt;&lt; endl;
 }
 
 /// これ以降は原則的には全て扱える。
 void 天翔記クラス::On_ゲームウィンドウ起動時() {
-  デバッグ出力 &lt;&lt; &quot;★On_ゲームウィンドウ起動時★&quot; &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; "★On_ゲームウィンドウ起動時★" &lt;&lt; endl;
 }
 
 </pre></fieldset>
@@ -33,8 +32,7 @@ void 天翔記クラス::On_ゲームウィンドウ起動時() {
     <p>それでは、軽く機能するかチェックしてみましょう。<br>
     戦略画面の軍団ターンが切り替わる度に、全ての武将の「政治適性・戦闘適性・智謀適性」がＡとなります。<br>
     </p>
-    <fieldset class="code"><legend>全武将の適性をＡに上書き その①</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>全武将の適性をＡに上書き その①</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
   for each (auto b in 武将-&gt;配列) {
     b-&gt;政治適性 = 列挙::武将::政治適性::Ａ;
     b-&gt;戦闘適性 = 列挙::武将::戦闘適性::Ａ;
@@ -45,8 +43,7 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 <p>もしくは次のように記述しても構いません。<br>
 %(ts95)sのScenarioModを利用していた人はこちらの方がイメージが近いでしょう。<br>
 </p>
-    <fieldset class="code"><legend>全武将の適性をＡに上書き その②</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>全武将の適性をＡに上書き その②</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
   for (int iBushouID = 0; iBushouID &lt; (武将-&gt;配列-&gt;Count); iBushouID++) {
     武将-&gt;配列[iBushouID]-&gt;政治適性 = 列挙::武将::政治適性::Ａ;
     武将-&gt;配列[iBushouID]-&gt;戦闘適性 = 列挙::武将::戦闘適性::Ａ;

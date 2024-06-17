@@ -9,7 +9,7 @@
     IronPythonそのものはC#から利用されることを強く意識した調整がされていると言えます。<br>
     </p>
     <p>まずは、雰囲気を理解するため、IronPythonとC#の連携がいかに自然で強力であるか見てみましょう。</p>
-    <li>
+    </li><li>
 
     <h3>プロジェクトの作成</h3>
     <p>適当にC#のコンソールアプリケーションを作成してみましょう。<br>
@@ -21,11 +21,10 @@
     <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_02.png"></p>
     <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_01.png"></p>
 
-    <li>
+    </li><li>
     <h3>C#側</h3>
 
-<fieldset class="code"><legend>C#のソース</legend><pre class="brush:csharp;">
-using System;
+<fieldset class="code"><legend>C#のソース</legend><pre class="brush:csharp;">using System;
 using IronPython.Hosting;
 
 namespace ConsoleApplication16
@@ -35,14 +34,14 @@ namespace ConsoleApplication16
         static void Main(string[] args)
         {
             var pe = Python.CreateEngine();
-            dynamic scope = pe.ExecuteFile(&quot;script.py&quot;);
+            dynamic scope = pe.ExecuteFile("script.py");
 
             // その場で式を実行。
-            int result32 = pe.Execute&lt;int&gt;(&quot;2 ** 5&quot;);
+            int result32 = pe.Execute&lt;int&gt;("2 ** 5");
             Console.WriteLine(result32);
 
             // グローバルの関数を引数付で実行、返り値ももらう
-            dynamic s = scope.hello(&quot;world&quot;);
+            dynamic s = scope.hello("world");
             Console.WriteLine(s);
 
             // Python側のクラスのインスタンスを作成。
@@ -51,7 +50,7 @@ namespace ConsoleApplication16
             foo.政治 = 97;
             foo.戦闘 = 92;
             foo.智謀 = 95;
-            foo.名前 = &quot;武田信玄&quot;;
+            foo.名前 = "武田信玄";
             int result_sum = foo.method();
             Console.WriteLine(result_sum);
             Console.WriteLine();
@@ -65,27 +64,26 @@ namespace ConsoleApplication16
 }
 </pre></fieldset>
 
-    <li>
+    </li><li>
     <h3>Python側</h3>
     <p>スクリプト側となるPython側のソースも用意します。<br>
     Pythonは「空白やインデント」も文法に含まれますので、注意してください。</p>
     <p><span class="negative">C#から呼ばれますので、「script.pyのソースコードの文字コードをutf8」で保存</span>してください。<br>
     (テキストエディタなどで実際に確認してください。間違っているとSyntax Errorが出ます)</p>
 
-<fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;">
-# coding: utf8
+<fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;"># coding: utf8
 
 
 def hello( x ) :
-  print &quot;hello, &quot; + x
-  return &quot;hello&quot; + x
+  print "hello, " + x
+  return "hello" + x
 
 class Foo() :
   def __init__( self ) :
-    print &quot;初期化&quot;
+    print "初期化"
 
   def __call__( self ) :
-    print &quot;()付でインスタンス呼び出し&quot;
+    print "()付でインスタンス呼び出し"
 
   def method( self ) :
     print self.名前
@@ -97,5 +95,5 @@ def getMetaClass() :
     <p>以上となります。</p>
     <p>C#にあるdynamicのおかげで、C#とIronPythonは、「ほぼシームレス」といって良いレベルで<br>
     「値」「関数」や「クラスそのもの」「クラスのインスタンス」の送受信が出来ています。</p>
-</ul>
+</li></ul>
 

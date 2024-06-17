@@ -12,13 +12,13 @@
         <li>
         <h4>国</h4>
         <p>国という抽象的なカテゴリの概念。</p>
-        <li>
-        <h4>国->配列</h4>
+        </li><li>
+        <h4>国-&gt;配列</h4>
         <p>国リストという、天翔記に存在するすべての国のリストの概念。</p>
-        <li>
-        <h4>国->配列[ix]</h4>
+        </li><li>
+        <h4>国-&gt;配列[ix]</h4>
         <p>国１つの概念</p>
-    </ul>
+    </li></ul>
     <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
     </p>
     </li>
@@ -27,12 +27,11 @@
     <p>国オブジェクトの使い方は主に２つしかありません。<br>
     ひとつは、国に含まれている城のリストを求める方法です。<br>
     国→城を求めるものとなります。</p>
-    <fieldset class="code"><legend>国に所属する城を求める</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>国に所属する城を求める</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
 
   // 全ての国の名前や、その国に所属している城名を出す
   for each (auto k in 国-&gt;配列) {
-    デバッグ出力 &lt;&lt; &quot;---------------------------------&quot; &lt;&lt; endl;
+    デバッグ出力 &lt;&lt; "---------------------------------" &lt;&lt; endl;
     デバッグ出力 &lt;&lt; k-&gt;国名 &lt;&lt; endl;
     auto clist = k-&gt;所属城番号リスト;
     for each (int iCastleID in clist) {
@@ -47,11 +46,10 @@ void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオ�
     <h3>使用例②</h3>
     <p>SDKでは、全ての国番号が列挙として定義済みです。<br>
     </p>
-    <fieldset class="code"><legend>指定の国に所属する城を求める</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>指定の国に所属する城を求める</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
 
   int iKuniID = 列挙::国::国番号::越後;
-  デバッグ出力 &lt;&lt; &quot;---------------------------------&quot; &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; "---------------------------------" &lt;&lt; endl;
   デバッグ出力 &lt;&lt; 国-&gt;配列[iKuniID]-&gt;国名 &lt;&lt; endl;
   auto clist = 国-&gt;配列[iKuniID]-&gt;所属城番号リスト;
   for each (int iCastleID in clist) {
@@ -65,8 +63,7 @@ void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオ�
     <li>
     <h3>使用例③</h3>
     <p>もう一つは、逆の流れで城→国を求めるものです。</p>
-    <fieldset class="code"><legend>城が所属する国を求める</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>城が所属する国を求める</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオファイル名) {
   // 今天翔記に信長がいるか、居るなら武将番号を得る
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::織田信長);
 
@@ -76,7 +73,7 @@ void 天翔記クラス::On_シナリオ大名選択直前(String^ シナリオ�
 
     if (0 &lt;= iCastleID &amp;&amp; iCastleID &lt; (城-&gt;配列-&gt;Count)) {
       int iKuniID = 城-&gt;配列[iCastleID]-&gt;所属国番号;
-      デバッグ出力 &lt;&lt; &quot;信長は&quot; &lt;&lt; 国-&gt;配列[iKuniID]-&gt;国名 &lt;&lt; &quot;に居る&quot; &lt;&lt; endl;
+      デバッグ出力 &lt;&lt; "信長は" &lt;&lt; 国-&gt;配列[iKuniID]-&gt;国名 &lt;&lt; "に居る" &lt;&lt; endl;
     }
   }
 }

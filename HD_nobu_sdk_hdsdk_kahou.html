@@ -9,13 +9,13 @@
         <li>
         <h4>家宝</h4>
         <p>家宝という抽象的なカテゴリの概念。</p>
-        <li>
-        <h4>家宝->配列</h4>
+        </li><li>
+        <h4>家宝-&gt;配列</h4>
         <p>家宝リストという、天翔記に存在するすべて(未登場や消失含む)の家宝の概念</p>
-        <li>
-        <h4>家宝->配列[ix]</h4>
+        </li><li>
+        <h4>家宝-&gt;配列[ix]</h4>
         <p>家宝１つの概念</p>
-    </ul>
+    </li></ul>
     <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
     </p>
     </li>
@@ -24,8 +24,7 @@
     <p>全ての家宝について所定の処理を施すいったシーンは少ないですが、<br>
     ここでは家宝のプロパティの使い方を知る、ということで、<br>
     その代表的な例を行ってみましょう。</p>
-    <fieldset class="code"><legend>家宝のプロパティの利用</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>家宝のプロパティの利用</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
   for each (auto k in 家宝-&gt;配列) {
     // 全ての家宝の画像を茶釜とする。
     k-&gt;画像 = 列挙::家宝::画像::茶釜;
@@ -53,8 +52,7 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     <p>次によくあるのが「特定の家宝」を名指して何か処理を施すというものです。<br>
     天翔記の家宝はデフォルトでは、全て一意であるため、<br>
     列挙として定義しています。</p>
-    <fieldset class="code"><legend>家宝を名指しして誰かに持たせる</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>家宝を名指しして誰かに持たせる</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::織田信長);
 
@@ -66,10 +64,9 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 </pre></fieldset>
     <p>又、名前から逆引きする手段も提供されています。<br>
     家宝名を変更している場合は、こちらの方が直感的かもしれません。</p>
-    <fieldset class="code"><legend>家宝を名指しして誰かに持たせる</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>家宝を名指しして誰かに持たせる</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
-  int iKahouID = 家宝-&gt;Find_家宝番号(&quot;孫子&quot;);
+  int iKahouID = 家宝-&gt;Find_家宝番号("孫子");
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::織田信長);
 
   // 家宝も武将も問題のない番号であれば、

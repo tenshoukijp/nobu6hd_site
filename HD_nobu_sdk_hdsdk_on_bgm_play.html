@@ -14,24 +14,23 @@
     ほぼ無制限に曲数を増やすことが出来ます。<br>
     非常に細やかなＢＧＭの割り振りが可能です。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
     <p>このイベントハンドラでは、返り値を文字列で返すと、<br>
     元のファイルの替わりに、指定のファイルを再生します。</p>
     <p>もしも、該当のファイルが存在しない場合、<br>
     BGMは鳴りません。<br>
     </p>
-    <fieldset class="code"><legend>自分で用意したＢＧＭを再生する</legend><pre class="brush:cpp;">
-String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
+    <fieldset class="code"><legend>自分で用意したＢＧＭを再生する</legend><pre class="brush:cpp;">String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
 
   デバッグ出力 &lt;&lt; 元ファイル名 &lt;&lt; endl;
   // 何番のＢＧＭを再生予定であろうとも…
   // BGMフォルダの中に、myBGM.kvs というファイルがあるならば、そちらにすり替える。
-  if (System::IO::File::Exists(&quot;BGM\\myBGM.kvs&quot;) ) {
-    return &quot;myBGM.kvs&quot;;
+  if (System::IO::File::Exists("BGM\\myBGM.kvs") ) {
+    return "myBGM.kvs";
   }
 
-  return &quot;&quot;;
+  return "";
 }
 </pre></fieldset>
     </li>
@@ -42,15 +41,14 @@ String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int �
     特に何もしなければファイル名と一致します。<br>
     例えば、ＢＧＭ番号が3であれば、BGM03.kvs が再生されます。<br>
     </p>
-    <fieldset class="code"><legend>特定のＢＧＭ番号の時だけ、自分が用意したＢＧＭを再生する</legend><pre class="brush:cpp;">
-String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
+    <fieldset class="code"><legend>特定のＢＧＭ番号の時だけ、自分が用意したＢＧＭを再生する</legend><pre class="brush:cpp;">String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
 
   // BGM番号3だけ自分で用意したファイルにすり替える
   if (ＢＧＭ番号 == 3) {
-    return &quot;myBGM.kvs&quot;;
+    return "myBGM.kvs";
   }
 
-  return &quot;&quot;;
+  return "";
 }
 </pre></fieldset>
     </li>
@@ -62,16 +60,15 @@ String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int �
     「ＢＧＭ番号」は担当する大名によって異なります(東北の大名と四国の大名など)。<br>
     しかし、シチュエーションは同じなので、「ＢＧＭシーン番号」は同じ番号となります。<br>
     </p>
-    <fieldset class="code"><legend>特定のＢＧＭシーン番号の時だけ、自分が用意したＢＧＭを再生する</legend><pre class="brush:cpp;">
-String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
+    <fieldset class="code"><legend>特定のＢＧＭシーン番号の時だけ、自分が用意したＢＧＭを再生する</legend><pre class="brush:cpp;">String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
 
   // 戦略画面で、通常の地方曲が流れているという、シーン番号の時
   // 自分が用意したファイルを再生する。
   if (ＢＧＭシーン番号 == 45) {
-    return &quot;myBGM2.kvs&quot;;
+    return "myBGM2.kvs";
   }
 
-  return &quot;&quot;;
+  return "";
 }
 </pre></fieldset>
     </li>
@@ -81,8 +78,7 @@ String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int �
     <p>様々な天翔記クラスオブジェクトとの組み合わせにより、<br>
     曲をどんどん細かく割り振ることが出来ます。<br>
     </p>
-    <fieldset class="code"><legend>プレイヤ大名の城の多さに応じて曲を４段階に分ける</legend><pre class="brush:cpp;">
-String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
+    <fieldset class="code"><legend>プレイヤ大名の城の多さに応じて曲を４段階に分ける</legend><pre class="brush:cpp;">String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
 
   // 現在プレイヤが担当戦略ターンだ。
   int iDaimyoID = 戦略-&gt;ターン-&gt;ターン大名番号;
@@ -97,25 +93,25 @@ String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int �
 
         // 大大名である
         if (clist-&gt;Count &gt;= 30) {
-          return &quot;BGM_daidaimyo.kvs&quot;;
+          return "BGM_daidaimyo.kvs";
         }
         // 中大名である
         else if (clist-&gt;Count &gt;= 8) {
-          return &quot;BGM_chudaimyo.kvs&quot;;
+          return "BGM_chudaimyo.kvs";
         }
         // 大名である
         else if (clist-&gt;Count &gt;= 2) {
-          return &quot;BGM_nrmdaimyo.kvs&quot;;
+          return "BGM_nrmdaimyo.kvs";
         }
         // 小大名である
         else if (clist-&gt;Count == 1) {
-          return &quot;BGM_shodaimyo.kvs&quot;;
+          return "BGM_shodaimyo.kvs";
         }
       }
     }
   }
 
-  return &quot;&quot;;
+  return "";
 }
 
 </pre></fieldset>
@@ -123,34 +119,33 @@ String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int �
 
     <li>
     <h3>使用例④</h3>
-    <p>又、ＢＧＭは、「音楽->Do_ＢＧＭ再生」メソッドにより、<br>
+    <p>又、ＢＧＭは、「音楽-&gt;Do_ＢＧＭ再生」メソッドにより、<br>
     好きなタイミングで再生することが出来ますので、再生する際にフラグを立て、<br>
     On_ＢＧＭ再生直前でそれを受けて独自の音楽ファイルを再生することで、<br>
     本来の天翔記には存在しない音楽再生タイミングをいくつでも作り出すことが可能です。<br>
     </p>
     <fieldset class="code"><legend>好きなタイミングで独自のＢＧＭを再生する</legend><pre class="brush:cpp;">
-
 bool BGM送信受信フラグ = false;
 
 String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
-  デバッグ出力 &lt;&lt; &quot;ＢＧＭ番号&quot; &lt;&lt; ＢＧＭ番号 &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; "ＢＧＭ番号" &lt;&lt; ＢＧＭ番号 &lt;&lt; endl;
   if (BGM送信受信フラグ &amp;&amp; ＢＧＭ番号 == 11) {
     BGM送信受信フラグ = false;
 
-    return &quot;BGM_selfplay.kvs&quot;;
+    return "BGM_selfplay.kvs";
   }
 
-  return &quot;&quot;;
+  return "";
 }
 
 
 String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
   // 会見のメッセージ。このメッセージが出れば…
-  if (元メッセージ-&gt;Contains(&quot;何をするかは&quot;) ) {
+  if (元メッセージ-&gt;Contains("何をするかは") ) {
     BGM送信受信フラグ = true;
     音楽-&gt;Do_ＢＧＭ再生(11);
   }
-  return &quot;&quot;;
+  return "";
 }
 
 </pre></fieldset>

@@ -12,13 +12,13 @@
         <li>
         <h4>国</h4>
         <p>国という抽象的なカテゴリの概念。</p>
-        <li>
+        </li><li>
         <h4>国.配列</h4>
         <p>国リストという、天翔記に存在するすべての国のリストの概念。</p>
-        <li>
+        </li><li>
         <h4>国.配列[ix]</h4>
         <p>国１つの概念</p>
-    </ul>
+    </li></ul>
     <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
     </p>
     </li>
@@ -27,13 +27,12 @@
     <p>国オブジェクトの使い方は主に２つしかありません。<br>
     ひとつは、国に含まれている城のリストを求める方法です。<br>
     国→城を求めるものとなります。</p>
-    <fieldset class="code"><legend>国に所属する城を求める</legend> <pre class="brush:csharp;">
-    public static void My_シナリオ選択直後(string シナリオファイル名)
+    <fieldset class="code"><legend>国に所属する城を求める</legend> <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
     {
         // 全ての国の名前や、その国に所属している城名を出す
         foreach (var k in 国.配列)
         {
-            デバッグ出力(&quot;---------------------------------&quot;);
+            デバッグ出力("---------------------------------");
             デバッグ出力(k.国名);
             var clist = k.所属城番号リスト;
             foreach (int iCastleID in clist)
@@ -48,11 +47,10 @@
     <h3>使用例②</h3>
     <p>SDKでは、全ての国番号が列挙として定義済みです。<br>
     </p>
-    <fieldset class="code"><legend>指定の国に所属する城を求める</legend> <pre class="brush:csharp;">
-    public static void My_シナリオ選択直後(string シナリオファイル名)
+    <fieldset class="code"><legend>指定の国に所属する城を求める</legend> <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
     {
         int iKuniID = 列挙.国.国番号.越後;
-        デバッグ出力(&quot;---------------------------------&quot;);
+        デバッグ出力("---------------------------------");
         デバッグ出力(国.配列[iKuniID].国名);
         var clist = 国.配列[iKuniID].所属城番号リスト;
         foreach (int iCastleID in clist)
@@ -67,8 +65,7 @@
     <li>
     <h3>使用例③</h3>
     <p>もう一つは、逆の流れで城→国を求めるものです。</p>
-    <fieldset class="code"><legend>城が所属する国を求める</legend> <pre class="brush:csharp;">
-    public static void My_シナリオ選択直後(string シナリオファイル名)
+    <fieldset class="code"><legend>城が所属する国を求める</legend> <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
     {
         // 今天翔記に信長がいるか、居るなら武将番号を得る
         int iBushouID = 武将.Find_武将番号(列挙.武将.列伝番号.織田信長);
@@ -81,7 +78,7 @@
             if (城.配列.Exists(iCastleID))
             {
                 int iKuniID = 城.配列[iCastleID].所属国番号;
-                デバッグ出力(&quot;信長は&quot; + 国.配列[iKuniID].国名 + &quot;に居る&quot;);
+                デバッグ出力("信長は" + 国.配列[iKuniID].国名 + "に居る");
             }
         }
     }

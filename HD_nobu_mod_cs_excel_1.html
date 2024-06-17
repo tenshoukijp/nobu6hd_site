@@ -7,21 +7,20 @@
     <p>ここでは、C#からExcelを利用する例を記載しています。</p>
     <p>C#からExcelを利用するサンプル例はたくさんネット上に存在しますが、<br>
     記述方法が幾通りにもわかれています。<br>
-    <p>その中で2016年現在、最も利用価値が高いのは、Excelのバージョンなどに依存しない<br>
+    </p><p>その中で2016年現在、最も利用価値が高いのは、Excelのバージョンなどに依存しない<br>
     下記のような<span class="my_keyword">Type.GetTypeFromProgID</span>と<span class="my_keyword">dynamic</span>とを使った形です。<br>
     この形をベースにネットを検索してみましょう。</p>
-    <li>
+    </li><li>
     <h3>Type.GetTypeFromProgIDとdynamic</h3>
-    </h4>
-    <fieldset class="code"><legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend><pre class="brush:csharp;">
-using System;
+    
+    <fieldset class="code"><legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend><pre class="brush:csharp;">using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 public class MyExcel
 {
 
-    string fileName = @&quot;C:\work\samplebook.xls&quot;;
+    string fileName = @"C:\work\samplebook.xls";
 
     dynamic excelApp = null;
     dynamic workBooks = null;
@@ -34,7 +33,7 @@ public class MyExcel
     {
         try
         {
-            Type excelApplication = Type.GetTypeFromProgID(&quot;Excel.Application&quot;);
+            Type excelApplication = Type.GetTypeFromProgID("Excel.Application");
             excelApp = Activator.CreateInstance(excelApplication);
             excelApp.DisplayAlerts = false;
 
@@ -43,7 +42,7 @@ public class MyExcel
             workSheets = workBook.Sheets;
             workSheet = workSheets[1];
             range = workSheet.Cells;
-            range[1, 1] = &quot;Hello Excel!!&quot;;
+            range[1, 1] = "Hello Excel!!";
             workBook.Save();
             workBook.Close();
         }
@@ -69,7 +68,7 @@ public class MyExcel
         catch (Exception e)
         {
             obj = null;
-            Console.WriteLine(&quot;オブジェクトを解放できない&quot; + e.ToString());
+            Console.WriteLine("オブジェクトを解放できない" + e.ToString());
         }
         finally
         {
@@ -80,7 +79,7 @@ public class MyExcel
 
 
 </pre></fieldset>
-    <li>
+    </li><li>
 
     <h3>範囲(range)で一括で書き込む</h3>
     <p>Excelは他のプログラムとの連携において、IOが非常に遅いアプリケーションであるため、<br>
@@ -89,15 +88,14 @@ public class MyExcel
     <ul class="pointlist">
         <li>
         <h4>Type.GetTypeFromProgIDとdynamic</h4>
-        <fieldset class="code"><legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend><pre class="brush:csharp;highlight:[31,42,44,46,49]">
-using System;
+        <fieldset class="code"><legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend><pre class="brush:csharp;highlight:[31,42,44,46,49]">using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 public class MyExcel
 {
 
-    string fileName = @&quot;C:\work\samplebook.xls&quot;;
+    string fileName = @"C:\work\samplebook.xls";
 
     dynamic excelApp = null;
     dynamic workBooks = null;
@@ -110,7 +108,7 @@ public class MyExcel
     {
         try
         {
-            Type excelApplication = Type.GetTypeFromProgID(&quot;Excel.Application&quot;);
+            Type excelApplication = Type.GetTypeFromProgID("Excel.Application");
             excelApp = Activator.CreateInstance(excelApplication);
             excelApp.DisplayAlerts = false;
 
@@ -125,7 +123,7 @@ public class MyExcel
             {
                 for (int n = 0; n &lt; 20; n++)
                 {
-                    data[i, n] = &quot;(&quot; + i.ToString() + &quot;,&quot; + n.ToString() + &quot;)&quot;;
+                    data[i, n] = "(" + i.ToString() + "," + n.ToString() + ")";
                 }
             }
 
@@ -166,7 +164,7 @@ public class MyExcel
         catch (Exception e)
         {
             obj = null;
-            Console.WriteLine(&quot;オブジェクトを解放できない&quot; + e.ToString());
+            Console.WriteLine("オブジェクトを解放できない" + e.ToString());
         }
         finally
         {
@@ -177,5 +175,5 @@ public class MyExcel
 }
 
 </pre></fieldset>
-    </ul>
-</ul>
+    </li></ul>
+</li></ul>

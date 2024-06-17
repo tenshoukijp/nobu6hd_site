@@ -22,32 +22,31 @@
     注意してください。<br>
     </p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>このイベントハンドラは、戦争のコントロールの中核的なイベントハンドラとなります。<br>
     又、このイベントハンドラが呼びされるタイミングは、「ダイアログ」などを表示しても<br>
     安全なタイミングであることが保証されています。</p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
     <p>まずは、このイベントハンドラがどのような時に呼ばれるのか、<br>
     確認しましょう。</p>
-    <fieldset class="code"><legend>My_戦争_残りターン変更時がどのようなタイミングで呼ばれるのかを知る</legend><pre class="brush:csharp;">
-    public static void My_戦争_残りターン変更時(int 残りターン数)
+    <fieldset class="code"><legend>My_戦争_残りターン変更時がどのようなタイミングで呼ばれるのかを知る</legend><pre class="brush:csharp;">    public static void My_戦争_残りターン変更時(int 残りターン数)
     {
-        デバッグ出力(&quot;残りターン&quot; + 残りターン数);
+        デバッグ出力("残りターン" + 残りターン数);
 
-        string 現在の画面に居るメンバ = &quot;&quot;;
+        string 現在の画面に居るメンバ = "";
 
         var list = 武将.戦争.出陣中_表示戦場_武将番号リスト;
 
         int i = 0;
         foreach (int iBushouID in list)
         {
-            現在の画面に居るメンバ += 武将.配列[iBushouID].姓名 + &quot;/&quot;;
+            現在の画面に居るメンバ += 武将.配列[iBushouID].姓名 + "/";
             i++;
             if (i % 4 == 0)
             {
-                現在の画面に居るメンバ += &quot;\xA&quot;;
+                現在の画面に居るメンバ += "\xA";
             }
         }
 
@@ -59,10 +58,9 @@
     <h3>使用例②</h3>
     <p>ターンが変わる度に、出陣中の武将(今表示されている画面外に居る武将も含む)に<br>
     何か処理を施すといったことはよくあることです。</p>
-    <fieldset class="code"><legend>出陣中の武将(画面外含む)の兵数を毎ターン最大回復</legend><pre class="brush:csharp;">
-    public static void My_戦争_残りターン変更時(int 残りターン数)
+    <fieldset class="code"><legend>出陣中の武将(画面外含む)の兵数を毎ターン最大回復</legend><pre class="brush:csharp;">    public static void My_戦争_残りターン変更時(int 残りターン数)
     {
-        デバッグ出力(&quot;残りターン&quot; + 残りターン数);
+        デバッグ出力("残りターン" + 残りターン数);
 
         var list = 武将.戦争.出陣中_武将番号リスト;
 

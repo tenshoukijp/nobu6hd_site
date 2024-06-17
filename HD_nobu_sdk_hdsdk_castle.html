@@ -9,13 +9,13 @@
         <li>
         <h4>城</h4>
         <p>城という抽象的なカテゴリの概念。</p>
-        <li>
-        <h4>城->配列</h4>
+        </li><li>
+        <h4>城-&gt;配列</h4>
         <p>城リストという、214存在する「城アイコンの場所」に対応する概念。</p>
-        <li>
-        <h4>城->配列[ix]</h4>
+        </li><li>
+        <h4>城-&gt;配列[ix]</h4>
         <p>特定の城１つ(厳密には214のうちの特定の城)の概念</p>
-    </ul>
+    </li></ul>
     <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
     </p>
     </li>
@@ -25,8 +25,7 @@
     あまり「全ての城のプロパティを変更する」といったことはやらないかもしれませんが、<br>
     仕組みを理解をする上ではとても重要です。<br>
     以下は、各城が持つプロパティのほんの一部です。</p>
-    <fieldset class="code"><legend>城のプロパティの利用</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>城のプロパティの利用</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     for each (auto c in 城-&gt;配列) {
 
       c-&gt;兵質 = 列挙::城::兵質::良;
@@ -54,8 +53,7 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     <p>よくあるのが「特定の武将」がどこに居るのか？<br>
     といった情報と絡めて利用するシーンでしょう。<br>
     </p>
-    <fieldset class="code"><legend>武将が居る城名</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>武将が居る城名</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::柴田勝家);
 
@@ -77,8 +75,7 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     そこでSDK内では、天翔記に登場する全ての城(名前の変更分も含む)がすでに<br>
     列挙定義済みとなっており、これを番号代わりに利用することができます。</p>
 
-    <fieldset class="code"><legend>列挙を使って城番号を得る</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>列挙を使って城番号を得る</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
   // 二条城の位置の城番号(位置だけなので、室町御所かもしれないし、伏見城かもしれない)
   int iCastleID = 列挙::城::城番号::二条城;
@@ -107,12 +104,11 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     「グリッドで切られている＝城が隣接している」を自然と理解していることでしょう。
     </fieldset>
 
-    <fieldset class="code"><legend>城のグリッド位置</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>城のグリッド位置</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
   城グリッド位置型^ pos = 城-&gt;配列[列挙::城::城番号::春日山城]-&gt;グリッド位置;
-  デバッグ出力 &lt;&lt; &quot;春日山城のグリッドの位置&quot; &lt;&lt; endl;
-  デバッグ出力 &lt;&lt; &quot;X:&quot; &lt;&lt; pos-&gt;Ｘ &lt;&lt; &quot;Y:&quot; &lt;&lt; pos-&gt;Ｙ &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; "春日山城のグリッドの位置" &lt;&lt; endl;
+  デバッグ出力 &lt;&lt; "X:" &lt;&lt; pos-&gt;Ｘ &lt;&lt; "Y:" &lt;&lt; pos-&gt;Ｙ &lt;&lt; endl;
 }</pre></fieldset>
     </li>
     <li>
@@ -142,7 +138,7 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     <fieldset class="code"><legend>とある城から、とある城までの、理想経路上の城一覧</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
     auto graphlist = 城-&gt;Get_経路上の城番号リスト(列挙::城::城番号::春日山城, 列挙::城::城番号::安土城);
-    デバッグ出力 &lt;&lt; &quot;-------------------------------------&quot; &lt;&lt; endl;
+    デバッグ出力 &lt;&lt; "-------------------------------------" &lt;&lt; endl;
     for each (int iCastleID in graphlist) {
         デバッグ出力 &lt;&lt; 城-&gt;配列[iCastleID]-&gt;城名称 &lt;&lt; endl;
     }

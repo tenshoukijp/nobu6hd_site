@@ -16,15 +16,14 @@
   全ての戦争において、戦争が発生したタイミングでこのイベントハンドラは呼ばれます。<br>
 </p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>一般的には、「戦争が発生した時、どこの軍団が、どこの城に攻めたのか？」<br>
   の情報を保持しておきたい場合に、このイベントハンドラを利用します。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
-    <fieldset class="code"><legend>戦端が開かれた城と、攻め込んだ軍団、攻められた軍団を得る。</legend><pre class="brush:csharp;">
-    public static void My_戦争開始時(int 城番号, 戦争開始パラメタ型 パラメタ)
+    <fieldset class="code"><legend>戦端が開かれた城と、攻め込んだ軍団、攻められた軍団を得る。</legend><pre class="brush:csharp;">    public static void My_戦争開始時(int 城番号, 戦争開始パラメタ型 パラメタ)
     {
         int iTargetCastleID = 城番号;
         int iAttackGundanID = パラメタ.攻撃側軍団番号;
@@ -32,7 +31,7 @@
 
         if (城.配列.Exists(iTargetCastleID))
         {
-            デバッグ出力(&quot;戦争が発生しました。&quot; + &quot;対象は&quot; + 城.配列[iTargetCastleID].城名称 + &quot;です&quot;);
+            デバッグ出力("戦争が発生しました。" + "対象は" + 城.配列[iTargetCastleID].城名称 + "です");
 
             // それぞれの軍団長
             if (軍団.配列.Exists(iAttackGundanID) &amp;&amp; 軍団.配列.Exists(iDefendGundanID))
@@ -42,8 +41,8 @@
 
                 if (武将.配列.Exists(iAttackLeader) &amp;&amp; 武将.配列.Exists(iDefendLeader))
                 {
-                    デバッグ出力(&quot;攻撃軍団:&quot; + 武将.配列[iAttackLeader].姓名);
-                    デバッグ出力(&quot;守備軍団:&quot; + 武将.配列[iDefendLeader].姓名);
+                    デバッグ出力("攻撃軍団:" + 武将.配列[iAttackLeader].姓名);
+                    デバッグ出力("守備軍団:" + 武将.配列[iDefendLeader].姓名);
                 }
             }
         }
@@ -55,8 +54,7 @@
   <p>何か戦争が始まる前に、値を保持しておき、戦争が終わったら元へと戻す、<br>
   といったような目的でも利用することが可能です。<br>
   </p>
-    <fieldset class="code"><legend>戦争開始時に値を控えておき、戦争終了時に変動値を一定以内に抑える。</legend><pre class="brush:csharp;">
-    static int[] 熟練値控え;
+    <fieldset class="code"><legend>戦争開始時に値を控えておき、戦争終了時に変動値を一定以内に抑える。</legend><pre class="brush:csharp;">    static int[] 熟練値控え;
 
     public static void My_戦争開始時(int 城番号, 戦争開始パラメタ型 パラメタ)
     {

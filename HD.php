@@ -326,9 +326,9 @@ if ( $urlParamPage == $defaultHomePage ) {
 
 
 // <h2>タグ内の文字列を取得する
-preg_match('/<h2>(.*?)<\/h2>/s', $strPageTemplate, $matchesTitle);
-if (isset($matchesTitle[1])) {
-    $strH2Content = $matchesTitle[1];
+preg_match('/<h2( .+?)?>(.*?)<\/h2>/is', $strPageTemplate, $matchesTitle);
+if (isset($matchesTitle[2])) {
+    $strH2Content = $matchesTitle[2];
 
     // タグと改行を削除
     $strH2ContentCleaned = strip_tags($strH2Content); // タグを削除

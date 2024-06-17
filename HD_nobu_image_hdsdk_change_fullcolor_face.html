@@ -7,28 +7,27 @@
             %(tshd)sとなります。<br>
         </p>
         <img src="./cnt_image/fullcolor_face/cnt_image_face_ts95_fullcolor_face_01.png">
-    <li>
+    </li><li>
         <h3>必要なものや置き場所</h3>
         <ul class="pointlist">
             <li>
                 <h4>顔グラ追加ツールで追加した顔グラデータ</h4>
-                <p><div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>NOBU6HD_EDIT_KAO.zip</a><br></div></p>
+                <p></p><div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>NOBU6HD_EDIT_KAO.zip</a><br></div><p></p>
                 <p>これらは、「C:\Users\%USERNAME%\Documents\KoeiTecmo\NOBU6HD\GRP」へと上書きする。<br>
                 個人的に登録している顔グラがある場合は、元のものはバックアップを取っておくこと!!</p>
-            <li>
+            </li><li>
                 <h4>HD版で挙動変更のためのプログラムを組むための基礎基盤</h4>
                 <p><a href="?page=HD_nobu_sdk_hdsdk_install">HD.version.SDK</a>のページでダウンロードファイルの.zip内に含まれる「version.dll」と「HD.version.dll」が必要となります。</p>
                 <p>これらは、「天翔記ディレクトリへ」へと配置してください。</p>
-            <li>
+            </li><li>
                 <h4>HD版で挙動変更のためのC#でプログラムを組むためのセット</h4>
                 <p><a href="?page=HD_nobu_sdk_cs_hdsdk_install">User.version.SDK</a>のページでダウンロードファイルの.zip内に含まれるSDKに<br>下記ソースを書いてコンパイルする必要があります。<br></p>
                 <p><span class="negative">お試しセットとしてNOBU6HD_EDIT_KAO.zipの中に、コンパイル済みのUser.version.dllが入っています。<br>
-                <p>しかし、別途提供された（あるいは自作した）User.version.dllがあると、dllを上書きすると以前の内容は消えてしまうので、<br>
+                </span></p><p>しかし、別途提供された（あるいは自作した）User.version.dllがあると、dllを上書きすると以前の内容は消えてしまうので、<br>
                 本筋としては、User.version.SDKをダウンロードし、以下のソースを元に合成して構成し、<br>コンパイルしたUser.version.dllを利用してください<br></p>
-                <p>User.version.dllも「天翔記ディレクトリへ」へと配置してください。</span></p>
+                <p>User.version.dllも「天翔記ディレクトリへ」へと配置してください。</p>
                 <fieldset class="code">
-                    <legend>ユーザー天翔記クラス.cs</legend><pre class="brush:csharp;">
-// Visual Studio 上で、System.Drawingのアセンブリを、User.version.SDKの参照に加えること!!
+                    <legend>ユーザー天翔記クラス.cs</legend><pre class="brush:csharp;">// Visual Studio 上で、System.Drawingのアセンブリを、User.version.SDKの参照に加えること!!
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -80,17 +79,17 @@ public partial class ユーザー天翔記クラス : 天翔記クラス
 
     public static string My_データファイル読込直前(string 元ファイル名)
     {
-        return &quot;&quot;;
+        return "";
     }
 
     public static string My_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, string 元ファイル名)
     {
-        return &quot;&quot;;
+        return "";
     }
 
     public static string My_ＭＯＶＩＥ再生直前(int ＭＯＶＩＥ番号, string 元ファイル名)
     {
-        return &quot;&quot;;
+        return "";
     }
 
     public static void My_シナリオ選択直後(string シナリオファイル名)
@@ -103,11 +102,11 @@ public partial class ユーザー天翔記クラス : 天翔記クラス
         foreach (var b in 武将.配列)
         {
             /* 朝廷で外交すれば、すぐに顔番号が確認できる
-            if (b.名字 == &quot;山科&quot;)
+            if (b.名字 == "山科")
             {
-                デバッグ出力($&quot;名前:{b.名前}&quot;);
-                デバッグ出力($&quot;差し替え顔番号:{b.差換顔番号}&quot;);
-                デバッグ出力($&quot;列伝番号:{b.列伝番号}&quot;);
+                デバッグ出力($"名前:{b.名前}");
+                デバッグ出力($"差し替え顔番号:{b.差換顔番号}");
+                デバッグ出力($"列伝番号:{b.列伝番号}");
                 b.差換顔番号 = 1363;
                 b.列伝番号 = 1363;
             }
@@ -159,7 +158,7 @@ public partial class ユーザー天翔記クラス : 天翔記クラス
     public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         顔入替();
-        return &quot;&quot;;
+        return "";
     }
 
     public static void My_戦略_軍団ターン変更時(int 軍団番号)
@@ -185,9 +184,9 @@ public partial class ユーザー天翔記クラス : 天翔記クラス
 
 </pre>
                 </fieldset>
-        </ul>
+        </li></ul>
     </li>
     <li>
         <h3>既知の不具合</h3>
         <p>「披露」でゲストの顔が、最初のセリフの間、元の顔グラが表示されてしまう。</p>
-</ul>
+</li></ul>

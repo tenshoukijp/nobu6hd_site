@@ -16,7 +16,7 @@
     このイベントハンドラが呼ばれます。<br>
     </p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>各軍団ターンの頭で、このイベントハンドラが呼ばれるという特性は、<br>
     大名・軍団・武将・城など、いずれの値を更新するとしても、<br>
@@ -27,22 +27,21 @@
     <br>
 
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
     <p>まずは、このイベントハンドラがどのような時に呼ばれるのか、<br>
     天翔記HDの画面とModDebuggerを両方見ながら確認しましょう。</p>
-    <fieldset class="code"><legend>On_戦略_軍団ターン変更時がどのようなタイミングで呼ばれるのかを知る</legend><pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>On_戦略_軍団ターン変更時がどのようなタイミングで呼ばれるのかを知る</legend><pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
   デバッグ出力 &lt;&lt; 軍団番号 &lt;&lt; endl;
 
   if (0 &lt;= 軍団番号 &amp;&amp; 軍団番号 &lt; 軍団-&gt;配列-&gt;Count) {
     int iBushouID = 軍団-&gt;配列[軍団番号]-&gt;軍団長_武将番号;
     if (0 &lt;= iBushouID &amp;&amp; iBushouID &lt; 武将-&gt;配列-&gt;Count) {
-      デバッグ出力 &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; &quot;軍団のターン&quot; &lt;&lt; endl;
+      デバッグ出力 &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; "軍団のターン" &lt;&lt; endl;
     }
   }
   else {
-    デバッグ出力 &lt;&lt; &quot;どの軍団のターンでもない隙間ターン&quot; &lt;&lt; endl;
+    デバッグ出力 &lt;&lt; "どの軍団のターンでもない隙間ターン" &lt;&lt; endl;
   }
 
 }</pre></fieldset>
@@ -52,8 +51,7 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     <h3>使用例②</h3>
     <p>回ってきた軍団ターンが、プレイヤが直接担当している軍団なのか？<br>
     というのは最もよく利用する記述となることでしょう。</p>
-    <fieldset class="code"><legend>プレイヤに関係している軍団のターンを判定する</legend><pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>プレイヤに関係している軍団のターンを判定する</legend><pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
     if (0 &lt;= 軍団番号 &amp;&amp; 軍団番号 &lt; 軍団-&gt;配列-&gt;Count) {
 
@@ -61,12 +59,12 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
         // プレイヤが直接担当している軍団(プレイヤが操作する大名の第１軍団のこと)
         if (g-&gt;Is_プレイヤ担当軍団) {
-            デバッグ出力 &lt;&lt; &quot;プレイヤが直接操作する軍団のターンです。&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "プレイヤが直接操作する軍団のターンです。" &lt;&lt; endl;
         }
 
         // プレイヤ支配下の軍団全て。プレイヤが担当している大名麾下(第１軍団含む)の軍団全て。
         if (g-&gt;Is_プレイヤ麾下軍団) {
-            デバッグ出力 &lt;&lt; &quot;プレイヤの支配下(=第１軍団含む)にある軍団のターンです。&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "プレイヤの支配下(=第１軍団含む)にある軍団のターンです。" &lt;&lt; endl;
         }
     }
 
@@ -80,16 +78,15 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     ダイアログや吹き出しなどが表示されていないことが保証されています。<br>
     このため、「独自のイベント」を記述するのに最も適した場所は、このイベントハンドラ内ということになります。<br>
     </p>
-    <fieldset class="code"><legend>プレイヤに関係している軍団のターンを判定する</legend><pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>プレイヤに関係している軍団のターンを判定する</legend><pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
-  int 選択結果 = ダイアログ->Show_実行か取消_中央("何かイベントが発生!!");
+  int 選択結果 = ダイアログ-&gt;Show_実行か取消_中央("何かイベントが発生!!");
 
   if (選択結果 == 列挙::ダイアログ::実行か取消::実行) {
-    ダイアログ->Show_情報_中央("実行を選択しました");
+    ダイアログ-&gt;Show_情報_中央("実行を選択しました");
   }
   else {
-    ダイアログ->Show_情報_中央("取消を選択しました");
+    ダイアログ-&gt;Show_情報_中央("取消を選択しました");
   }
 
 }

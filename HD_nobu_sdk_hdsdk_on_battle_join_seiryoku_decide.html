@@ -17,25 +17,24 @@
 各種、参加勢力や参戦立場の情報を得ることができます。<br>
 </p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>戦争の参加勢力や参戦立場の情報を拾って、変数などに格納しておく。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
   <p>戦争の参加は、大名という大きな勢力の視点、軍団という視点、武将という視点の３つがありますが、<br>
   このメソッドでは、「大名視点」「軍団視点」の情報を拾ってくることとなります。<br>
   大名視点の情報を拾ってきましょう。<br>
   </p>
     <fieldset class="code"><legend>戦争に参加している大名勢力の一覧の情報を得る。</legend><pre class="brush:cpp;">
-
 void 天翔記クラス::On_戦争参加勢力決定直後() {
 
   auto dlist = 大名-&gt;戦争-&gt;参戦大名番号リスト;
   for each (int iDaimyoID in dlist) {
     int iDaiBushouID = 大名-&gt;配列[iDaimyoID]-&gt;大名_武将番号;
     if (0 &lt;= iDaiBushouID &amp;&amp; iDaiBushouID &lt; 武将-&gt;配列-&gt;Count) {
-      デバッグ出力 &lt;&lt; 武将-&gt;配列[iDaiBushouID]-&gt;名字 &lt;&lt; &quot;家参戦&quot; &lt;&lt; endl;
+      デバッグ出力 &lt;&lt; 武将-&gt;配列[iDaiBushouID]-&gt;名字 &lt;&lt; "家参戦" &lt;&lt; endl;
     }
   }
 }
@@ -46,45 +45,44 @@ void 天翔記クラス::On_戦争参加勢力決定直後() {
   <p>天翔記において、戦争とは事実上、大名同士ではなく、軍団同士の戦いであるため、<br>
   軍団視点の情報では、より詳細な情報を得ることが出来ます。
   </p>
-    <fieldset class="code"><legend>戦争に参加している軍団勢力、今回での戦争内での軍団を率いる総大将、参戦立場などの情報を得る。</legend><pre class="brush:cpp;">
-void 天翔記クラス::On_戦争参加勢力決定直後() {
+    <fieldset class="code"><legend>戦争に参加している軍団勢力、今回での戦争内での軍団を率いる総大将、参戦立場などの情報を得る。</legend><pre class="brush:cpp;">void 天翔記クラス::On_戦争参加勢力決定直後() {
 
   auto glist = 軍団-&gt;戦争-&gt;参戦軍団番号リスト;
   for each (int iGundanID in glist) {
     auto g = 軍団-&gt;配列[iGundanID];
     int iGdcBushouID = g-&gt;軍団長_武将番号;
     if (0 &lt;= iGdcBushouID &amp;&amp; iGdcBushouID &lt; 武将-&gt;配列-&gt;Count) {
-      デバッグ出力 &lt;&lt; 武将-&gt;配列[iGdcBushouID]-&gt;姓名 &lt;&lt; &quot;の軍団参戦&quot; &lt;&lt; endl;
+      デバッグ出力 &lt;&lt; 武将-&gt;配列[iGdcBushouID]-&gt;姓名 &lt;&lt; "の軍団参戦" &lt;&lt; endl;
 
       int iSdsBushouID = g-&gt;戦争-&gt;総大将_武将番号;
       if (0 &lt;= iSdsBushouID &amp;&amp; iSdsBushouID &lt; 武将-&gt;配列-&gt;Count) {
-        デバッグ出力 &lt;&lt; &quot;今回の戦の&quot; &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; &quot;軍団の指揮官は&quot; &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; &quot;です&quot; &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "今回の戦の" &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; "軍団の指揮官は" &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; "です" &lt;&lt; endl;
       }
 
       int stand = g-&gt;戦争-&gt;参戦立場;
       switch (stand) {
       case 列挙::軍団::戦争::参戦立場::攻撃軍: {
-        デバッグ出力 &lt;&lt; &quot;攻撃軍です&quot; &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "攻撃軍です" &lt;&lt; endl;
         break;
       }
       case 列挙::軍団::戦争::参戦立場::守備軍: {
-        デバッグ出力 &lt;&lt; &quot;守備軍です&quot; &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "守備軍です" &lt;&lt; endl;
         break;
       }
       case 列挙::軍団::戦争::参戦立場::攻撃の援軍: {
-        デバッグ出力 &lt;&lt; &quot;攻撃の援軍です&quot; &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "攻撃の援軍です" &lt;&lt; endl;
         break;
       }
       case 列挙::軍団::戦争::参戦立場::守備の援軍: {
-        デバッグ出力 &lt;&lt; &quot;守備の援軍です&quot; &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "守備の援軍です" &lt;&lt; endl;
         break;
       }
       case 列挙::軍団::戦争::参戦立場::中立軍: {
-        デバッグ出力 &lt;&lt; &quot;中立軍です&quot; &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "中立軍です" &lt;&lt; endl;
         break;
       }
       default: {
-        デバッグ出力 &lt;&lt; &quot;不明な軍です&quot; &lt;&lt; endl;
+        デバッグ出力 &lt;&lt; "不明な軍です" &lt;&lt; endl;
         break;
       }
       }

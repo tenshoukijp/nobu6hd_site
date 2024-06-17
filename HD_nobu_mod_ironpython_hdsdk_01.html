@@ -6,7 +6,7 @@
     <h3>概要</h3>
     <p>前節では、C++/CLIのミニマムサンプルでIronPythonを呼び出しました。<br>
     ここまで知っておけばHD.version.SDKでIronPythonを利用する方法を理解するのは簡単です。</p>
-    <li>
+    </li><li>
     <h3>HD.version.SDK側</h3>
     <p>HD.version.SDKのソースには、「On_ゲームウィンドウ起動時」あたりで、Python関連のエンジンやスコープを構築します。<br>
     </p>
@@ -16,9 +16,8 @@
     <p>On_相場変更直前()で前節の例と全く同じことを再現したものとなります。<br>
     On_起動時にGREFに控えた「PythonEngineへの参照(GREF::pe)」や「スコープへの参照(GREF::scope)」を使う点だけ変更点です。</p>
 
-    <fieldset class="code"><legend>HD.version.SDK側のソース</legend><pre class="brush:cpp;">
-#include &quot;天翔記クラス.h&quot;
-#include &quot;天翔記クラス_初期化.h&quot;
+    <fieldset class="code"><legend>HD.version.SDK側のソース</legend><pre class="brush:cpp;">#include "天翔記クラス.h"
+#include "天翔記クラス_初期化.h"
 
 using namespace System::Collections;
 
@@ -40,7 +39,7 @@ void 天翔記クラス::::On_ゲームウィンドウ起動時() {
     GREF::pe = Python::CreateEngine();
 
     // ファイルを実行。
-    GREF::scope = GREF::pe-&gt;ExecuteFile(&quot;script.py&quot;);
+    GREF::scope = GREF::pe-&gt;ExecuteFile("script.py");
   }
   catch (Exception^ e) {
     デバッグ出力 &lt;&lt; e-&gt;Message &lt;&lt; endl;
@@ -53,37 +52,37 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
   // スクリプトエラー等をキャッチできるようにしよう。
   try {
     // 変数 abc を intとして取得
-    int val = GREF::scope-&gt;GetVariable&lt;int&gt;(&quot;abc&quot;);
+    int val = GREF::scope-&gt;GetVariable&lt;int&gt;("abc");
 
     // 変数 name  を String^として取得
-    String^ str = GREF::scope-&gt;GetVariable&lt;String^&gt;(&quot;name&quot;);
+    String^ str = GREF::scope-&gt;GetVariable&lt;String^&gt;("name");
     デバッグ出力 &lt;&lt; str &lt;&lt; endl;
 
     // 変数 ret_valを「ArrayList^」型として取得
-    ArrayList^ arr1 = GREF::scope-&gt;GetVariable&lt;ArrayList^&gt;(&quot;ret_val&quot;);
+    ArrayList^ arr1 = GREF::scope-&gt;GetVariable&lt;ArrayList^&gt;("ret_val");
     for each (int l in arr1) {
       デバッグ出力 &lt;&lt; l &lt;&lt; endl;
     }
 
     // 関数を呼び出し
-    GREF::pe-&gt;Execute(&quot;hello('world')&quot;, GREF::scope);
+    GREF::pe-&gt;Execute("hello('world')", GREF::scope);
 
     // 関数を呼び出すが、返り値は、String^型とみなす
-    String^ ret1 = GREF::pe-&gt;Execute&lt;String^&gt;(&quot;get_hello('world')&quot;, GREF::scope);
+    String^ ret1 = GREF::pe-&gt;Execute&lt;String^&gt;("get_hello('world')", GREF::scope);
     デバッグ出力 &lt;&lt; ret1 &lt;&lt; endl;
 
     // 日本語名の関数を呼び出すが、返り値は、String^型とみなす
-    String^ retstr = GREF::pe-&gt;Execute&lt;String^&gt;(&quot;ハロー('world')&quot;, GREF::scope);
+    String^ retstr = GREF::pe-&gt;Execute&lt;String^&gt;("ハロー('world')", GREF::scope);
     デバッグ出力 &lt;&lt; retstr &lt;&lt; endl;
 
     // 関数を呼び出す。返り値はArrayList^型
-    ArrayList^ arr2 = GREF::pe-&gt;Execute&lt;ArrayList^&gt;(&quot;get_ret_val()&quot;, GREF::scope);
+    ArrayList^ arr2 = GREF::pe-&gt;Execute&lt;ArrayList^&gt;("get_ret_val()", GREF::scope);
     for each (int l in arr2) {
       デバッグ出力 &lt;&lt; l &lt;&lt; endl;
     }
 
     // intを引数に取って、boolを返す関数
-    auto funcIsOdd = GREF::pe-&gt;Operations-&gt;GetMember&lt;Func&lt;int, bool&gt;^&gt;(GREF::scope, &quot;is_odd&quot;);
+    auto funcIsOdd = GREF::pe-&gt;Operations-&gt;GetMember&lt;Func&lt;int, bool&gt;^&gt;(GREF::scope, "is_odd");
     bool b1 = funcIsOdd(3);
     デバッグ出力 &lt;&lt; b1 &lt;&lt; endl;
     bool b2 = funcIsOdd(4);
@@ -98,31 +97,30 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
 
 </pre></fieldset>
-    <li>
+    </li><li>
     <h3>Python側</h3>
     <p>スクリプト側は前節と全く同じものです。<br>
-    <p><span class="negative">C++/CLIの「マルチバイト」から呼ばれますので、「script.pyのソースコードの文字コードをShitJIS(=cp932)」で保存</span>してください。<br>
+    </p><p><span class="negative">C++/CLIの「マルチバイト」から呼ばれますので、「script.pyのソースコードの文字コードをShitJIS(=cp932)」で保存</span>してください。<br>
     (テキストエディタなどで実際に確認してください。間違っているとSyntax Errorが出ます)</p>
-    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;">
-# coding: cp932
+    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;"># coding: cp932
 
 
 from System.Collections import *
 
 abc = 3
 
-name = &quot;武田信玄&quot;
+name = "武田信玄"
 
 def hello( x ) :
-  print &quot;hello, &quot; + x
+  print "hello, " + x
 
 def ハロー( x ) :
-  print &quot;ハロー, &quot; + x
-  return &quot;ハロー&quot; + x
+  print "ハロー, " + x
+  return "ハロー" + x
 
 
 def get_hello( x ) :
-  return &quot;hello, &quot; + x
+  return "hello, " + x
 
 
 a = [10,20,30]
@@ -145,4 +143,4 @@ def is_odd(num):
     </p>
     <p>ですので、C#から呼び出し、C++/CLIからの呼び出し、いずれでもよいので使い方を知っておけば、<br>
     自作プロジェクトや他のゲームのMod制作などにおいて、幅広く役立つことでしょう。</p>
-</ul>
+</li></ul>

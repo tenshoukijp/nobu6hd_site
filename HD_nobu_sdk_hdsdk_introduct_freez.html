@@ -18,8 +18,7 @@
     それは<span class="negative">「○○-&gt;配列[ix]」</span>のような、配列にアクセスする際、<br>
     ixの値をチェックしていないため、「配列外アクセスエラー」になり、即フリーズする、というものです。<br>
     </p>
-    <fieldset class="code"><legend>１５３４年のシナリオを選択すると、上杉謙信が存在しないのでエラー</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>１５３４年のシナリオを選択すると、上杉謙信が存在しないのでエラー</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
   // 長尾景虎の列伝の人物が存在しない場合、iBushouIDには0xFFFFが返ってくる。
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::長尾景虎);
 
@@ -33,8 +32,7 @@ void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファ�
     <p>上のようなフリーズの場合に行うのは、try ... catch で<br>
     イベントハンドラを囲む、というものです。<br>
     </p>
-    <fieldset class="code"><legend>try...catchで囲み、エラーメッセージをModDebuggerに表示</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>try...catchで囲み、エラーメッセージをModDebuggerに表示</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
   try {
 
     int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::長尾景虎);
@@ -47,8 +45,7 @@ void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファ�
 }
 </pre></fieldset>
     <p><img src="./cnt_sdk/hd_version/cnt_sdk_introduct_freez_01.png"></p>
-    <fieldset class="code"><legend>範囲を判定して正しく直した</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>範囲を判定して正しく直した</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
 
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::長尾景虎);
 
@@ -61,8 +58,7 @@ void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファ�
 </pre></fieldset>
 <p>又、「○○-&gt;配列」の範囲内にあるのかないのかを調べるのは、<br>
 以下のように「Is_Contains」を利用できます。</p>
-    <fieldset class="code"><legend>範囲を判定して正しく直した</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>範囲を判定して正しく直した</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
 
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::長尾景虎);
 
@@ -80,8 +76,7 @@ void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファ�
     <p>少し慣れてきたころによくある例、<br>
     それが、.NETではお馴染みの「gcnewしていないマネージ参照のプロパティに値を突っ込んでいる」というものです。<br>
     </p>
-    <fieldset class="code"><legend>シナリオを選択すると、未初期化のposに値を突っ込んでるのでフリーズ</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>シナリオを選択すると、未初期化のposに値を突っ込んでるのでフリーズ</legend> <pre class="brush:cpp;">void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
 
   // すべての城の位置は城位置型。
   城位置型^ pos;
@@ -99,8 +94,7 @@ void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファ�
 <p>同様にtry...catchで囲むと、下記のようなエラーとなる。</p>
     <p><img src="./cnt_sdk/hd_version/cnt_sdk_introduct_freez_02.png"></p>
     <p>正しく直すには、gcnewする必要があります。<br></p>
-    <fieldset class="code"><legend>gcnewして正しく直した</legend> <pre class="brush:cpp;highlight:[4]">
-void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
+    <fieldset class="code"><legend>gcnewして正しく直した</legend> <pre class="brush:cpp;highlight:[4]">void 天翔記クラス::On_シナリオ選択直後(String^ シナリオファイル名) {
 
   // すべての城の位置は城位置型。
   城位置型^ pos = gcnew 城位置型();

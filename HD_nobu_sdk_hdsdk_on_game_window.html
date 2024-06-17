@@ -14,19 +14,18 @@
     </p>
     <p>「On_ランチャーウィンドウ起動時」とは異なり、どのようなゲーム起動方法をしたとしても<br>
     このイベントハンドラは必ず実行されます。</p>
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>独自のゲームデータ初期化などを行うのに適しています。<br>
     また、独自のゲームオブジェクトを作った場合などにおいて、<br>
     その初期化をするのにも適しています。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例</h3>
-    <fieldset class="code"><legend>ゲーム起動時に独自に作ったtest.txtを読み込み、グローバル変数に格納しておく。</legend> <pre class="brush:cpp;">
-namespace ユーザー {
+    <fieldset class="code"><legend>ゲーム起動時に独自に作ったtest.txtを読み込み、グローバル変数に格納しておく。</legend> <pre class="brush:cpp;">namespace ユーザー {
     public ref class グローバル変数 {
     public:
-        static String^ 何か = &quot;&quot;;
+        static String^ 何か = "";
     };
 }
 /// これ以降は原則的には全て扱える。
@@ -36,21 +35,21 @@ void 天翔記クラス::On_ゲームウィンドウ起動時() {
     String^ DocumentFolder = Environment::GetFolderPath( ::Environment::SpecialFolder::Personal );
 
     // HD版のデータフォルダ
-    String^ NOBU6HD_DataFolder = DocumentFolder + gcnew String(&quot;\\KoeiTecmo\\NOBU6HD&quot;);
+    String^ NOBU6HD_DataFolder = DocumentFolder + gcnew String("\\KoeiTecmo\\NOBU6HD");
 
     // 独自の外部ファイルから読み込んで…
-    String^ strTestDataFileFullPath = NOBU6HD_DataFolder + &quot;\\test.txt&quot;;
+    String^ strTestDataFileFullPath = NOBU6HD_DataFolder + "\\test.txt";
     if (System::IO::File::Exists(strTestDataFileFullPath)) {
         try {
             System::IO::StreamReader^ sr = gcnew System::IO::StreamReader(strTestDataFileFullPath);
             String^ value = sr-&gt;ReadToEnd();
 
-            デバッグ出力 &lt;&lt; &quot;読み込んだグローバル変数&quot; &lt;&lt; value &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "読み込んだグローバル変数" &lt;&lt; value &lt;&lt; endl;
             // グローバルに残しておく
             ユーザー::グローバル変数::何か = value;
         }
         catch (Exception^ e) {
-            デバッグ出力 &lt;&lt; &quot;例外エラー!!&quot; &lt;&lt; e-&gt;Message &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "例外エラー!!" &lt;&lt; e-&gt;Message &lt;&lt; endl;
         }
 
     }

@@ -13,8 +13,7 @@
     </li>
     <li>
     <h3>使用例①</h3>
-    <fieldset class="code"><legend>現在の画面に出陣している武将のヘックス位置を得る</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code"><legend>現在の画面に出陣している武将のヘックス位置を得る</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
         {
@@ -27,10 +26,10 @@
                 var b = 武将.配列[iBushouID];
                 var h = b.戦争.ヘックス位置;
                 デバッグ出力(b.姓名);
-                デバッグ出力(&quot;└ ヘックス位置:&quot; + &quot;(&quot; + h.Ｘ + &quot; , &quot; + h.Ｙ + &quot;)&quot;);
+                デバッグ出力("└ ヘックス位置:" + "(" + h.Ｘ + " , " + h.Ｙ + ")");
             }
         }
-        return &quot;&quot;;
+        return "";
     }
 
 </pre></fieldset>
@@ -40,8 +39,7 @@
     <p>武将の位置をとるだけでは、あまり意味がありません。<br>
     通常は武将Ａと武将Ｂのヘックス上での間隔などを得るために、<br>
     位置をとっているといえるでしょう。</p>
-    <fieldset class="code"><legend>表示中の戦場に上杉謙信と武田信玄が両方いるなら、２人の間隔を得る</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code"><legend>表示中の戦場に上杉謙信と武田信玄が両方いるなら、２人の間隔を得る</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
         {
@@ -69,7 +67,7 @@
                 デバッグ出力(vec.長さ);
             }
         }
-        return &quot;&quot;;
+        return "";
     }
 
 </pre></fieldset>
@@ -78,8 +76,7 @@
     <h3>使用例③</h3>
     <p>武将の具体的な位置に対応する「ヘックスの役割(山・橋・門等)」も<br>
     同様の手段で得ることができます。<br>
-    <fieldset class="code"><legend>原始的な記述例</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    </p><fieldset class="code"><legend>原始的な記述例</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
 
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
@@ -90,28 +87,28 @@
             {
                 var b = 武将.配列[iBushouID];
                 var h = b.戦争.ヘックス位置;
-                デバッグ出力(b.姓名 + &quot;:&quot;);
-                デバッグ出力(&quot;└ ヘックス役割:&quot; + h.役割);
+                デバッグ出力(b.姓名 + ":");
+                デバッグ出力("└ ヘックス役割:" + h.役割);
 
                 if (h.役割 == 列挙.戦争.ヘックス.野戦役割.川)
                 {
-                    デバッグ出力(b.姓名 + &quot;は川の上に居ます&quot;);
+                    デバッグ出力(b.姓名 + "は川の上に居ます");
                 }
                 else if (h.役割 == 列挙.戦争.ヘックス.野戦役割.道)
                 {
-                    デバッグ出力(b.姓名 + &quot;は道の上に居ます&quot;);
+                    デバッグ出力(b.姓名 + "は道の上に居ます");
                 }
                 else if (h.役割 == 列挙.戦争.ヘックス.籠城戦役割.城壁)
                 {
-                    デバッグ出力(b.姓名 + &quot;は城壁の上に居ます&quot;);
+                    デバッグ出力(b.姓名 + "は城壁の上に居ます");
                 }
                 else if (h.役割 == 列挙.戦争.ヘックス.籠城戦役割.櫓)
                 {
-                    デバッグ出力(b.姓名 + &quot;は櫓の上に居ます&quot;);
+                    デバッグ出力(b.姓名 + "は櫓の上に居ます");
                 }
             }
         }
-        return &quot;&quot;;
+        return "";
     }
 
 </pre></fieldset>
@@ -119,8 +116,7 @@
     <li>
     <h3>使用例④</h3>
     <p>その他、ヘックスの炎上情報や高さ情報なども得ることができます。</p>
-    <fieldset class="code"><legend>ヘックスの炎上状態やヘックスの高さ</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code"><legend>ヘックスの炎上状態やヘックスの高さ</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
         {
@@ -133,12 +129,12 @@
 
                 if (b.戦争.ヘックス位置.炎上 == 列挙.戦争.ヘックス.籠城戦炎上.炎上)
                 {
-                    デバッグ出力(b.姓名 + &quot;のヘックスは炎上しています!&quot;);
+                    デバッグ出力(b.姓名 + "のヘックスは炎上しています!");
                 }
-                デバッグ出力(b.姓名 + &quot;の居る場所の高さ:&quot; + b.戦争.ヘックス位置.高さ);
+                デバッグ出力(b.姓名 + "の居る場所の高さ:" + b.戦争.ヘックス位置.高さ);
             }
         }
-        return &quot;&quot;;
+        return "";
     }
 
 </pre></fieldset>

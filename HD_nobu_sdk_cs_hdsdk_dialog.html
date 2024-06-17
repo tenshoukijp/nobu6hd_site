@@ -9,7 +9,7 @@
     <p>
     <img src="cnt_sdk/hd_version/cnt_sdk_hdsdk_dialog_01.png">
     </p>
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>天翔記には元来存在しない独自のゲームタイミングで、<br>
     ユーザーに情報を提供したり、実行の取捨選択を促す場合などに利用します。<br>
@@ -17,22 +17,21 @@
     </li>
     <li>
     <h3>使用例</h3>
-    <fieldset class="code"><legend>各種のダイアログの使い方</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>各種のダイアログの使い方</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
-        ダイアログ.Show_確認_中央(&quot;確認中央&quot;);
+        ダイアログ.Show_確認_中央("確認中央");
 
-        ダイアログ.Show_確認_下部(&quot;確認下部&quot;);
+        ダイアログ.Show_確認_下部("確認下部");
 
-        int 選択結果 = ダイアログ.Show_実行か取消_中央(&quot;テストを実行しますか?&quot;);
+        int 選択結果 = ダイアログ.Show_実行か取消_中央("テストを実行しますか?");
 
         if (選択結果 == 列挙.ダイアログ.実行か取消.実行)
         {
-            ダイアログ.Show_情報_中央(&quot;実行を選択しました&quot;);
+            ダイアログ.Show_情報_中央("実行を選択しました");
         }
         else
         {
-            ダイアログ.Show_情報_中央(&quot;取消を選択しました&quot;);
+            ダイアログ.Show_情報_中央("取消を選択しました");
         }
     }
 </pre></fieldset>

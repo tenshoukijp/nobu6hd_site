@@ -12,20 +12,18 @@
     <fieldset class="alert alert-info"><legend>起動環境設定の値はレジストリにある</legend>\HKEY_CURRENT_USER\SOFTWARE\KoeiTecmo\NOBU6HD\Configs<br>
     内の各値が対応しています。<br>
     </fieldset>
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>この起動環境設定は、ゲーム起動の前に設定するものですので、普通はゲーム起動前のメソッドに相当する<br>
     </p>
-    <fieldset class="code"><legend>メソッド</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_ランチャーウィンドウ起動時() {
+    <fieldset class="code"><legend>メソッド</legend> <pre class="brush:cpp;">void 天翔記クラス::On_ランチャーウィンドウ起動時() {
 }
 </pre></fieldset>
     <p>内で使用することとなります。</p>
     </li>
     <li>
     <h3>使用例</h3>
-    <fieldset class="code"><legend>主なプロパティ</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_ランチャーウィンドウ起動時() {
+    <fieldset class="code"><legend>主なプロパティ</legend> <pre class="brush:cpp;">void 天翔記クラス::On_ランチャーウィンドウ起動時() {
   // メインモニターで起動。
   起動環境設定-&gt;起動モニター = 0;
 

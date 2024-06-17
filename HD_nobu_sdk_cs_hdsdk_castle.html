@@ -9,13 +9,13 @@
         <li>
         <h4>城</h4>
         <p>城という抽象的なカテゴリの概念。</p>
-        <li>
+        </li><li>
         <h4>城.配列</h4>
         <p>城リストという、214存在する「城アイコンの場所」に対応する概念。</p>
-        <li>
+        </li><li>
         <h4>城.配列[ix]</h4>
         <p>特定の城１つ(厳密には214のうちの特定の城)の概念</p>
-    </ul>
+    </li></ul>
     <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
     </p>
     </li>
@@ -25,8 +25,7 @@
     あまり「全ての城のプロパティを変更する」といったことはやらないかもしれませんが、<br>
     仕組みを理解をする上ではとても重要です。<br>
     以下は、各城が持つプロパティのほんの一部です。</p>
-    <fieldset class="code"><legend>城のプロパティの利用</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>城のプロパティの利用</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         foreach (var c in 城.配列)
         {
@@ -58,8 +57,7 @@
     <p>よくあるのが「特定の武将」がどこに居るのか？<br>
     といった情報と絡めて利用するシーンでしょう。<br>
     </p>
-    <fieldset class="code"><legend>武将が居る城名</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>武将が居る城名</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         int iBushouID = 武将.Find_武将番号(列挙.武将.列伝番号.柴田勝家);
 
@@ -82,8 +80,7 @@
     そこでSDK内では、天翔記に登場する全ての城(名前の変更分も含む)がすでに<br>
     列挙定義済みとなっており、これを番号代わりに利用することができます。</p>
 
-    <fieldset class="code"><legend>列挙を使って城番号を得る</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>列挙を使って城番号を得る</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         // 二条城の位置の城番号(位置だけなので、室町御所かもしれないし、伏見城かもしれない)
         int iCastleID = 列挙.城.城番号.二条城;
@@ -112,20 +109,18 @@
     「グリッドで切られている＝城が隣接している」を自然と理解していることでしょう。
     </fieldset>
 
-    <fieldset class="code"><legend>城のグリッド位置</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>城のグリッド位置</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         城グリッド位置型 pos = 城.配列[列挙.城.城番号.春日山城].グリッド位置;
-        デバッグ出力(&quot;春日山城のグリッドの位置&quot;);
-        デバッグ出力(&quot;X:&quot; + pos.Ｘ + &quot; Y:&quot; + pos.Ｙ);
+        デバッグ出力("春日山城のグリッドの位置");
+        デバッグ出力("X:" + pos.Ｘ + " Y:" + pos.Ｙ);
     }
 </pre></fieldset>
     </li>
     <li>
     <h3>使用例④</h3>    <p>「隣接しているグリッドに存在する城が、隣接している城」です。<br>
     グリッドの場合は「斜めに隣接している」時も隣接とみなされます。</p>
-    <fieldset class="code"><legend>とある城に隣接している城一覧</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>とある城に隣接している城一覧</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         var list = 城.配列[列挙.城.城番号.二条城].隣接城番号リスト;
         foreach (int iCastleID in list)
@@ -136,8 +131,7 @@
 </pre></fieldset>
     <p>隣接しているというだけでは不十分で、「経路で繋がっていて隣接している」といった情報が欲しい場合もあります。
     <br>そういった場合には「経路隣接城番号リスト」を利用しましょう。</p>
-    <fieldset class="code"><legend>とある城に経路で繋がっていて、かつ、隣接している城一覧</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>とある城に経路で繋がっていて、かつ、隣接している城一覧</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         var list = 城.配列[列挙.城.城番号.躑躅ケ崎館].経路隣接城番号リスト;
         foreach (int iCastleID in list)
@@ -149,11 +143,10 @@
     <p>さらには、とある城から別の城まで一体どういう経路で辿っていくのが理想なのか？<br>
     といった情報を取得したいかもしれません。<br>
     SDKはこういった経路グラフを得ることも可能です。<br></p>
-    <fieldset class="code"><legend>とある城から、とある城までの、理想経路上の城一覧</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>とある城から、とある城までの、理想経路上の城一覧</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         var graphlist = 城.Get_経路上の城番号リスト(列挙.城.城番号.春日山城, 列挙.城.城番号.安土城);
-        デバッグ出力(&quot;-------------------------------------&quot;);
+        デバッグ出力("-------------------------------------");
         foreach (int iCastleID in graphlist)
         {
             デバッグ出力(城.配列[iCastleID].城名称);

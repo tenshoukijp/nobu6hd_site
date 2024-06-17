@@ -8,7 +8,7 @@
     <p>「現在ターンが回っている大名」「ターンが回っている軍団」<br>
     を簡単に得ることが出来るよう、「戦略.ターン」オブジェクトが提供されています。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>専用のイベントハンドラとして、「<a href="?page=HD_nobu_sdk_cs_hdsdk_on_main_gundan_turn_change">My_戦略_軍団ターン変更時</a>」<br>
     というイベントハンドラがあります。<br>
@@ -24,8 +24,7 @@
     </li>
     <li>
     <h3>使用例①</h3>
-    <fieldset class="code"><legend>ターン大名番号とターン軍団番号</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code"><legend>ターン大名番号とターン軍団番号</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         int iGundanID = 戦略.ターン.ターン軍団番号;
         if (軍団.配列.Exists(iGundanID))
@@ -38,7 +37,7 @@
             if (武将.配列.Exists(iBushouID))
             {
                 var b = 武将.配列[iBushouID];
-                デバッグ出力(&quot;軍団長&quot; + b.姓名 + &quot;ターン内のメッセージです。&quot;);
+                デバッグ出力("軍団長" + b.姓名 + "ターン内のメッセージです。");
             }
         }
 
@@ -53,11 +52,11 @@
             if (武将.配列.Exists(iBushouID))
             {
                 var b = 武将.配列[iBushouID];
-                デバッグ出力(&quot;大名:&quot; + b.姓名 + &quot;ターン内のメッセージです。&quot;);
+                デバッグ出力("大名:" + b.姓名 + "ターン内のメッセージです。");
             }
         }
 
-        return &quot;&quot;;
+        return "";
     }
 
 }
@@ -67,8 +66,7 @@
     <h3>使用例②</h3>
     <p>最も多い使用例の１つは、やはり、現在プレイヤのターンなのか？<br>
     といった判定でしょう。</p>
-    <fieldset class="code"><legend>ターンが回ってきているのはプレイヤ操作の軍団か？</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code"><legend>ターンが回ってきているのはプレイヤ操作の軍団か？</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         int iGundanID = 戦略.ターン.ターン軍団番号;
         if (軍団.配列.Exists(iGundanID))
@@ -78,11 +76,11 @@
 
             if (g.Is_プレイヤ担当軍団)
             {
-                デバッグ出力(&quot;プレイヤが直接操作している軍団のターン&quot;);
+                デバッグ出力("プレイヤが直接操作している軍団のターン");
             }
             if (g.Is_プレイヤ麾下軍団)
             {
-                デバッグ出力(&quot;プレイヤが支配下に置いている軍団(直接担当している第１軍団含む)のターン&quot;);
+                デバッグ出力("プレイヤが支配下に置いている軍団(直接担当している第１軍団含む)のターン");
             }
         }
 
@@ -94,11 +92,11 @@
 
             if (d.Is_プレイヤ担当大名)
             {
-                デバッグ出力(&quot;プレイヤの大名のターン&quot;);
+                デバッグ出力("プレイヤの大名のターン");
             }
         }
 
-        return &quot;&quot;;
+        return "";
     }
 
 </pre></fieldset>

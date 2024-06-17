@@ -11,16 +11,16 @@
         <li>
         <h4>参加大名</h4>
         <p>大名という単位で見て、どの大名勢力が戦争に参加しているのか？</p>
-        <li>
+        </li><li>
         <h4>参加軍団</h4>
         <p>軍団という単位で見て、どの軍団勢力が戦争に参加しているのか？</p>
-        <li>
+        </li><li>
         <h4>参加武将</h4>
         <p>武将という単位で見て、一体誰が戦争に参加しているのか？<br>
         ・現在の戦場全体(映ってる画面も映っていない画面も含めて)出陣しているのは誰か？<br>
         ・今画面に映ってる戦場で出陣しているのは誰か？<br>
         </p>
-    </ul>
+    </li></ul>
     <p>といった様々な分類があります。</p>
     </li>
     <li>
@@ -35,8 +35,7 @@
     「<a href="?page=HD_nobu_sdk_hdsdk_on_battle_join_seiryoku_decide">On_戦争参加勢力決定直後</a>」以降であれば、<br>
     戦争中どこでも大名・軍団・武将に関する参加情報を引き出すことが出来ます。<br>
     </p>
-    <fieldset class="code"><legend>大名の参加情報を得る</legend> <pre class="brush:cpp;">
-String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+    <fieldset class="code"><legend>大名の参加情報を得る</legend> <pre class="brush:cpp;">String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
 
   if (戦争-&gt;Is_野戦中 || 戦争-&gt;Is_籠城戦中) {
     int iBushouID = パラメタ-&gt;第１人称_武将番号;
@@ -46,14 +45,14 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
       for each (int iDaimyoID in dlist) {
         int iDaiBushouID = 大名-&gt;配列[iDaimyoID]-&gt;大名_武将番号;
         if (0 &lt;= iDaiBushouID &amp;&amp; iDaiBushouID &lt; 武将-&gt;配列-&gt;Count) {
-          デバッグ出力 &lt;&lt; 武将-&gt;配列[iDaiBushouID]-&gt;名字 &lt;&lt; &quot;家参戦&quot; &lt;&lt; endl;
+          デバッグ出力 &lt;&lt; 武将-&gt;配列[iDaiBushouID]-&gt;名字 &lt;&lt; "家参戦" &lt;&lt; endl;
         }
       }
 
     }
   }
 
-  return &quot;&quot;;
+  return "";
 }
 </pre></fieldset>
 
@@ -63,8 +62,7 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
     <p>戦争を行っているのは、事実上「軍団単位」であるため、<br>
     参戦情報については、軍団情報が一番充実しているといえます。<br>
     </p>
-    <fieldset class="code"><legend>軍団の参加情報を得る</legend> <pre class="brush:cpp;">
-String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+    <fieldset class="code"><legend>軍団の参加情報を得る</legend> <pre class="brush:cpp;">String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
 
   if (戦争-&gt;Is_野戦中 || 戦争-&gt;Is_籠城戦中) {
     int iBushouID = パラメタ-&gt;第１人称_武将番号;
@@ -75,37 +73,37 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
         auto g = 軍団-&gt;配列[iGundanID];
         int iGdcBushouID = g-&gt;軍団長_武将番号;
         if (0 &lt;= iGdcBushouID &amp;&amp; iGdcBushouID &lt; 武将-&gt;配列-&gt;Count) {
-          デバッグ出力 &lt;&lt; 武将-&gt;配列[iGdcBushouID]-&gt;姓名 &lt;&lt; &quot;の軍団参戦&quot; &lt;&lt; endl;
+          デバッグ出力 &lt;&lt; 武将-&gt;配列[iGdcBushouID]-&gt;姓名 &lt;&lt; "の軍団参戦" &lt;&lt; endl;
 
           int iSdsBushouID = g-&gt;戦争-&gt;総大将_武将番号;
           if (0 &lt;= iSdsBushouID &amp;&amp; iSdsBushouID &lt; 武将-&gt;配列-&gt;Count) {
-            デバッグ出力 &lt;&lt; &quot;今回の戦の&quot; &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; &quot;軍団の指揮官は&quot; &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; &quot;です&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "今回の戦の" &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; "軍団の指揮官は" &lt;&lt; 武将-&gt;配列[iSdsBushouID]-&gt;姓名 &lt;&lt; "です" &lt;&lt; endl;
           }
 
           int stand = g-&gt;戦争-&gt;参戦立場;
           switch (stand) {
           case 列挙::軍団::戦争::参戦立場::攻撃軍: {
-            デバッグ出力 &lt;&lt; &quot;攻撃軍です&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "攻撃軍です" &lt;&lt; endl;
             break;
           }
           case 列挙::軍団::戦争::参戦立場::守備軍: {
-            デバッグ出力 &lt;&lt; &quot;守備軍です&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "守備軍です" &lt;&lt; endl;
             break;
           }
           case 列挙::軍団::戦争::参戦立場::攻撃の援軍: {
-            デバッグ出力 &lt;&lt; &quot;攻撃の援軍です&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "攻撃の援軍です" &lt;&lt; endl;
             break;
           }
           case 列挙::軍団::戦争::参戦立場::守備の援軍: {
-            デバッグ出力 &lt;&lt; &quot;守備の援軍です&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "守備の援軍です" &lt;&lt; endl;
             break;
           }
           case 列挙::軍団::戦争::参戦立場::中立軍: {
-            デバッグ出力 &lt;&lt; &quot;中立軍です&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "中立軍です" &lt;&lt; endl;
             break;
           }
           default: {
-            デバッグ出力 &lt;&lt; &quot;不明な軍です&quot; &lt;&lt; endl;
+            デバッグ出力 &lt;&lt; "不明な軍です" &lt;&lt; endl;
             break;
           }
           }
@@ -116,7 +114,7 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
     }
   }
 
-  return &quot;&quot;;
+  return "";
 }
 
 </pre></fieldset>
@@ -130,28 +128,27 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
     武将番号から軍団番号を求めて、参戦立場を得る方法もありますが、<br>
     武将個々にも参戦立場のプロパティが直接提供されています。</p>
     <fieldset class="code"><legend>軍団の参加情報を得る</legend> <pre class="brush:cpp;">
-
 String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
 
   if (戦争-&gt;Is_野戦中 || 戦争-&gt;Is_籠城戦中) {
 
     auto alllist = 武将-&gt;戦争-&gt;出陣中_武将番号リスト;
-    デバッグ出力 &lt;&lt; &quot;戦場全体で出陣中の武将一覧:&quot; &lt;&lt; endl;
+    デバッグ出力 &lt;&lt; "戦場全体で出陣中の武将一覧:" &lt;&lt; endl;
     for each (int iBushouID in alllist) {
-      デバッグ出力 &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; &quot; 参戦立場:&quot; &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;戦争-&gt;参戦立場;
+      デバッグ出力 &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; " 参戦立場:" &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;戦争-&gt;参戦立場;
     }
     デバッグ出力 &lt;&lt; endl;
 
     auto curlist = 武将-&gt;戦争-&gt;出陣中_表示戦場_武将番号リスト;
-    デバッグ出力 &lt;&lt; &quot;現在表示中の戦場限定で、出陣中の武将一覧:&quot; &lt;&lt; endl;
+    デバッグ出力 &lt;&lt; "現在表示中の戦場限定で、出陣中の武将一覧:" &lt;&lt; endl;
     for each (int iBushouID in curlist) {
-      デバッグ出力 &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; &quot; 参戦立場:&quot; &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;戦争-&gt;参戦立場;
+      デバッグ出力 &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; " 参戦立場:" &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;戦争-&gt;参戦立場;
     }
     デバッグ出力 &lt;&lt; endl;
 
   }
 
-  return &quot;&quot;;
+  return "";
 }
 
 </pre></fieldset>

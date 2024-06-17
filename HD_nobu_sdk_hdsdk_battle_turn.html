@@ -5,21 +5,20 @@
     <h3>戦争-&gt;ターンの概念</h3>
     <p>戦争-&gt;ターンとは、戦争画面の様々ターンを扱うオブジェクトのことです。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
     <p>現在の所、戦争-&gt;ターンオブジェクトが提供するものは、<br>
     戦争画面の「残りターン数」情報のみの提供となります。<br>
     「<a href="?page=HD_nobu_sdk_hdsdk_on_battle_remain_turn_change">On_戦争_残りターン変更時</a>」のメソッドの「残りターン数」の情報を、<br>
     どのイベントハンドラでも利用可能にしていると考えれば良いでしょう。</p>
     <p><img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_on_battle_remain_turn_change_01.png"></p>
-    <fieldset class="code"><legend>戦争時の残りターン数を得る</legend> <pre class="brush:cpp;">
-String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+    <fieldset class="code"><legend>戦争時の残りターン数を得る</legend> <pre class="brush:cpp;">String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
 
   if (戦争-&gt;Is_野戦中 || 戦争-&gt;Is_籠城戦中) {
-    デバッグ出力 &lt;&lt; &quot;残りターン:&quot; &lt;&lt; 戦争-&gt;ターン-&gt;残りターン &lt;&lt; endl;
+    デバッグ出力 &lt;&lt; "残りターン:" &lt;&lt; 戦争-&gt;ターン-&gt;残りターン &lt;&lt; endl;
   }
 
-  return &quot;&quot;;
+  return "";
 }
 </pre></fieldset>
     </li>

@@ -9,13 +9,13 @@
         <li>
         <h4>官位</h4>
         <p>官位という抽象的なカテゴリの概念。</p>
-        <li>
-        <h4>官位->配列</h4>
+        </li><li>
+        <h4>官位-&gt;配列</h4>
         <p>官位リストという、天翔記に存在するすべて(未登場や消失含む)の官位の概念</p>
-        <li>
-        <h4>官位->配列[ix]</h4>
+        </li><li>
+        <h4>官位-&gt;配列[ix]</h4>
         <p>官位１つの概念</p>
-    </ul>
+    </li></ul>
     <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
     </p>
     </li>
@@ -24,8 +24,7 @@
     <p>全ての官位について所定の処理を施すいったシーンは少ないですが、<br>
     ここでは官位のプロパティの使い方を知る、ということで、<br>
     その代表的な例を行ってみましょう。</p>
-    <fieldset class="code"><legend>官位のプロパティの利用</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>官位のプロパティの利用</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
   for each (auto k in 官位-&gt;配列) {
     // 全ての官位を従一位
     k-&gt;位階 = 列挙::官位::位階::従一位;
@@ -45,9 +44,8 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
     細かな処理をするためには、for文などで逐次判定処理が必要ですが、<br>
     名前から官位番号を手軽に引けた方が記述が簡単になるシーンも多いため、<br>
     名前から簡単に逆引きする手段が提供されています。</p>
-    <fieldset class="code"><legend>官位を名指しして誰かに持たせる</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
-  int iKaniID = 官位-&gt;Find_官位番号(&quot;関白&quot;);
+    <fieldset class="code"><legend>官位を名指しして誰かに持たせる</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+  int iKaniID = 官位-&gt;Find_官位番号("関白");
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::今川義元);
 
   if (0 &lt;= iKaniID &amp;&amp; iKaniID &lt; 官位-&gt;配列-&gt;Count &amp;&amp;

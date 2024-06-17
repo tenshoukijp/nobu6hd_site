@@ -27,24 +27,23 @@
     リダイレクトという考え方です。<br>
     </p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>武将列伝や家宝列伝を書き換えた。<br>
     Steamの「ゲームキャッシュの整合性を確認」の影響を受けないようにしたい。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例</h3>
     <fieldset class="code"><legend>武将列伝・家宝列伝・HEXMAPの構成データを別ファイルから読み込めるようにする</legend><pre class="brush:cpp;">
-
 String^ 天翔記クラス::On_データファイル読込直前(String^ 元ファイル名) {
 
   // 武将列伝だ
   // 既存武将を、ちょっと編集しちゃったんで
   //「bfile*.dat」ではなく、「my_bfile*.dat」という別ファイルから読み込むようにする。
-  if ( 元ファイル名-&gt;ToLower()-&gt;Contains(&quot;\\bfile&quot;) ) {
+  if ( 元ファイル名-&gt;ToLower()-&gt;Contains("\\bfile") ) {
 
     // 新たなファイル名を構築 bfile*.datではなく、my_bfile*.datとする
-    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace(&quot;bfile&quot;, &quot;my_bfile&quot;);
+    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace("bfile", "my_bfile");
 
     // その新しいファイル名が実際に存在するのなら
     if (System::IO::File::Exists(新ファイル名)) {
@@ -57,10 +56,10 @@ String^ 天翔記クラス::On_データファイル読込直前(String^ 元フ�
   // 家宝列伝だ
   // 独自家宝を作るなど、ちょっと編集しちゃったんで
   //「ifile*.dat」ではなく、「my_ifile*.dat」という別ファイルから読み込むようにする。
-  if (元ファイル名-&gt;ToLower()-&gt;Contains(&quot;\\ifile&quot;)) {
+  if (元ファイル名-&gt;ToLower()-&gt;Contains("\\ifile")) {
 
     // 新たなファイル名を構築 ifile*.datではなく、my_ifile*.datとする
-    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace(&quot;ifile&quot;, &quot;my_ifile&quot;);
+    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace("ifile", "my_ifile");
 
     // その新しいファイル名が実際に存在するのなら
     if (System::IO::File::Exists(新ファイル名)) {
@@ -73,10 +72,10 @@ String^ 天翔記クラス::On_データファイル読込直前(String^ 元フ�
   // ヘックス系データだ。
   // ちょっと編集しちゃったんで
   //「hexmap.nb6」ではなく、「my_hexmap.nb6」という別のファイルから読み込むようにする。
-  if (元ファイル名-&gt;ToLower()-&gt;Contains(&quot;\\hexmap.nb6&quot;)) {
+  if (元ファイル名-&gt;ToLower()-&gt;Contains("\\hexmap.nb6")) {
 
     // 新たなファイル名を構築 hexmap.nb6ではなく、my_hexmap.nb6とする
-    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace(&quot;hexmap&quot;, &quot;my_hexmap&quot;);
+    String^ 新ファイル名 = 元ファイル名-&gt;ToLower()-&gt;Replace("hexmap", "my_hexmap");
 
     // その新しいファイル名が実際に存在するのなら
     if (System::IO::File::Exists(新ファイル名)) {
@@ -86,7 +85,7 @@ String^ 天翔記クラス::On_データファイル読込直前(String^ 元フ�
     }
   }
 
-  return &quot;&quot;;
+  return "";
 }
 </pre></fieldset>
     </li>

@@ -15,8 +15,7 @@
     <h3>使用例①</h3>
     <p>ほとんどの使用シーンは、「<a href="?page=HD_nobu_sdk_hdsdk_on_fukidashi_message">On_噴出メッセージ直前</a>」<br>
     にて、すりかえるメッセージを作る際に利用されます。
-    <fieldset class="code"><legend>デフォルトの会見のメッセージを、語句変化を伴ってすり替える</legend> <pre class="brush:cpp;">
-String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
+    </p><fieldset class="code"><legend>デフォルトの会見のメッセージを、語句変化を伴ってすり替える</legend> <pre class="brush:cpp;">String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセージ, 噴出メッセージパラメタ型^ パラメタ) {
 
   using namespace System::Text::RegularExpressions;
 
@@ -27,25 +26,25 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
     0 &lt;= 第２人称_武将番号 &amp;&amp; 第２人称_武将番号 &lt; 武将-&gt;配列-&gt;Count) {
 
     // 会見のメッセージのひとつ
-    if (Regex::Match(元メッセージ, &quot;^何をするか|^はて…\xAこれから&quot;)-&gt;Success) {
+    if (Regex::Match(元メッセージ, "^何をするか|^はて…\xAこれから")-&gt;Success) {
       int rnd = rand() % 3;
       if (rnd == 0) {
-        String^ mes = ％相手％(第１人称_武将番号, 第２人称_武将番号) + &quot;、商人に\x0A&quot;
-          &quot;米を売&quot; + ％りましょう％(第１人称_武将番号, 第２人称_武将番号);
+        String^ mes = ％相手％(第１人称_武将番号, 第２人称_武将番号) + "、商人に\x0A"
+          "米を売" + ％りましょう％(第１人称_武将番号, 第２人称_武将番号);
 
         return mes;
       }
       else if (rnd == 1) {
-        String^ mes = ％ははは％(第１人称_武将番号, 第２人称_武将番号) + &quot;、&quot; + ％相手％(第１人称_武将番号, 第２人称_武将番号) + &quot;\x0A&quot;
-          &quot;一度の失敗では\x0A&quot;
-          &quot;懲りぬよう&quot; + ％です％(第１人称_武将番号, 第２人称_武将番号) + ％な（２）％(第１人称_武将番号, 第２人称_武将番号);
+        String^ mes = ％ははは％(第１人称_武将番号, 第２人称_武将番号) + "、" + ％相手％(第１人称_武将番号, 第２人称_武将番号) + "\x0A"
+          "一度の失敗では\x0A"
+          "懲りぬよう" + ％です％(第１人称_武将番号, 第２人称_武将番号) + ％な（２）％(第１人称_武将番号, 第２人称_武将番号);
 
         return mes;
       }
       else if (rnd == 2) {
 
-        String^ mes = &quot;おのれ、&quot; + ％罵倒相手％(第１人称_武将番号, 第２人称_武将番号) +&quot;\x0A&quot;
-          &quot;覚えておれ！&quot;;
+        String^ mes = "おのれ、" + ％罵倒相手％(第１人称_武将番号, 第２人称_武将番号) +"\x0A"
+          "覚えておれ！";
 
         return mes;
       }
@@ -53,7 +52,7 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
 
   }
 
-  return &quot;&quot;;
+  return "";
 }
 </pre></fieldset>
     <p>第１人称と第２人称の「性格」「口調」「人間関係」などを全て含んで、<br>

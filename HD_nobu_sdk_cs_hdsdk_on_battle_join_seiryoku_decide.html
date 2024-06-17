@@ -17,18 +17,17 @@
 各種、参加勢力や参戦立場の情報を得ることができます。<br>
 </p>
 
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>戦争の参加勢力や参戦立場の情報を拾って、変数などに格納しておく。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例①</h3>
   <p>戦争の参加は、大名という大きな勢力の視点、軍団という視点、武将という視点の３つがありますが、<br>
   このメソッドでは、「大名視点」「軍団視点」の情報を拾ってくることとなります。<br>
   大名視点の情報を拾ってきましょう。<br>
   </p>
-    <fieldset class="code"><legend>戦争に参加している大名勢力の一覧の情報を得る。</legend><pre class="brush:csharp;">
-    public static void My_戦争参加勢力決定直後()
+    <fieldset class="code"><legend>戦争に参加している大名勢力の一覧の情報を得る。</legend><pre class="brush:csharp;">    public static void My_戦争参加勢力決定直後()
     {
         var dlist = 大名.戦争.参戦大名番号リスト;
         foreach (int iDaimyoID in dlist)
@@ -36,7 +35,7 @@
             int iDaiBushouID = 大名.配列[iDaimyoID].大名_武将番号;
             if (武将.配列.Exists(iDaiBushouID))
             {
-                デバッグ出力(武将.配列[iDaiBushouID].名字 + &quot;家参戦&quot;);
+                デバッグ出力(武将.配列[iDaiBushouID].名字 + "家参戦");
             }
         }
     }
@@ -47,8 +46,7 @@
   <p>天翔記において、戦争とは事実上、大名同士ではなく、軍団同士の戦いであるため、<br>
   軍団視点の情報では、より詳細な情報を得ることが出来ます。
   </p>
-    <fieldset class="code"><legend>戦争に参加している軍団勢力、今回での戦争内での軍団を率いる総大将、参戦立場などの情報を得る。</legend><pre class="brush:csharp;">
-    public static void My_戦争参加勢力決定直後()
+    <fieldset class="code"><legend>戦争に参加している軍団勢力、今回での戦争内での軍団を率いる総大将、参戦立場などの情報を得る。</legend><pre class="brush:csharp;">    public static void My_戦争参加勢力決定直後()
     {
         var glist = 軍団.戦争.参戦軍団番号リスト;
         foreach (int iGundanID in glist)
@@ -57,38 +55,38 @@
             int iGdcBushouID = g.軍団長_武将番号;
             if (武将.配列.Exists(iGdcBushouID))
             {
-                デバッグ出力(武将.配列[iGdcBushouID].姓名 + &quot;の軍団参戦&quot;);
+                デバッグ出力(武将.配列[iGdcBushouID].姓名 + "の軍団参戦");
 
                 int iSdsBushouID = g.戦争.総大将_武将番号;
                 if (武将.配列.Exists(iSdsBushouID))
                 {
-                    デバッグ出力(&quot;今回の戦の&quot; + 武将.配列[iSdsBushouID].姓名 + &quot;軍団の指揮官は&quot; + 武将.配列[iSdsBushouID].姓名 + &quot;です&quot;);
+                    デバッグ出力("今回の戦の" + 武将.配列[iSdsBushouID].姓名 + "軍団の指揮官は" + 武将.配列[iSdsBushouID].姓名 + "です");
                 }
 
                 int stand = g.戦争.参戦立場;
                 if (stand == 列挙.軍団.戦争.参戦立場.攻撃軍)
                 {
-                    デバッグ出力(&quot;攻撃軍です&quot;);
+                    デバッグ出力("攻撃軍です");
                 }
                 else if (stand == 列挙.軍団.戦争.参戦立場.守備軍)
                 {
-                    デバッグ出力(&quot;守備軍です&quot;);
+                    デバッグ出力("守備軍です");
                 }
                 else if (stand == 列挙.軍団.戦争.参戦立場.攻撃の援軍)
                 {
-                    デバッグ出力(&quot;攻撃の援軍です&quot;);
+                    デバッグ出力("攻撃の援軍です");
                 }
                 else if (stand == 列挙.軍団.戦争.参戦立場.守備の援軍)
                 {
-                    デバッグ出力(&quot;守備の援軍です&quot;);
+                    デバッグ出力("守備の援軍です");
                 }
                 else if (stand == 列挙.軍団.戦争.参戦立場.中立軍)
                 {
-                    デバッグ出力(&quot;中立軍です&quot;);
+                    デバッグ出力("中立軍です");
                 }
                 else
                 {
-                    デバッグ出力(&quot;不明な軍です&quot;);
+                    デバッグ出力("不明な軍です");
                 }
             }
         }

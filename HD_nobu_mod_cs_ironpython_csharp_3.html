@@ -6,11 +6,10 @@
     <h3>概要</h3>
     <p>前節までで、C#とIronPythonとのやりとりの基本は理解できました。<br>
     今節では実際に使用してみましょう。<br>
-    <li>
+    </p></li><li>
     <h3>HD.version.SDK側</h3>
 
-    <fieldset class="code"><legend>HD.version.SDK側のソース</legend><pre class="brush:cpp;">
-using System;
+    <fieldset class="code"><legend>HD.version.SDK側のソース</legend><pre class="brush:cpp;">using System;
 using System.Collections.Generic;
 
 
@@ -24,7 +23,7 @@ using Microsoft.Scripting.Hosting;
         try
         {
             pe = Python.CreateEngine();
-            scope = pe.ExecuteFile(&quot;script.py&quot;);
+            scope = pe.ExecuteFile("script.py");
             // UseFile メソッドは Python 側で指定された検索パス上のファイルも探する。
             // ExecuteFile メソッドはそのような探索の機能を持っていない。指定の通りのファイルを読みこんで実行する。
         }
@@ -56,18 +55,17 @@ using Microsoft.Scripting.Hosting;
 
 
 </pre></fieldset>
-    <li>
+    </li><li>
     <h3>Python側</h3>
     <p>「武将」クラスオブジェクトを受け取って、50歳を超える年齢の武将だけをList&lt;int&gt;に追加して返しています。</p>
-    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;">
-# coding: utf8
+    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;"># coding: utf8
 
 from System.Collections.Generic import List
 
 def 武将フィルター(武将):
     blist = []
     for b in 武将.配列:
-        if b.年齢 > 50:
+        if b.年齢 &gt; 50:
             blist.append(b.番号)
 
     blist_list = List[int](blist)
@@ -81,4 +79,4 @@ def 武将フィルター(武将):
     <p>
     C#自体が優れているため、なかなかスクリプト言語に頼るといった機会は少ないかもしれませんが、<br>
     検討材料のひとつにしてください。</p>
-</ul>
+</li></ul>

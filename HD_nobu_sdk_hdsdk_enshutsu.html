@@ -6,15 +6,14 @@
     <p>フェイドインやフェイドアウト、画面カメラの移動など、<br>
     画面演出系のAPI提供用オブジェクトとなります。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>フェイドアウトやフェイドイン、画面中央に映す城を変更する際に利用します。<br>
     </p>
     </li>
     <li>
     <h3>使用例</h3>
-    <fieldset class="code"><legend>フェイドアウト・カメラ移動・フェイドイン</legend> <pre class="brush:cpp;">
-void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
+    <fieldset class="code"><legend>フェイドアウト・カメラ移動・フェイドイン</legend> <pre class="brush:cpp;">void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
   演出-&gt;Do_フェイドアウト();
   if (0 &lt;= 軍団番号 &amp;&amp; 軍団番号 &lt; (軍団-&gt;配列-&gt;Count) ) {
     int iCastleID = 軍団-&gt;配列[軍団番号]-&gt;所属城番号;

@@ -14,16 +14,15 @@
     </p>
     <p>「My_ランチャーウィンドウ起動時」とは異なり、どのようなゲーム起動方法をしたとしても<br>
     このイベントハンドラは必ず実行されます。</p>
-    <li>
+    </li><li>
     <h3>使い処</h3>
     <p>独自のゲームデータ初期化などを行うのに適しています。<br>
     また、独自のゲームオブジェクトを作った場合などにおいて、<br>
     その初期化をするのにも適しています。<br>
     </p>
-    <li>
+    </li><li>
     <h3>使用例</h3>
-    <fieldset class="code"><legend>ゲーム起動時に独自に作ったtest.txtを読み込み、グローバル変数に格納しておく。</legend> <pre class="brush:csharp;">
-    static string 何か = &quot;&quot;;
+    <fieldset class="code"><legend>ゲーム起動時に独自に作ったtest.txtを読み込み、グローバル変数に格納しておく。</legend> <pre class="brush:csharp;">    static string 何か = "";
 
     /// これ以降は原則的には全て扱える。
     public static void My_ゲームウィンドウ起動時()
@@ -33,21 +32,21 @@
         string DocumentFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
         // HD版のデータフォルダ
-        string NOBU6HD_DataFolder = DocumentFolder + @&quot;\KoeiTecmo\NOBU6HD&quot;;
+        string NOBU6HD_DataFolder = DocumentFolder + @"\KoeiTecmo\NOBU6HD";
 
         // 独自の外部ファイルから読み込んで…
-        string strTestDataFileFullPath = NOBU6HD_DataFolder + @&quot;\test.txt&quot;;
+        string strTestDataFileFullPath = NOBU6HD_DataFolder + @"\test.txt";
         if (System.IO.File.Exists(strTestDataFileFullPath))
         {
             try
             {
                 System.IO.StreamReader sr = new System.IO.StreamReader(strTestDataFileFullPath);
                 何か = sr.ReadToEnd();
-                デバッグ出力(&quot;読み込んだグローバル変数:&quot;+何か);
+                デバッグ出力("読み込んだグローバル変数:"+何か);
             }
             catch (Exception e)
             {
-                デバッグ出力(&quot;例外エラー!!&quot; + e.Message);
+                デバッグ出力("例外エラー!!" + e.Message);
             }
 
         }

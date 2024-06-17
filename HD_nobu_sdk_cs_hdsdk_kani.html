@@ -9,13 +9,13 @@
         <li>
         <h4>官位</h4>
         <p>官位という抽象的なカテゴリの概念。</p>
-        <li>
+        </li><li>
         <h4>官位.配列</h4>
         <p>官位リストという、天翔記に存在するすべて(未登場や消失含む)の官位の概念</p>
-        <li>
+        </li><li>
         <h4>官位.配列[ix]</h4>
         <p>官位１つの概念</p>
-    </ul>
+    </li></ul>
     <p>ここでは、よく利用するパターンをピックアップして解説します。<br>
     </p>
     </li>
@@ -24,8 +24,7 @@
     <p>全ての官位について所定の処理を施すいったシーンは少ないですが、<br>
     ここでは官位のプロパティの使い方を知る、ということで、<br>
     その代表的な例を行ってみましょう。</p>
-    <fieldset class="code"><legend>官位のプロパティの利用</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>官位のプロパティの利用</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
         foreach (var k in 官位.配列)
         {
@@ -48,13 +47,12 @@
     細かな処理をするためには、for文などで逐次判定処理が必要ですが、<br>
     名前から官位番号を手軽に引けた方が記述が簡単になるシーンも多いため、<br>
     名前から簡単に逆引きする手段が提供されています。</p>
-    <fieldset class="code"><legend>官位を名指しして誰かに持たせる</legend> <pre class="brush:csharp;">
-  public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>官位を名指しして誰かに持たせる</legend> <pre class="brush:csharp;">  public static void My_戦略_軍団ターン変更時(int 軍団番号)
   {
     int iKaniID = 官位.Find_官位番号("関白");
     int iBushouID = 武将.Find_武将番号(列挙.武将.列伝番号.今川義元);
 
-    if (官位.配列.Exists(iKaniID) && 武将.配列.Exists(iBushouID))
+    if (官位.配列.Exists(iKaniID) &amp;&amp; 武将.配列.Exists(iBushouID))
     {
       官位.配列[iKaniID].所有武将番号 = iBushouID;
     }
@@ -62,15 +60,14 @@
 </pre></fieldset>
     </li>
 
-    </li>
+    
     <li>
     <h3>使用例③</h3>
     <p>官位は同じ名前が複数存在するため、場合によっては同じ名前のものをリストとして集める必要があるかと思います。<br>
     こういった用途には、C#のLINQが最適でしょう。</p>
-    <fieldset class="code"><legend>４つある参議に、ぞれぞれバラバラの効果を設定する</legend> <pre class="brush:csharp;">
-    public static void My_戦略_軍団ターン変更時(int 軍団番号)
+    <fieldset class="code"><legend>４つある参議に、ぞれぞれバラバラの効果を設定する</legend> <pre class="brush:csharp;">    public static void My_戦略_軍団ターン変更時(int 軍団番号)
     {
-        var kKaniIDList = from k in 官位.配列 where k.官位名 == &quot;参議&quot; select k.番号;
+        var kKaniIDList = from k in 官位.配列 where k.官位名 == "参議" select k.番号;
 
         int i = 0;
         foreach ( int iKaniID in kKaniIDList)
@@ -79,7 +76,7 @@
         }
     }
 </pre></fieldset>
-    <li>
+    </li><li>
     <h3>その他</h3>
     <p>官位について、主な解説は以上となります。<br>
     官位関連には他にもプロパティやメソッドがあります。<br>

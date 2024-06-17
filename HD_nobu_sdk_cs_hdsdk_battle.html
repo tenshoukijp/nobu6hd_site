@@ -17,14 +17,13 @@
     <p>戦争が始まると決まった直後から「Is_戦争中がtrue」となり、戦争画面を抜け、<br>
     捕虜の処遇などもすべて終わって、戦争に関するすべての処理が終了した後、<br>
     初めて「Is_戦争中がfalse」となります。</p>
-    <fieldset class="code"><legend>戦争中という大きなくくり</legend> <pre class="brush:csharp;">
-  public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code"><legend>戦争中という大きなくくり</legend> <pre class="brush:csharp;">  public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
   {
     if (戦争.Is_戦争中)
     {
-      return &quot;戦争中のメッセージ&quot;;
+      return "戦争中のメッセージ";
     }
-    return &quot;&quot;;
+    return "";
   }
 </pre></fieldset>
 
@@ -36,8 +35,7 @@
     <p>「野戦」とは「野戦」に突入する直前と「野戦」での戦争中の両方を指し、<br>
     「籠城戦」とは「籠城戦」に突入する直前と、「籠城戦」での戦争中の両方を指します。<br>
     </p>
-    <fieldset class="code"><legend>野戦と籠城戦のくくり</legend> <pre class="brush:csharp;">
-    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code"><legend>野戦と籠城戦のくくり</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         int i1st = パラメタ.第１人称_武将番号;
 
@@ -45,16 +43,16 @@
         {
             if (戦争.Is_野戦中)
             {
-                return &quot;野戦中のメッセージ&quot;;
+                return "野戦中のメッセージ";
             }
 
             else if (戦争.Is_籠城戦中)
             {
-                return &quot;籠城戦中のメッセージ&quot;;
+                return "籠城戦中のメッセージ";
             }
 
         }
-        return &quot;&quot;;
+        return "";
     }
 
 </pre></fieldset>
