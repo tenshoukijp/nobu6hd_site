@@ -16,6 +16,7 @@ $strTitle = "天翔記.jp (HD版)";
 $urlParamPage = $_GET['page'];
 $orgParamPage = $_GET['page'];
 
+/*
 if ($_SERVER['HTTP_HOST'] == "usr.s602.xrea.com") {
     if (str_contains($_SERVER["REQUEST_URI"], "/" . $punnyAddress)) {
         $OldRequest = $_SERVER["REQUEST_URI"];
@@ -26,6 +27,36 @@ if ($_SERVER['HTTP_HOST'] == "usr.s602.xrea.com") {
         exit;
     }
 }
+*/
+
+// rel=canonical の設定
+if ( $urlParamPage != "" ) {
+
+    $strCanonicalKey = $urlParamPage;
+    // 一番最後の2があるキーは、2が無いものとhtmlを比べて、同じhtmlを示しているならば、
+    // 2が無い方が正規のページ。これはgoogle検索で「ページが重複している」といった判定になるのを避けるため。
+
+	// "2"で終わっているか判定
+	if (substr($urlParamPage, -1) === "2") {
+	  // "2"を取り除いた文字列
+	  $urlParamPageWithout2 = substr($urlParamPage, 0, -1);
+
+	  $html2 = $content_hash[$urlParamPage]['html'];          // 2がある方のHTML
+	  $html1 = $content_hash[$urlParamPageWithout2]['html'];  // 2が無い方のHTML
+
+	  // 両方有効なhtmlをもっており、しかも同じならば
+	  if (isset($html1) && isset($html2) && ($html1 == $html2)) {
+          // html1(2というのが無い方)を採用する。
+          $strCanonicalKey = $urlParamPageWithout2;
+	  }
+	}
+
+
+    $strCanonical = "https://" . $punnyAddress . "/?page=" . $strCanonicalKey;
+} else {
+    $strCanonical = "https://" . $punnyAddress . "/";
+}
+
 
 
 // デフォルトのページ
@@ -357,6 +388,7 @@ if (isset($matchesTitle[2])) {
 $array_style    = array(
      "%(japanese_webfont_css)s",
      "%(title)s",
+     "%(canonical)s",
      "%(pagedate)s",
      "%(pageymd)s",
      "%(year)s",
@@ -380,6 +412,7 @@ $array_style    = array(
 $array_template = array(
       $strWebFontCSSLink,
       $strTitle, 
+      $strCanonical,
       $strPageDate, 
       $strPageYMD,
       $strCurrentYear,
