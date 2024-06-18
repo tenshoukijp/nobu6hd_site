@@ -288,7 +288,7 @@
                 </li>
             </ul>
         </li>
-        <li data-nav-custom-content></li>
+        <li class="menu_separator"></li>
 
         <li><a href="https://xn--rssu31gj1g.jp"><i class="fa-ts95 fa-fw"></i>95 version ホーム</a></li>
     </ul>
