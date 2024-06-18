@@ -96,24 +96,8 @@ $strPageTemplate = str_replace('%(vs2017runtime)s', 'https://support.microsoft.c
 $strPageTemplate = str_replace('%(vs2019runtime)s', 'https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads', $strPageTemplate);
 $strPageTemplate = str_replace('%(vs2022runtime)s', 'https://support.microsoft.com/ja-jp/help/2977003/the-latest-supported-visual-c-downloads', $strPageTemplate);
 
-/*
-// hrefにタグ
-$strPageTemplate = preg_replace_callback(
-   "/(<a\s+href=[\"'])([^\"']+?)([\"'])(>)(.+?)(<\/a>)/",
-   function ($matches) {
-       // httpが含まれている。が、http://hd. は含まれていない(=外部サイトのリンク)
-       if ( strpos($matches[0],'http') !== false && strpos($matches[0],'https://hd.') === false ) {
-           return $matches[1] . $matches[2] . $matches[3] . $matches[4] . $matches[5] . "%(olink)s" . $matches[6];
-       // 「/」と同じか、「/?page」が含まれている。(=95サイトへのリンクだ)
-       } else if ($matches[2] == '/' || strpos($matches[0],'/?page') !== false ) {
-           return $matches[1] . $matches[2] . $matches[3] . $matches[4] . $matches[5] . "%(ilink)s" . $matches[6];
 
-       // HD内のリンクだ。
-       } else {
-           return $matches[0];
-       }
-   }, $strPageTemplate);
-*/
+
 // widthやheightが無いイメージタグにマッチしたら、 画像の半分のサイズでwidthやheightを入れる。
 $strPageTemplate = preg_replace_callback(
    "/(<img src=[\"'])([^\"']+?)([\"'])(>)/",
@@ -186,7 +170,7 @@ if ( strpos($strPageTemplate, "brush:") != false ) {
     $strShCoreHeader = '<link rel="stylesheet" type="text/css" href="./hilight/styles/HD_shcore-3.0.83.min.css?v=%(shcorecssupdate)s">' . "\n";
 
     // shcoreのスタイルシート
-    $timeShcoreCSSUpdate = filemtime("../hd.xn--rssu31gj1g.jp/hilight/styles/HD_shcore-3.0.83.min.css");
+    $timeShcoreCSSUpdate = filemtime("./hilight/styles/HD_shcore-3.0.83.min.css");
     $strShcoreCSSUpdate = date("YmdHis", $timeShcoreCSSUpdate);
 
     $strShCoreFooter = "<script type='text/javascript' src='./hilight/scripts/shcore-3.0.83.min.js'></script>\n" .
@@ -227,7 +211,7 @@ $strPageTemplate = str_replace($replaceNameKeys, $replaceNameVals, $strPageTempl
 // ファイルのアーカイブがあれば、更新日時へと置き換え
 $fileArchieve = $filetime_hash[$urlParamPage];
 if ($fileArchieve) {
-   $filetime = filemtime("../hd.xn--rssu31gj1g.jp/".$fileArchieve);
+   $filetime = filemtime($fileArchieve);
    $fileKeys   = array( "%(file)s", "%(year)04d", "%(mon)02d", "%(mday)02d" );
    $fileValues = array("./".$fileArchieve, date("Y", $filetime), date("m", $filetime), date("d", $filetime) );
 
@@ -265,59 +249,15 @@ if ($orgParamPage != "" and $content_hash[$urlParamPage]['dir'] != "#") {
 //-------------- ファイルの更新に合わせて、必ず再読み込みさせたいもの。XXXXXX?v=%(*****)s系 --------------
 
 // まずは日本語フォント系
-$timeFontUpdate = filemtime("../hd.xn--rssu31gj1g.jp/font/utrillo_sub.woff");
+$timeFontUpdate = filemtime("./font/utrillo_sub.woff");
 $strFontUpdate = date("YmdHis", $timeFontUpdate);
 
 // 日本語フォントはサイズが大きいので、「フォントのキャッシュが存在しないようなら、非同期」で、「フォントのキャッシュが存在するようなら、普通に同期」で表示する。
 $strWebFontCSSLink = "";
 $strWebFontLoader  = "";
 
-// セッションにフォントの日時が代入されているということは、フォントのキャッシュがすでにある可能性が極めて高い。
-// 最初から埋め込みCSSとしてユトリロを表示する。
-if ( $_SESSION['FontUpdate'] == $strFontUpdate ) {
-/*
-    $strWebFontCSSLink = "" .
-                         "<style type='text/css'>\n" .
-                           "@font-face {\n" .
-                           "    font-family: 'utrillo_sub';\n" .
-                           "    src: url('./font/utrillo_sub.woff?v=%(fontupdate)s') format('woff'),\n" .
-                           "         url('./font/utrillo_sub.otf?v=%(fontupdate)s') format('opentype');\n" .
-                           "}\n" .
-                           "body { font-family: 'utrillo_sub', serif; }\n" .
-                         "</style>";
-
-    $strWebFontLoader = "";
-*/
-
-// 多分フォントのキャッシュが無い。非同期で表示。
-} else {
-/*                         
-
-    // 上部にリンクだけ。この段階では、このリンクの正体は不明
-    // フォントローダー。そして、対象のフォントが読み終わったら、実態がphpである webfontloaded.js.ver を実行して、フォントが読み終わったことをPHPセッションとして書き込む
-    $strWebFontCSSLink = "" .
-                         "<script src='./font/webfontloader-1.6.10.min.js'></script>\n";
-
-    $strWebFontLoader  = "" .
-                         "<script type='text/javascript'>\n" .
-                         "WebFont.load({\n" .
-                         "    custom: { families: ['utrillo_sub'], urls:['./font/LIB_webfontstyle.php?v=%(fontupdate)s'] },\n" .
-                         "    fontactive: function(fontFamily, fontDescription) {\n" .  // フォントが読み終わった際のメソッド
-                         "    }\n" .
-                         "});\n" .
-                         "</script>\n" .
-                         "<style type='text/css'>\n" .
-                         ".wf-loading  body { font-family: serif; }\n" .
-                         ".wf-inactive body { font-family: serif; }\n" .
-                         ".wf-active   body { font-family: 'utrillo_sub', serif; }\n" .
-                         "</style>";
-*/
-}
-
-$_SESSION['FontUpdate'] = $strFontUpdate;
-
 // メインのスタイルシート
-$timeStyleUpdate = filemtime("../hd.xn--rssu31gj1g.jp/HD_style.min.css");
+$timeStyleUpdate = filemtime("./HD_style.min.css");
 $strStyleUpdate = date("YmdHis", $timeStyleUpdate);
 
 // 独自のFontAwesome
@@ -325,15 +265,15 @@ $timeFontPluginUpdate = filemtime("./font-awesome/css/font-awesome-plugin.css");
 $strFontPluginUpdate = date("YmdHis", $timeFontPluginUpdate);
 
 // メニューのカスタムCSS
-$timeMLPMCSSUpdate = filemtime("../hd.xn--rssu31gj1g.jp/jquery/HD_jquery.multilevelpushmenu.min.css");
+$timeMLPMCSSUpdate = filemtime("./jquery/hc-offcanvas-nav.custom.css");
 $strMLPMCSSUpdate = date("YmdHis", $timeMLPMCSSUpdate);
 
 // メニューのカスタムJS
-$timeMLPMCustomUpdate = filemtime("../hd.xn--rssu31gj1g.jp/jquery/HD_jquery.multilevelpushmenu.custom.min.js");
+$timeMLPMCustomUpdate = filemtime("./jquery/hc-offcanvas-nav.custom.js");
 $strMLPMCustomUpdate = date("YmdHis", $timeMLPMCustomUpdate);
 
 // メニューのカスタムJS
-$timeLazyCustomUpdate = filemtime("../hd.xn--rssu31gj1g.jp/jquery/HD_jquery.lazyload-1.9.7.overlay.min.js");
+$timeLazyCustomUpdate = filemtime("./jquery/HD_jquery.lazyload-1.9.7.overlay.min.js");
 $strLazyCustomUpdate = date("YmdHis", $timeLazyCustomUpdate);
 
 // パンくずリストJS
@@ -435,7 +375,7 @@ $array_template = array(
       $strPageTemplate );
 $strIndexEvaluated = str_replace($array_style, $array_template, $strIndexTemplate);
 
-// require("../hd.xn--rssu31gj1g.jp/LIB_remain_days.php");
+// require("./LIB_remain_days.php");
 
 // トップページとして表示
 echo($strIndexEvaluated);
