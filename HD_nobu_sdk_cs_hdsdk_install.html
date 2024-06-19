@@ -1,9 +1,18 @@
+
 <div class="content-box mb-3 content-lighten">
-    <h2><i class="fa fa-plug fa-fw"></i>User.version.SDK</h2>
-    <div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>User.version.SDK.zip</a><br>
-        <div class="update_time">└更新日 %(year)04d/%(mon)02d/%(mday)02d</div>
+    <h2>User.version.SDK</h2>
+    <div class="card mb-3 ml-3" style="max-width: 30rem;">
+        <!-- カード本文：card-body -->
+        <div class="card-body text-center">
+            <div class="row">
+                <div class="col-12"><small>更新日 %(year)04d/%(mon)02d/%(mday)02d</small></div>
+            </div>
+            <a href="%(file)s" class="btn btn-primary"><i class="fa fa-download fa-fw"></i>User.version.SDK.zip</a>
+        </div>
     </div>
 </div>
+
+
 <div class="content-box mb-3 content-lighten">
     <h3>User.version.SDKとは？</h3>
     <p>これはC#用の「天翔記HD版ソフトウェア開発キット」となります。<br>
