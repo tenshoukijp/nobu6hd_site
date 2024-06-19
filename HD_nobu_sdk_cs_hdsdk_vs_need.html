@@ -1,7 +1,7 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.dllの作り方</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.dllの作り方</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>Visual Studio 2015の準備</h3>
     <p>User.version.SDKそのものは、ほとんどソースを内包していません。<br>
     普段C#を利用される方は、提供されている.NET FrameWorkライブラリそのものの具体的な実装内容を<br>
@@ -13,15 +13,17 @@
     <p>User.verson.SDKもそのスタイルに習っています。<br>
     <span class="positive">HD.version.dllをアセンブリとして加えることで、HD.version.SDKの98％ほどの機能が、<br>
     そのまま利用可能</span>です。</p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>参照としてHD.version.dllを加える</h3>
     <p><span class="negative">User.version.SDKは、そのままではコンパイルできません。<br>
     参照として、HD.version.dllを追加</span>してください。<br>
     <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_01.png"><br>
     <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_05.png"><br>
     <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_02.png"><br>
-    </p></li><li>
+    </p>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>User.version.dll</h3>
     <p>User.version.SDKをコンパイルすると、<br>x86\ReleaseフォルダにUser.version.dllが出来上がりますので、<br>
     このファイルを天翔記フォルダへとコピーしましょう。<br>
@@ -37,6 +39,4 @@
     実装されているイベントハンドラだけ呼び出します。</fieldset>
     <fieldset class="alert alert-info"><legend>コピーバッチの必要性</legend>開発をし始めると、１日100回はUser.version.dllをコピーすることになるハズです。
     コピー用のバッチファイルなどを制作しておくのをお勧めします。</fieldset>
-    </li>
-</ul>
-
+</div>

@@ -1,25 +1,29 @@
 %(hilight)s
-
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>C++/CLIからIronPythonModを使う場合</h2>
-<ul class="checklist">
-    <li>
-    <h3>概要</h3>
-    <p>ここでは、C++/CLIからIronPythonModを利用する例を記載しています。</p>
-    <p>一足飛びにHD.version.SDKで利用すると、本質が見えにくくなるかもしれません。<br>
+<div class="content-box mb-3 content-lighten">
+  <h2><i class="fa fa-pencil-square-o fa-fw"></i>C++/CLIからIronPythonModを使う場合</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>概要</h3>
+  <p>ここでは、C++/CLIからIronPythonModを利用する例を記載しています。</p>
+  <p>一足飛びにHD.version.SDKで利用すると、本質が見えにくくなるかもしれません。<br>
     ここでは一旦汎用的なC++/CLIでの最小サンプルで雰囲気をつかんでみましょう。</p>
 
-    <h3>プロジェクトの作成</h3>
-    <p>適当にC++/CLI(CLR)のコンソールアプリケーションを作成してみましょう。<br>
+  <h3>プロジェクトの作成</h3>
+  <p>適当にC++/CLI(CLR)のコンソールアプリケーションを作成してみましょう。<br>
     .NET FrameWorkのバージョンは、HD.version.SDKと合わせて4.6としておきましょう。<br>
-    </p>
-    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_05.png"></p>
-    <p>C#の時と同様に、HD.IronPythonMod.dllを参照に加えてください。<br>
-    </p><p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_01.png"></p>
-    <p>HD.veresion.SDKと類似の環境を想定するため、文字コードを「マルチバイト」の設定としましょう。</p>
-    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_04.png"></p>
-    </li><li>
-    <h3>C++/CLI側</h3>
-    <fieldset class="code"><legend>C++/CLIのソース</legend><pre class="brush:cpp;">#include "stdafx.h"
+  </p>
+  <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_05.png"></p>
+  <p>C#の時と同様に、HD.IronPythonMod.dllを参照に加えてください。<br>
+  </p>
+  <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_01.png"></p>
+  <p>HD.veresion.SDKと類似の環境を想定するため、文字コードを「マルチバイト」の設定としましょう。</p>
+  <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_04.png"></p>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>C++/CLI側</h3>
+  <fieldset class="code">
+    <legend>C++/CLIのソース</legend>
+    <pre class="brush:cpp;">#include "stdafx.h"
 
 using namespace System;
 
@@ -78,14 +82,18 @@ int main(array&lt;System::String ^&gt; ^args)
 
   return 0;
 }
-</pre></fieldset>
-    </li><li>
-    <h3>Python側</h3>
-    <p>スクリプト側となるPython側のソースも用意します。<br>
+</pre>
+  </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>Python側</h3>
+  <p>スクリプト側となるPython側のソースも用意します。<br>
     Pythonは「空白やインデント」も文法に含まれますので、注意してください。</p>
-    <p><span class="negative">C++/CLIの「マルチバイト」から呼ばれますので、「script.pyのソースコードの文字コードをShitJIS(=cp932)」で保存</span>してください。<br>
+  <p><span class="negative">C++/CLIの「マルチバイト」から呼ばれますので、「script.pyのソースコードの文字コードをShitJIS(=cp932)」で保存</span>してください。<br>
     (テキストエディタなどで実際に確認してください。間違っているとSyntax Errorが出ます)</p>
-    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;"># coding: cp932
+  <fieldset class="code">
+    <legend>IronPythonのソース:script.py</legend>
+    <pre class="brush:python;"># coding: cp932
 
 
 from System.Collections import *
@@ -119,16 +127,16 @@ def is_odd(num):
   else:
     return False
 
-</pre></fieldset>
-    <p>以上となります。</p>
-    <p>IronPythonがそのままcp932を取り扱えることは、HD.version.SDKで利用する上では<br>
+</pre>
+  </fieldset>
+  <p>以上となります。</p>
+  <p>IronPythonがそのままcp932を取り扱えることは、HD.version.SDKで利用する上では<br>
     非常に大きなポイントとなります。</p>
-    <p><span class="negative">C++/CLIには残念ながら、C#のdynamicに相当するものがありません。</span><br>
+  <p><span class="negative">C++/CLIには残念ながら、C#のdynamicに相当するものがありません。</span><br>
     よって、C#ほどには、自然な記述でIronPythonを取り扱うことは出来ません。<br>
-    </p>
-    <p>しかし、pe-&gt;Execute&lt;返り値の型&gt;("IronPythonのコード", scope);<br>
+  </p>
+  <p>しかし、pe-&gt;Execute&lt;返り値の型&gt;("IronPythonのコード", scope);<br>
     を取り扱うことで、文字列ベースで引数や関数などを操作し、<br>
     返り値は、.NET FramwWorkの型を介することで、比較的便利に情報をやり取りすることができます。<br>
-    </p>
-</li></ul>
-
+  </p>
+</div>

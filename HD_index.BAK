@@ -14,20 +14,21 @@
 <link rel="shortcut icon" href="./favicon.ico">
 <link rel="apple-touch-icon" href="./apple-touch-icon.png">
 <!-- %(japanese_webfont_css)s -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css">
 <style type="text/css">
-body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;}
+fieldset, legend { all: revert; }
 </style>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="./HD_style.min.css?v=%(styleupdate)s">
+<link rel="stylesheet" type="text/css" href="./style.min.css?v=%(styleupdate)s">
 <link rel="stylesheet" type="text/css" href="./font-awesome/css/font-awesome-plugin.css?v=%(fontpluginupdate)s">
-<link rel="stylesheet" type="text/css" href="./jquery/hc-offcanvas-nav.css">
+<link rel="stylesheet" type="text/css" href="./jquery/hc-offcanvas-nav.tshd.css">
 <link rel="stylesheet" type="text/css" href="./jquery/hc-offcanvas-nav.custom.css?v=%(mlpmcssdate)s">
 %(style_dynamic)s %(webfont_loader)s
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 %(shcore_head)s
 </head>
 <body>
-<div id="pushobj" style="max-width:1400px; margin-top:0px">
+<div id="pushobj" style="max-width:1200px;">
 <div id="eventpanel"></div>
 <nav>
 <ol class="breadcrumb" id="breadcrump">
@@ -46,7 +47,8 @@ body {font-family: "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho"
 <script type="text/javascript" src="./jquery/hc-offcanvas-nav.custom.js?v=%(mlpmcustomdate)s"></script>
 
 %(shcore_foot)s
-%(lazy_load)s
 %(hover_card)s
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

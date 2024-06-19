@@ -1,56 +1,61 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～音楽～</h2>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～音楽～</h2>
+</div>
 
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
     <h3>音楽の概念</h3>
     <p>音楽の概念は、主としてBGMを再生するためのAPI用オブジェクトです。</p>
-
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>独自に何らかのBGMを再生したい場合に利用します。<br>
     </p>
     <p>中でも中軸となる「Do_ＢＧＭ再生」メソッドは、<br>
-    好きなタイミングでBGMを再生するAPIとなります。<br>
-    特定のBGMファイルを指定する形ではなく、<br>
-    0番～11番までの合計12個の「スロットのどれを再生するのか」という<br>
-    アクセスを踏んで音楽を再生するかのような番号指定形式となります。<br>
+        好きなタイミングでBGMを再生するAPIとなります。<br>
+        特定のBGMファイルを指定する形ではなく、<br>
+        0番～11番までの合計12個の「スロットのどれを再生するのか」という<br>
+        アクセスを踏んで音楽を再生するかのような番号指定形式となります。<br>
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例</h3>
-    <fieldset class="code"><legend>列挙を使った番号指定方法</legend> <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
+    <fieldset class="code">
+        <legend>列挙を使った番号指定方法</legend>
+        <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
     {
         // 夏疾風(=3)に割り当てられているスロットのBGMを再生する。
         音楽.Do_ＢＧＭ再生(列挙.音楽.ＢＧＭ番号.夏疾風);
     }
 
-</pre></fieldset>
+</pre>
+    </fieldset>
     <p>普通は、何番のBGMがなんという曲名かといったことを覚えている人は少ないと思いますので、<br>
-    以下のように番号を指定するのが普通でしょう。</p>
-    <fieldset class="code"><legend>普通に数値で番号を指定</legend> <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
+        以下のように番号を指定するのが普通でしょう。</p>
+    <fieldset class="code">
+        <legend>普通に数値で番号を指定</legend>
+        <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
     {
         // 番号は天翔記フォルダのBGM以下の「BGM00.kvs～BGM11.kvs」の番号と一致しています。
         // この例であれば、デフォルトであればBGM03.kvsを再生する。
         音楽.Do_ＢＧＭ再生(3);
     }
-</pre></fieldset>
-
-    </li>
-    <li>
+</pre>
+    </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>関連項目</h3>
     <p>音楽再生は「何番のスロットを再生する」といったスロット番号の<span class="positive">送信</span>の概念です。<br>
-    実際にどのファイルを再生するかの<span class="positive">受信</span>の概念として、以下のメソッドが用意されており、<br>
-    送信と受信の条件を加えていくことで、既存のBGMも含め、<br>
-    数十・数百といった新たなBGMファイルでも問題なく細かく振り分けられるようになっています。<br>
+        実際にどのファイルを再生するかの<span class="positive">受信</span>の概念として、以下のメソッドが用意されており、<br>
+        送信と受信の条件を加えていくことで、既存のBGMも含め、<br>
+        数十・数百といった新たなBGMファイルでも問題なく細かく振り分けられるようになっています。<br>
     </p>
     <p>詳細→<a href="?page=HD_nobu_sdk_cs_hdsdk_on_bgm_play">My_ＢＧＭ再生直前</a>
-    </p></li>
-    <li>
+    </p>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
 
     <p>音楽に関する主な所は以上となります。<br>
-    詳しくはHD.version.SDKソース内の、「音楽.h」や「音楽列挙.h」などを参照してください。<br>
+        詳しくはHD.version.SDKソース内の、「音楽.h」や「音楽列挙.h」などを参照してください。<br>
     </p>
-    </li>
-</ul>
-
+</div>

@@ -1,15 +1,20 @@
 %(hilight)s
 
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる③</h2>
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる③</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>概要</h3>
     <p>前節までで、C#とIronPythonとのやりとりの基本は理解できました。<br>
-    今節では実際に使用してみましょう。<br>
-    </p></li><li>
+        今節では実際に使用してみましょう。<br>
+    </p>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>HD.version.SDK側</h3>
 
-    <fieldset class="code"><legend>HD.version.SDK側のソース</legend><pre class="brush:cpp;">using System;
+    <fieldset class="code">
+        <legend>HD.version.SDK側のソース</legend>
+        <pre class="brush:cpp;">using System;
 using System.Collections.Generic;
 
 
@@ -54,11 +59,15 @@ using Microsoft.Scripting.Hosting;
 
 
 
-</pre></fieldset>
-    </li><li>
+</pre>
+    </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>Python側</h3>
     <p>「武将」クラスオブジェクトを受け取って、50歳を超える年齢の武将だけをList&lt;int&gt;に追加して返しています。</p>
-    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;"># coding: utf8
+    <fieldset class="code">
+        <legend>IronPythonのソース:script.py</legend>
+        <pre class="brush:python;"># coding: utf8
 
 from System.Collections.Generic import List
 
@@ -71,12 +80,13 @@ def 武将フィルター(武将):
     blist_list = List[int](blist)
     return blist_list
 
-</pre></fieldset>
+</pre>
+    </fieldset>
     <p>これまでと変わるところはありません。</p>
     <p>IronPythonのList[int](python_array)の部分は、C#のList&lt;int&gt;(int[])に相当します。<br>
     </p>
     <p>以上となります。<br></p>
     <p>
-    C#自体が優れているため、なかなかスクリプト言語に頼るといった機会は少ないかもしれませんが、<br>
-    検討材料のひとつにしてください。</p>
-</li></ul>
+        C#自体が優れているため、なかなかスクリプト言語に頼るといった機会は少ないかもしれませんが、<br>
+        検討材料のひとつにしてください。</p>
+</div>

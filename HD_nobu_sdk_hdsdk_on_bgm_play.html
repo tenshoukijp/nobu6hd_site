@@ -1,20 +1,21 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>On_ＢＧＭ再生直前</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>On_ＢＧＭ再生直前</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>On_ＢＧＭ再生直前</h3>
     <p>BGMが再生される直前に、<br>
     呼びだされるイベントハンドラとなります。<br>
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>このイベントハンドラの引数である「ＢＧＭ番号」「ＢＧＭシーン番号」「元ファイル名」<br>
     そして、他のクラスオブジェクトの判定を用いることで、<br>
     ほぼ無制限に曲数を増やすことが出来ます。<br>
     非常に細やかなＢＧＭの割り振りが可能です。<br>
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
     <p>このイベントハンドラでは、返り値を文字列で返すと、<br>
     元のファイルの替わりに、指定のファイルを再生します。</p>
@@ -33,9 +34,8 @@
   return "";
 }
 </pre></fieldset>
-    </li>
-
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例②</h3>
     <p>「ＢＧＭ番号」とは、今まさに直後に再生されようとしているＢＧＭの番号で、<br>
     特に何もしなければファイル名と一致します。<br>
@@ -51,9 +51,8 @@
   return "";
 }
 </pre></fieldset>
-    </li>
-
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例③</h3>
     <p>「ＢＧＭシーン番号」とはＢＧＭが再生されるシチュエーションのことです。<br>
     例えば、プレイヤ大名の戦略画面のターンが回ってきた際、<br>
@@ -71,9 +70,8 @@
   return "";
 }
 </pre></fieldset>
-    </li>
-
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例④</h3>
     <p>様々な天翔記クラスオブジェクトとの組み合わせにより、<br>
     曲をどんどん細かく割り振ることが出来ます。<br>
@@ -115,9 +113,8 @@
 }
 
 </pre></fieldset>
-    </li>
-
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例④</h3>
     <p>又、ＢＧＭは、「音楽-&gt;Do_ＢＧＭ再生」メソッドにより、<br>
     好きなタイミングで再生することが出来ますので、再生する際にフラグを立て、<br>
@@ -149,11 +146,9 @@ String^ 天翔記クラス::On_噴出メッセージ直前(String^ 元メッセ�
 }
 
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>「On_ＢＧＭ再生直前」イベントハンドラについて、主な解説は以上となります。<br>
     </p>
-    </li>
-</ul>
-
+</div>

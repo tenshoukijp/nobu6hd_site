@@ -15,7 +15,7 @@ function getPageParam() {
 function findPreviousULSibling(element) {
     if (!element) { return null; }
 
-    var ancestorElement = element.closest('ul');
+    var ancestorElement = element.closest('UL');
     if (!ancestorElement) {
         return null;
     }
@@ -35,24 +35,22 @@ function createBreadCrumbs() {
 
         // パンくずリストを格納する配列
         let breadcrumbs = [];
-        let text = currentElement.innerText.replace(/\n/g, ' ');
-        text = text.replace(/&nbsp;/g, '');
+        let text = normalizeElementText(currentElement.innerText);
         breadcrumbs.push(text);
         let targetItem = currentElement;
         // 最大でも8層程度でしょ
         for (let i = 0; i < 8; i++) {
             targetItem = findPreviousULSibling(targetItem);
             if (!targetItem) { break; }
-            let text = targetItem.innerText.replace(/\n/g, ' ');
-            text = text.replace(/&nbsp;/g, '');
+            let text = normalizeElementText(targetItem.innerText);
             breadcrumbs.push(text);
         }
         breadcrumbs.reverse(); // 子供⇒親の順番で格納されているので、反対のして親⇒子供の順番にする。
-        for(let b=0; b<breadcrumbs.length; b++) {
+        for (let b = 0; b < breadcrumbs.length; b++) {
             breadcrumbs[b] = "<li>" + breadcrumbs[b] + "</li>"
         }
         return breadcrumbs.join("\n"); // ぱんくず文字列化
-    } catch(q) {
+    } catch (q) {
 
     }
 

@@ -1,14 +1,14 @@
 %(hilight)s
-
+<div class="content-box mb-3 content-lighten">
 <h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる</h2>
-<ul class="checklist">
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>概要</h3>
     <p>ここでは、C#からIronPythonを利用する例を記載しています。</p>
     <p>最終的な目的は、IronPythonをUser.veresion.SDKから利用することにありますが、<br>
     まずは、雰囲気を理解するため、IronPythonとC#の連携がいかに自然で強力であるか見てみましょう。</p>
-    </li><li>
-
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>プロジェクトの作成</h3>
     <p>適当にC#のコンソールアプリケーションを作成してみましょう。<br>
     .NET FrameWorkのバージョンは、HD.veresion.SDKと合わせて4.6としておきましょう。<br>
@@ -18,8 +18,8 @@
     <span class="posotive">合体DLLですので、他のネット上のIronPythonに関する記事とは異なり、「これ１つの参照を追加するだけでOK」</span>です。</p>
     <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_02.png"></p>
     <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_01.png"></p>
-
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>例１</h3>
     <ul class="pointlist">
         <li>
@@ -41,7 +41,8 @@ namespace ConsoleApplication3
 }
 
 </pre></fieldset>
-        </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
         <h4>Python側</h4>
         <p>スクリプト側となるPython側のソースも用意します。<br>
         Pythonは「空白やインデント」も文法に含まれますので、注意してください。</p>
@@ -56,9 +57,8 @@ def Hello():
         <p>C#にあるdynamicは強力です。<br>
         C#とIronPythonは、「ほぼシームレス」といって良いレベルで<br>
         「関数」を実行できています。</p>
-    </li></ul>
-
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>例２</h3>
     <ul class="pointlist">
         <li>
@@ -104,7 +104,8 @@ class ユーザー武将情報:
         <p>PythonのクラスのC#にてインスタンスを生成し、そのインスタンスのメソッドにアクセスできます。</p>
     </li></ul>
 
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>例３</h3>
     <ul class="pointlist">
         <li>
@@ -151,5 +152,5 @@ def 情報出力(武将):
   </pre></fieldset>
         <p>このようにC#側のオブジェクトをそのままIronPythonに渡してもかまいません。</p>
     </li></ul>
-</li></ul>
+</div>
 

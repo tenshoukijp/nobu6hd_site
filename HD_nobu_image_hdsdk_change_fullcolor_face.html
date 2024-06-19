@@ -1,33 +1,43 @@
-<h2><i class="fa fa-image fa-fw"></i>%(ts95)sのフルカラー顔グラテイストに入れ替える</h2>
-<ul class="checklist">
-    <li>
-        <h3>%(ts95)sのフルカラー顔グラキットと同じ構成の顔画像をHD版で利用する</h3>
-        <p>
-            %(home)sの<a href="http://xn--rssu31gj1g.jp/?page=nobu_face_kaoswap_td_full">%(ts95)sのフルカラー顔グラキット</a>とほぼ同じ構成・テイストの<br>
-            %(tshd)sとなります。<br>
-        </p>
-        <img src="./cnt_image/fullcolor_face/cnt_image_face_ts95_fullcolor_face_01.png">
-    </li><li>
-        <h3>必要なものや置き場所</h3>
-        <ul class="pointlist">
-            <li>
-                <h4>顔グラ追加ツールで追加した顔グラデータ</h4>
-                <p></p><div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>NOBU6HD_EDIT_KAO.zip</a><br></div><p></p>
-                <p>これらは、「C:\Users\%USERNAME%\Documents\KoeiTecmo\NOBU6HD\GRP」へと上書きする。<br>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-image fa-fw"></i>%(ts95)sのフルカラー顔グラテイストに入れ替える</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
+    <h3>%(ts95)sのフルカラー顔グラキットと同じ構成の顔画像をHD版で利用する</h3>
+    <p>
+        %(home)sの<a href="http://xn--rssu31gj1g.jp/?page=nobu_face_kaoswap_td_full">%(ts95)sのフルカラー顔グラキット</a>とほぼ同じ構成・テイストの<br>
+        %(tshd)sとなります。<br>
+    </p>
+    <p>
+    <img src="./cnt_image/fullcolor_face/cnt_image_face_ts95_fullcolor_face_01.png">
+</p>
+</div>
+<div class="content-box mb-3 content-lighten">
+    <h3>必要なものや置き場所</h3>
+    <ul class="pointlist">
+        <li>
+            <h4>顔グラ追加ツールで追加した顔グラデータ</h4>
+            <p></p>
+            <div class="download_file"><a href="%(file)s"><i class="fa fa-download fa-fw"></i>NOBU6HD_EDIT_KAO.zip</a><br></div>
+            <p></p>
+            <p>これらは、「C:\Users\%USERNAME%\Documents\KoeiTecmo\NOBU6HD\GRP」へと上書きする。<br>
                 個人的に登録している顔グラがある場合は、元のものはバックアップを取っておくこと!!</p>
-            </li><li>
-                <h4>HD版で挙動変更のためのプログラムを組むための基礎基盤</h4>
-                <p><a href="?page=HD_nobu_sdk_hdsdk_install">HD.version.SDK</a>のページでダウンロードファイルの.zip内に含まれる「version.dll」と「HD.version.dll」が必要となります。</p>
-                <p>これらは、「天翔記ディレクトリへ」へと配置してください。</p>
-            </li><li>
-                <h4>HD版で挙動変更のためのC#でプログラムを組むためのセット</h4>
-                <p><a href="?page=HD_nobu_sdk_cs_hdsdk_install">User.version.SDK</a>のページでダウンロードファイルの.zip内に含まれるSDKに<br>下記ソースを書いてコンパイルする必要があります。<br></p>
-                <p><span class="negative">お試しセットとしてNOBU6HD_EDIT_KAO.zipの中に、コンパイル済みのUser.version.dllが入っています。<br>
-                </span></p><p>しかし、別途提供された（あるいは自作した）User.version.dllがあると、dllを上書きすると以前の内容は消えてしまうので、<br>
+        </li>
+        <li>
+            <h4>HD版で挙動変更のためのプログラムを組むための基礎基盤</h4>
+            <p><a href="?page=HD_nobu_sdk_hdsdk_install">HD.version.SDK</a>のページでダウンロードファイルの.zip内に含まれる「version.dll」と「HD.version.dll」が必要となります。</p>
+            <p>これらは、「天翔記ディレクトリへ」へと配置してください。</p>
+        </li>
+        <li>
+            <h4>HD版で挙動変更のためのC#でプログラムを組むためのセット</h4>
+            <p><a href="?page=HD_nobu_sdk_cs_hdsdk_install">User.version.SDK</a>のページでダウンロードファイルの.zip内に含まれるSDKに<br>下記ソースを書いてコンパイルする必要があります。<br></p>
+            <p><span class="negative">お試しセットとしてNOBU6HD_EDIT_KAO.zipの中に、コンパイル済みのUser.version.dllが入っています。<br>
+                </span></p>
+            <p>しかし、別途提供された（あるいは自作した）User.version.dllがあると、dllを上書きすると以前の内容は消えてしまうので、<br>
                 本筋としては、User.version.SDKをダウンロードし、以下のソースを元に合成して構成し、<br>コンパイルしたUser.version.dllを利用してください<br></p>
-                <p>User.version.dllも「天翔記ディレクトリへ」へと配置してください。</p>
-                <fieldset class="code">
-                    <legend>ユーザー天翔記クラス.cs</legend><pre class="brush:csharp;">// Visual Studio 上で、System.Drawingのアセンブリを、User.version.SDKの参照に加えること!!
+            <p>User.version.dllも「天翔記ディレクトリへ」へと配置してください。</p>
+            <fieldset class="code">
+                <legend>ユーザー天翔記クラス.cs</legend>
+                <pre class="brush:csharp;">// Visual Studio 上で、System.Drawingのアセンブリを、User.version.SDKの参照に加えること!!
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -183,10 +193,11 @@ public partial class ユーザー天翔記クラス : 天翔記クラス
 }
 
 </pre>
-                </fieldset>
-        </li></ul>
-    </li>
-    <li>
-        <h3>既知の不具合</h3>
-        <p>「披露」でゲストの顔が、最初のセリフの間、元の顔グラが表示されてしまう。</p>
-</li></ul>
+            </fieldset>
+        </li>
+    </ul>
+</div>
+<div class="content-box mb-3 content-lighten">
+    <h3>既知の不具合</h3>
+    <p>「披露」でゲストの顔が、最初のセリフの間、元の顔グラが表示されてしまう。</p>
+</div>

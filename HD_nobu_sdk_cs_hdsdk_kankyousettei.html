@@ -1,7 +1,7 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～環境設定～</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～環境設定～</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>環境設定の概念</h3>
     <p>環境設定とは、<br>
     <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_kankyousettei_01.png"><br>
@@ -16,14 +16,16 @@
     ファイルという速度が遅い仕組みとなっているため、<br>
     環境設定オブジェクトはSDKでは読み取り専用としています。<br>
     </fieldset>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>これら環境設定の値を使用するシーンは少ないと思いますが、<br>
     例えば、ゲーム内のSEの代わりに、ゲーム外の仕組みを使ってSEを鳴らしたいと思ったとして、<br>
     ゲーム内のSEの音量の設定に従って変動させるためには、<br>
     この環境設定に従って外部APIのSEの音量を連動させるといったことが可能となります。<br>
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例</h3>
     <fieldset class="code"><legend>主なプロパティ</legend> <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
     {
@@ -48,13 +50,11 @@
     }
 
 </pre></fieldset>
-    </li>
-    <li>
-    <h3>その他</h3>
+</div>
+<div class="content-box mb-3 content-lighten">
+<h3>その他</h3>
     <p>環境設定に関する主な所は以上となります。<br>
     他にもプロパティがありますので、<br>
     の「環境設定.h」や「環境設定列挙.h」などを参照してください。<br>
     </p>
-    </li>
-</ul>
-
+</div>

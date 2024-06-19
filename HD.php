@@ -144,23 +144,6 @@ $strPageTemplate = preg_replace_callback(
 // $strPageTemplate = preg_replace('/"(\.\/)?cnt_/', '"https://hd.xn--rssu31gj1g.jp/cnt_', $strPageTemplate);
 
 
-// 遅延イメージロード(LazyLoad)用への置き換え処理
-$isLazyLoad = false;
-$strLazyLoad = "";
-
-// 「クローラー(Bot系)」以外であれば、イメージタグにマッチしたら、LazyLoad風に置き換える。
-if ( !isCrawler() && preg_match("/img src=[\"']([^\"']+?)[\"']/", $strPageTemplate ) ) {
-  $isLazyLoad = true;
-  $strPageTemplate = preg_replace("/img src=[\"']([^\"']+?)[\"']/", "img class='lazy' src='./web_img/dummy.png' data-original='$1'", $strPageTemplate);
-
-  $strLazyLoad = "" . // LazyLoad
-                 "<script type='text/javascript' src='./jquery/HD_jquery.lazyload-1.9.7.overlay.min.js?v=%(lazycustomupdate)s'></script>\n" .
-                 "<script type='text/javascript'>\n" .
-                 "$(document).ready(function(){\n" .
-                 "    $('img.lazy').lazyload({ threshold: 200 , effect: 'fadeIn' , effect_speed: 300 });\n" .
-                 "});\n" .
-                 "</script>";
-}
 
 $strShCoreHeader = "";
 $strShCoreFooter = "";
@@ -235,6 +218,85 @@ $strIndexTemplate = file_get_contents($indexFileName );
 
 
 
+
+//--------------------------------------------------------
+// 以下、indexファイルから、「前のページ」と「後のページ」を作成する
+function strip_html_comment($str)
+{
+    $str = preg_replace("/<\!--.*?-->/sm", '', $str); //comments
+    return $str;
+}
+
+$explode_text = explode( "\n", strip_html_comment( $strMenuTemplate ) );
+
+$explode_text_line_count = count( $explode_text );
+// 格納用の配列
+$explode_array = array();
+for( $i=0; $i<$explode_text_line_count; $i++ ) {
+    preg_match("/id=\"(HD_nobu_.+?)\"/", $explode_text[$i], $explode_line_match);
+    if ($explode_line_match) {
+        if ( array_key_exists( $explode_line_match[1], $content_hash ) ) {
+            if ( count($explode_array) > 0 ) {
+                // すでに要素があるなら、付けたし
+                if ($explode_line_match[1] != $explode_array[0]) {
+                    $content_hash[ $explode_line_match[1] ]["prev"] = $explode_array[0];
+                }
+            }
+
+            array_unshift( $explode_array, $explode_line_match[1]);
+        }
+    }
+}
+
+$current_page_prev = "";
+$current_page_next = "";
+
+$array_content_style = array();
+$array_content_template = array();
+
+foreach ($content_hash as $content_key => $content_value) {
+    array_push($array_content_style, "%(" . $content_key . ")s");
+    // 今のページと同じで、"prev" がある場合、
+    if ($content_key == $urlParamPage && array_key_exists( "prev", $content_value ) ) {
+        $current_page_prev = $content_value["prev"];
+
+    // 今表示しているページとは異なるキーが、prevとして今のページを指定しているということは、
+    // そのキーは、現在表示しているページのnextである。 
+    } else if ( array_key_exists( "prev", $content_value ) && $content_value["prev"] == $urlParamPage) {
+        $current_page_next = $content_key;
+    }
+}
+
+
+if ($current_page_prev != "") {
+    $current_page_prev = '<li class="page-item"><a class="page-link" href="?page=' .$current_page_prev. '"><i class="fa fa-caret-left fa-fw"></i>前へ</a></li>';
+}
+
+if ($current_page_next != "") {
+    $current_page_next = '<li class="page-item"><a class="page-link" href="?page=' .$current_page_next. '">次へ<i class="fa fa-caret-right fa-fw"></i></a></li>';
+}
+
+if ($current_page_prev != "" || $current_page_next != "") {
+    $footer_control_page = "\n" . '<div class="content-box mb-3 content-lighten"><ul class="pagination justify-content-center" style="margin:0px">%(prev)s %(next)s</ul></div>' . "\n";
+    $strPageTemplate = $footer_control_page . $strPageTemplate . $footer_control_page;
+}
+
+
+// ページ内の上下に「前へ」と「次へ」を付け加える。
+$array_style    = array( 
+    "%(prev)s",
+    "%(next)s" );
+$array_template = array( 
+    $current_page_prev, 
+    $current_page_next );
+$strPageTemplate = str_replace($array_style, $array_template, $strPageTemplate);
+// 以上、作成でした
+//--------------------------------------------------------
+
+
+
+
+
 //-------------- 左のメニューの部分。すでに開いているページに基いて、階層を開くところを決めるための処理 --------------
 // javascriptの一部を書き出す感じ
 $strMenuExpand = "";
@@ -272,9 +334,6 @@ $strMLPMCSSUpdate = date("YmdHis", $timeMLPMCSSUpdate);
 $timeMLPMCustomUpdate = filemtime("./jquery/hc-offcanvas-nav.custom.js");
 $strMLPMCustomUpdate = date("YmdHis", $timeMLPMCustomUpdate);
 
-// メニューのカスタムJS
-$timeLazyCustomUpdate = filemtime("./jquery/HD_jquery.lazyload-1.9.7.overlay.min.js");
-$strLazyCustomUpdate = date("YmdHis", $timeLazyCustomUpdate);
 
 // パンくずリストJS
 $timeBreadCrumpUpdate = filemtime("jquery/multilevelpushmenu-breadcrump.js");
@@ -344,8 +403,6 @@ $array_style    = array(
      "%(shcore_head)s",
      "%(shcore_foot)s",
      "%(shcorecssupdate)s",
-     "%(lazy_load)s",
-     "%(lazycustomupdate)s",
      "%(hover_card)s",
      "%(breadcrump)s",
      "%(content_dynamic)s" );
@@ -368,8 +425,6 @@ $array_template = array(
       $strShCoreHeader,
       $strShCoreFooter,
       $strShcoreCSSUpdate,
-      $strLazyLoad,
-      $strLazyCustomUpdate,
       $strHoverCard,
       $strBreadCrumpUpdate,
       $strPageTemplate );

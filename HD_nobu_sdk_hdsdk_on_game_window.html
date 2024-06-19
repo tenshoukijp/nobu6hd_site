@@ -1,26 +1,28 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>On_ゲームウィンドウ起動時</h2>
-
-<ul class="checklist">
-    <li>
-    <h3>On_ゲームウィンドウ起動時</h3>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>On_ゲームウィンドウ起動時</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>On_ゲームウィンドウ起動時</h3>
     <p>ゲームウィンドウが起動された直後に<br>
     １回だけ呼びだされるイベントハンドラとなります。<br>
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>注意点</h3>
     <p>このイベントハンドラの間はゲーム本体は起動していますが、<br>
     戦略画面や戦争画面など、具体的なゲームが始まっているわけではありません。<br>
     </p>
     <p>「On_ランチャーウィンドウ起動時」とは異なり、どのようなゲーム起動方法をしたとしても<br>
     このイベントハンドラは必ず実行されます。</p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>独自のゲームデータ初期化などを行うのに適しています。<br>
     また、独自のゲームオブジェクトを作った場合などにおいて、<br>
     その初期化をするのにも適しています。<br>
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例</h3>
     <fieldset class="code"><legend>ゲーム起動時に独自に作ったtest.txtを読み込み、グローバル変数に格納しておく。</legend> <pre class="brush:cpp;">namespace ユーザー {
     public ref class グローバル変数 {
@@ -57,10 +59,8 @@ void 天翔記クラス::On_ゲームウィンドウ起動時() {
 }
 
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>「On_ゲームウィンドウ起動時」イベントハンドラについて、主な解説は以上となります。<br></p>
-    </li>
-</ul>
-
+</div>

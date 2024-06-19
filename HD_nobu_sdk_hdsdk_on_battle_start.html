@@ -1,7 +1,7 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦争開始時</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦争開始時</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>On_戦争開始時</h3>
     <p>戦争が発生したタイミングで呼ばれるイベントハンドラとなります。<br>
 
@@ -9,19 +9,20 @@
   <p>
 このイベントハンドラと対を成す役割となるのが、「On_戦争終了時」のイベントハンドラとなります。
   </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>注意点</h3>
     <p>「PC勢力かNPC勢力かは関係ありません、また、戦争を見る設定か見ない設定かも関係ありません。<br>
   全ての戦争において、戦争が発生したタイミングでこのイベントハンドラは呼ばれます。<br>
 </p>
-
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>一般的には、「戦争が発生した時、どこの軍団が、どこの城に攻めたのか？」<br>
   の情報を保持しておきたい場合に、このイベントハンドラを利用します。<br>
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
     <fieldset class="code"><legend>戦端が開かれた城と、攻め込んだ軍団、攻められた軍団を得る。</legend><pre class="brush:cpp;">void 天翔記クラス::On_戦争開始時(int 城番号, 戦争開始パラメタ型^ パラメタ) {
   int iTargetCastleID = 城番号;
@@ -46,8 +47,8 @@
   }
 }
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例②</h3>
   <p>何か戦争が始まる前に、値を保持しておき、戦争が終わったら元へと戻す、<br>
   といったような目的でも利用することが可能です。<br>
@@ -75,10 +76,8 @@ void 天翔記クラス::On_戦争終了時() {
 }
 
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>「On_戦争開始時」イベントハンドラについて、主な解説は以上となります。<br></p>
-    </li>
-</ul>
-
+</div>

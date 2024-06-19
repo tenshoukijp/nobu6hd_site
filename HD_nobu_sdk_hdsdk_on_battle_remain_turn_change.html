@@ -1,7 +1,7 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦争_残りターン変更時</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦争_残りターン変更時</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>On_戦争_残りターン変更時</h3>
     <p>戦争画面の「残りターンが変更」するタイミングで呼び出されるイベントハンドラとなります。<br>
     </p>
@@ -11,8 +11,8 @@
     という非常に早いタイミングとなります。<br>
     </p>
     <p><img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_on_battle_remain_turn_change_01.png"></p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>注意点</h3>
     <p>部隊のユニット情報などはこのタイミングですでに最新情報です。<br>
     しかし、画面上に表示されている残りターン数や、<br>
@@ -21,13 +21,14 @@
     よってこのイベントハンドラ内では、「１つ前のターンの天気の情報」となりますので<br>
     注意してください。<br>
     </p>
-
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>このイベントハンドラは、戦争のコントロールの中核的なイベントハンドラとなります。<br>
     又、このイベントハンドラが呼びされるタイミングは、「ダイアログ」などを表示しても<br>
     安全なタイミングであることが保証されています。</p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
     <p>まずは、このイベントハンドラがどのような時に呼ばれるのか、<br>
     確認しましょう。</p>
@@ -50,8 +51,8 @@
   ダイアログ-&gt;Show_情報_中央(現在の画面に居るメンバ);
 }
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例②</h3>
     <p>ターンが変わる度に、出陣中の武将(今表示されている画面外に居る武将も含む)に<br>
     何か処理を施すといったことはよくあることです。</p>
@@ -66,12 +67,9 @@
 }
 
 </pre></fieldset>
-    </li>
-
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>「On_戦争_残りターン変更時」イベントハンドラについて、主な解説は以上となります。<br>
     </p>
-    </li>
-</ul>
-
+</div>

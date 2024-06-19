@@ -1,19 +1,23 @@
 %(hilight)s
-
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>Excelの活用</h2>
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>Excelの活用</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>概要</h3>
     <p>ここでは、C#からExcelを利用する例を記載しています。</p>
     <p>C#からExcelを利用するサンプル例はたくさんネット上に存在しますが、<br>
-    記述方法が幾通りにもわかれています。<br>
-    </p><p>その中で2016年現在、最も利用価値が高いのは、Excelのバージョンなどに依存しない<br>
-    下記のような<span class="my_keyword">Type.GetTypeFromProgID</span>と<span class="my_keyword">dynamic</span>とを使った形です。<br>
-    この形をベースにネットを検索してみましょう。</p>
-    </li><li>
+        記述方法が幾通りにもわかれています。<br>
+    </p>
+    <p>その中で2016年現在、最も利用価値が高いのは、Excelのバージョンなどに依存しない<br>
+        下記のような<span class="my_keyword">Type.GetTypeFromProgID</span>と<span class="my_keyword">dynamic</span>とを使った形です。<br>
+        この形をベースにネットを検索してみましょう。</p>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>Type.GetTypeFromProgIDとdynamic</h3>
-    
-    <fieldset class="code"><legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend><pre class="brush:csharp;">using System;
+
+    <fieldset class="code">
+        <legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend>
+        <pre class="brush:csharp;">using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -78,17 +82,21 @@ public class MyExcel
 }
 
 
-</pre></fieldset>
-    </li><li>
+</pre>
+    </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
 
     <h3>範囲(range)で一括で書き込む</h3>
     <p>Excelは他のプログラムとの連携において、IOが非常に遅いアプリケーションであるため、<br>
-    <span class="negative">書き込み、読み込みは可能な限り広範囲で一括で</span>行うことが求められます。<br>
+        <span class="negative">書き込み、読み込みは可能な限り広範囲で一括で</span>行うことが求められます。<br>
     </p>
     <ul class="pointlist">
         <li>
-        <h4>Type.GetTypeFromProgIDとdynamic</h4>
-        <fieldset class="code"><legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend><pre class="brush:csharp;highlight:[31,42,44,46,49]">using System;
+            <h4>Type.GetTypeFromProgIDとdynamic</h4>
+            <fieldset class="code">
+                <legend>Type.GetTypeFromProgIDとdyamicを使い、Excelに書き込み</legend>
+                <pre class="brush:csharp;highlight:[31,42,44,46,49]">using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -174,6 +182,8 @@ public class MyExcel
 
 }
 
-</pre></fieldset>
-    </li></ul>
-</li></ul>
+</pre>
+            </fieldset>
+        </li>
+    </ul>
+</div>

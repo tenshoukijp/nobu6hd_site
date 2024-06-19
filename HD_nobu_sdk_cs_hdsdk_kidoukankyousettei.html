@@ -1,29 +1,37 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～起動環境設定～</h2>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～起動環境設定～</h2>
+</div>
 
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
     <h3>起動環境設定の概念</h3>
     <p>起動環境設定とは、<br>
-    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_kidoukankyousettei_01.png"><span class="img_separator"></span> <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_kidoukankyousettei_02.png"><br>
-    の画面のパラメータのことです。<br>
+        <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_kidoukankyousettei_01.png"><span class="img_separator"></span> <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_kidoukankyousettei_02.png"><br>
+        の画面のパラメータのことです。<br>
     </p>
     <p>SDKでこれらパラメータを扱うことで、GUIから設定不可能な値を設定することが可能となります。<br>
     </p>
-    <fieldset class="alert alert-info"><legend>起動環境設定の値はレジストリにある</legend>\HKEY_CURRENT_USER\SOFTWARE\KoeiTecmo\NOBU6HD\Configs<br>
-    内の各値が対応しています。<br>
+    <fieldset class="alert alert-info">
+        <legend>起動環境設定の値はレジストリにある</legend>\HKEY_CURRENT_USER\SOFTWARE\KoeiTecmo\NOBU6HD\Configs<br>
+        内の各値が対応しています。<br>
     </fieldset>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>この起動環境設定は、ゲーム起動の前に設定するものですので、普通はゲーム起動前のメソッドに相当する<br>
     </p>
-    <fieldset class="code"><legend>メソッド</legend> <pre class="brush:csharp;">    public static void My_ランチャーウィンドウ起動時()
+    <fieldset class="code">
+        <legend>メソッド</legend>
+        <pre class="brush:csharp;">    public static void My_ランチャーウィンドウ起動時()
     }
-</pre></fieldset>
+</pre>
+    </fieldset>
     <p>内で使用することとなります。</p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例</h3>
-    <fieldset class="code"><legend>主なプロパティ</legend> <pre class="brush:csharp;">    public static void My_ランチャーウィンドウ起動時()
+    <fieldset class="code">
+        <legend>主なプロパティ</legend>
+        <pre class="brush:csharp;">    public static void My_ランチャーウィンドウ起動時()
     {
         // メインモニターで起動。
         起動環境設定.起動モニター = 0;
@@ -35,15 +43,13 @@
         起動環境設定.ウィンドウモード = 列挙.起動環境設定.ウィンドウモード.ウィンドウ;
     }
 
-</pre></fieldset>
-
-    </li>
-    <li>
+</pre>
+    </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>起動環境設定に関する主な所は以上となります。<br>
-    他にもプロパティがありますので、<br>
-    詳しくはHD.version.SDKソース内の「起動環境設定.h」や「起動環境設定列挙.h」などを参照してください。<br>
+        他にもプロパティがありますので、<br>
+        詳しくはHD.version.SDKソース内の「起動環境設定.h」や「起動環境設定列挙.h」などを参照してください。<br>
     </p>
-    </li>
-</ul>
-
+</div>

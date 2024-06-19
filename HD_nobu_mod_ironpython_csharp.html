@@ -1,30 +1,32 @@
 %(hilight)s
-
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる</h2>
-<ul class="checklist">
-    <li>
-    <h3>概要</h3>
-    <p>ここでは、C#からIronPythonを利用する例を記載しています。</p>
-    <p>最終的な目的は、IronPythonをHD.veresion.SDKから利用することにありますが、<br>
+<div class="content-box mb-3 content-lighten">
+  <h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる</h2>
+  <h3>概要</h3>
+  <p>ここでは、C#からIronPythonを利用する例を記載しています。</p>
+  <p>最終的な目的は、IronPythonをHD.veresion.SDKから利用することにありますが、<br>
     IronPythonそのものはC#から利用されることを強く意識した調整がされていると言えます。<br>
-    </p>
-    <p>まずは、雰囲気を理解するため、IronPythonとC#の連携がいかに自然で強力であるか見てみましょう。</p>
-    </li><li>
-
-    <h3>プロジェクトの作成</h3>
-    <p>適当にC#のコンソールアプリケーションを作成してみましょう。<br>
+  </p>
+  <p>まずは、雰囲気を理解するため、IronPythonとC#の連携がいかに自然で強力であるか見てみましょう。</p>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>プロジェクトの作成</h3>
+  <p>適当にC#のコンソールアプリケーションを作成してみましょう。<br>
     .NET FrameWorkのバージョンは、HD.veresion.SDKと合わせて4.6としておきましょう。<br>
-    </p>
-    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_03.png"></p>
-    <p>HD.IronPythonMod.dllを参照に加えてください。<br>
-    <span class="posotive">合体DLLですので、他のネット上のIronPythonに関する記事とは異なり、「これ１つの参照を追加するだけでOK」</span>です。</p>
-    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_02.png"></p>
-    <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_01.png"></p>
+  </p>
+  <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_03.png"></p>
+  <p>HD.IronPythonMod.dllを参照に加えてください。<br>
+    <span class="posotive">合体DLLですので、他のネット上のIronPythonに関する記事とは異なり、「これ１つの参照を追加するだけでOK」</span>です。
+  </p>
+  <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_02.png"></p>
+  <p><img src="./cnt_mod/mod_ironpython/cnt_mod_ironpython_01.png"></p>
 
-    </li><li>
-    <h3>C#側</h3>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>C#側</h3>
 
-<fieldset class="code"><legend>C#のソース</legend><pre class="brush:csharp;">using System;
+  <fieldset class="code">
+    <legend>C#のソース</legend>
+    <pre class="brush:csharp;">using System;
 using IronPython.Hosting;
 
 namespace ConsoleApplication16
@@ -62,16 +64,20 @@ namespace ConsoleApplication16
         }
     }
 }
-</pre></fieldset>
+</pre>
+  </fieldset>
 
-    </li><li>
-    <h3>Python側</h3>
-    <p>スクリプト側となるPython側のソースも用意します。<br>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>Python側</h3>
+  <p>スクリプト側となるPython側のソースも用意します。<br>
     Pythonは「空白やインデント」も文法に含まれますので、注意してください。</p>
-    <p><span class="negative">C#から呼ばれますので、「script.pyのソースコードの文字コードをutf8」で保存</span>してください。<br>
+  <p><span class="negative">C#から呼ばれますので、「script.pyのソースコードの文字コードをutf8」で保存</span>してください。<br>
     (テキストエディタなどで実際に確認してください。間違っているとSyntax Errorが出ます)</p>
 
-<fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;"># coding: utf8
+  <fieldset class="code">
+    <legend>IronPythonのソース:script.py</legend>
+    <pre class="brush:python;"># coding: utf8
 
 
 def hello( x ) :
@@ -91,9 +97,9 @@ class Foo() :
 
 def getMetaClass() :
   return type( 'MyClass', (), {'my_func' : lambda self, x : 2 ** x} )
-</pre></fieldset>
-    <p>以上となります。</p>
-    <p>C#にあるdynamicのおかげで、C#とIronPythonは、「ほぼシームレス」といって良いレベルで<br>
+</pre>
+  </fieldset>
+  <p>以上となります。</p>
+  <p>C#にあるdynamicのおかげで、C#とIronPythonは、「ほぼシームレス」といって良いレベルで<br>
     「値」「関数」や「クラスそのもの」「クラスのインスタンス」の送受信が出来ています。</p>
-</li></ul>
-
+</div>

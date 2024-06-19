@@ -1,33 +1,36 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦争参加勢力決定直後</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦争参加勢力決定直後</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>On_戦争参加勢力決定直後</h3>
     <p>戦争において、全ての参加勢力(戦争に参加する軍団等)が決定した直後のタイミング、かつ<br>
-  そして、まだ各武将ユニットは出陣していないタイミングで、<br>
-    一度だけ呼びだされるイベントハンドラとなります。<br>
+        そして、まだ各武将ユニットは出陣していないタイミングで、<br>
+        一度だけ呼びだされるイベントハンドラとなります。<br>
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>注意点</h3>
     <p>「On_戦争開始時」のタイミングでは、まだ戦争に参加する勢力は決定していません。<br>
-直接の当事者間で戦争が始まったという情報しかありません。<br>
-<br>
-この「On_戦争参加勢力決定直後」が呼ばれるタイミングでは、全ての参加勢力が決定しているため、<br>
-各種、参加勢力や参戦立場の情報を得ることができます。<br>
-</p>
-
-    </li><li>
+        直接の当事者間で戦争が始まったという情報しかありません。<br>
+        <br>
+        この「On_戦争参加勢力決定直後」が呼ばれるタイミングでは、全ての参加勢力が決定しているため、<br>
+        各種、参加勢力や参戦立場の情報を得ることができます。<br>
+    </p>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>戦争の参加勢力や参戦立場の情報を拾って、変数などに格納しておく。<br>
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
-  <p>戦争の参加は、大名という大きな勢力の視点、軍団という視点、武将という視点の３つがありますが、<br>
-  このメソッドでは、「大名視点」「軍団視点」の情報を拾ってくることとなります。<br>
-  大名視点の情報を拾ってきましょう。<br>
-  </p>
-    <fieldset class="code"><legend>戦争に参加している大名勢力の一覧の情報を得る。</legend><pre class="brush:cpp;">
+    <p>戦争の参加は、大名という大きな勢力の視点、軍団という視点、武将という視点の３つがありますが、<br>
+        このメソッドでは、「大名視点」「軍団視点」の情報を拾ってくることとなります。<br>
+        大名視点の情報を拾ってきましょう。<br>
+    </p>
+    <fieldset class="code">
+        <legend>戦争に参加している大名勢力の一覧の情報を得る。</legend>
+        <pre class="brush:cpp;">
 void 天翔記クラス::On_戦争参加勢力決定直後() {
 
   auto dlist = 大名-&gt;戦争-&gt;参戦大名番号リスト;
@@ -38,14 +41,17 @@ void 天翔記クラス::On_戦争参加勢力決定直後() {
     }
   }
 }
-</pre></fieldset>
-    </li>
-    <li>
+</pre>
+    </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例②</h3>
-  <p>天翔記において、戦争とは事実上、大名同士ではなく、軍団同士の戦いであるため、<br>
-  軍団視点の情報では、より詳細な情報を得ることが出来ます。
-  </p>
-    <fieldset class="code"><legend>戦争に参加している軍団勢力、今回での戦争内での軍団を率いる総大将、参戦立場などの情報を得る。</legend><pre class="brush:cpp;">void 天翔記クラス::On_戦争参加勢力決定直後() {
+    <p>天翔記において、戦争とは事実上、大名同士ではなく、軍団同士の戦いであるため、<br>
+        軍団視点の情報では、より詳細な情報を得ることが出来ます。
+    </p>
+    <fieldset class="code">
+        <legend>戦争に参加している軍団勢力、今回での戦争内での軍団を率いる総大将、参戦立場などの情報を得る。</legend>
+        <pre class="brush:cpp;">void 天翔記クラス::On_戦争参加勢力決定直後() {
 
   auto glist = 軍団-&gt;戦争-&gt;参戦軍団番号リスト;
   for each (int iGundanID in glist) {
@@ -90,11 +96,10 @@ void 天翔記クラス::On_戦争参加勢力決定直後() {
   }
 
 }
-</pre></fieldset>
-    </li>
-    <li>
+</pre>
+    </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>「On_戦争参加勢力決定直後」イベントハンドラについて、主な解説は以上となります。<br></p>
-    </li>
-</ul>
-
+</div>

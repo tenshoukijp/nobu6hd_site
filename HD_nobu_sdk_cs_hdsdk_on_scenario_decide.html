@@ -1,25 +1,27 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>My_シナリオ選択直後</h2>
-
-<ul class="checklist">
-    <li>
-    <h3>My_シナリオ選択直後</h3>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>My_シナリオ選択直後</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
+    v <h3>My_シナリオ選択直後</h3>
     <p>６つのシナリオのいずれかを選択する度に実行されるイベントハンドラとなります。<br>
-    キャンセルして、再び選び直すと、再度このイベントハンドラが実行されます。<br>
-シナリオを選択する度に実行されることとなります。
+        キャンセルして、再び選び直すと、再度このイベントハンドラが実行されます。<br>
+        シナリオを選択する度に実行されることとなります。
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>対象のシナリオデータの開始状態を修正したい場合に利用します。<br>
     </p>
-  </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
-  <p>シナリオを選択した時点で、すでに基本的なデータはセッティングされているため、<br>
-  各種のクラスオブジェクトのほとんど全てが利用可能です。<br>
+    <p>シナリオを選択した時点で、すでに基本的なデータはセッティングされているため、<br>
+        各種のクラスオブジェクトのほとんど全てが利用可能です。<br>
         (戦争などは起きていないため、使っても意味がありません、又、ターン情報なども有意な情報を得られません)<br>
-  </p>
-    <fieldset class="code"><legend>戦争に参加している大名勢力の一覧の情報を得る。</legend><pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
+    </p>
+    <fieldset class="code">
+        <legend>戦争に参加している大名勢力の一覧の情報を得る。</legend>
+        <pre class="brush:csharp;">    public static void My_シナリオ選択直後(string シナリオファイル名)
     {
         // シナリオファイル名によって、元の６つのシナリオでも、他のファイル名の独自のシナリオでも正確に判別が付く。
         // やってはらないないことは、「元のシナリオと違う内容」であるにもかかわらず、同じファイル名で保存してしまうこと。
@@ -49,11 +51,10 @@
             }
         }
     }
-</pre></fieldset>
-    </li>
-    <li>
+</pre>
+    </fieldset>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>「My_シナリオ選択直後」イベントハンドラについて、主な解説は以上となります。<br></p>
-    </li>
-</ul>
-
+</div>

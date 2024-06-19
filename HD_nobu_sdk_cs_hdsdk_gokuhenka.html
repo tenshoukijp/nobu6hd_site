@@ -1,21 +1,25 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～語句変化～</h2>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～語句変化～</h2>
+</div>
 
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
     <h3>語句変化の概念</h3>
     <p>語句変化とは、不定な人物同士の会話メッセージを作成する際に、<br>
-    「自分・相手」の呼称や、語尾変化等をサポートするAPIです。<br>
+        「自分・相手」の呼称や、語尾変化等をサポートするAPIです。<br>
     </p>
     <p>後述のソース中の、第１人称武将番号, 第２人称武将番号 を、様々な武将で試し、<br>
-    一体どのような概念なのか理解して使いましょう。</p>
+        一体どのような概念なのか理解して使いましょう。</p>
     <p>男性・女性、上司・部下、年寄と若君主、様々な職業など、考慮されたメッセージへと語句が変化します。<br>
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
     <p>ほとんどの使用シーンは、「<a href="?page=HD_nobu_sdk_cs_hdsdk_on_fukidashi_message">My_噴出メッセージ直前</a>」<br>
-    にて、すりかえるメッセージを作る際に利用されます。
-    </p><fieldset class="code"><legend>デフォルトの会見のメッセージを、語句変化を伴ってすり替える</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+        にて、すりかえるメッセージを作る際に利用されます。
+    </p>
+    <fieldset class="code">
+        <legend>デフォルトの会見のメッセージを、語句変化を伴ってすり替える</legend>
+        <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         int 第１人称_武将番号 = パラメタ.第１人称_武将番号;
         int 第２人称_武将番号 = パラメタ.第２人称_武将番号;
@@ -53,21 +57,20 @@
 
         return "";
     }
-</pre></fieldset>
+</pre>
+    </fieldset>
     <p>第１人称と第２人称の「性格」「口調」「人間関係」などを全て含んで、<br>
-    言葉遣いが変化していることが確認できるかと思います。<br>
-    相手が居ないような独り言に近いメッセージをしゃべらせたい場合は、<br>
-    第２人称として、第１人称と同じ値を渡すと、<br>
-    概ねは妥当な語句変化になるハズです。</p>
-    </li>
-    <li>
+        言葉遣いが変化していることが確認できるかと思います。<br>
+        相手が居ないような独り言に近いメッセージをしゃべらせたい場合は、<br>
+        第２人称として、第１人称と同じ値を渡すと、<br>
+        概ねは妥当な語句変化になるハズです。</p>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>語句変化関連には非常に多数のメソッドがあります。<br>
-    詳しくはHD.version.SDKソース内の「語句変化.h」を参照してみてください。</p>
+        詳しくはHD.version.SDKソース内の「語句変化.h」を参照してみてください。</p>
     <p>また、語句変化については、「どういった関係性」で「どういう変化なのか？」の<br>
-    具体的な実装の確認をしたい場合などもあるかと思います。<br>
-    そういった裏方事情を知りたい場合は、「語句変化.cpp」を見て確認してください。</p>
+        具体的な実装の確認をしたい場合などもあるかと思います。<br>
+        そういった裏方事情を知りたい場合は、「語句変化.cpp」を見て確認してください。</p>
     <p>語句変化について、主な解説は以上となります。</p>
-    </li>
-</ul>
-
+</div>

@@ -1,12 +1,13 @@
 %(hilight)s
-
+<div class="content-box mb-3 content-lighten">
 <h2><i class="fa fa-pencil-square-o fa-fw"></i>HD.version.SDKからIronPythonModを使う場合①</h2>
-<ul class="checklist">
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>概要</h3>
     <p>前節では、C++/CLIのミニマムサンプルでIronPythonを呼び出しました。<br>
     ここまで知っておけばHD.version.SDKでIronPythonを利用する方法を理解するのは簡単です。</p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>HD.version.SDK側</h3>
     <p>HD.version.SDKのソースには、「On_ゲームウィンドウ起動時」あたりで、Python関連のエンジンやスコープを構築します。<br>
     </p>
@@ -97,7 +98,8 @@ void 天翔記クラス::On_戦略_軍団ターン変更時(int 軍団番号) {
 
 
 </pre></fieldset>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>Python側</h3>
     <p>スクリプト側は前節と全く同じものです。<br>
     </p><p><span class="negative">C++/CLIの「マルチバイト」から呼ばれますので、「script.pyのソースコードの文字コードをShitJIS(=cp932)」で保存</span>してください。<br>
@@ -143,4 +145,4 @@ def is_odd(num):
     </p>
     <p>ですので、C#から呼び出し、C++/CLIからの呼び出し、いずれでもよいので使い方を知っておけば、<br>
     自作プロジェクトや他のゲームのMod制作などにおいて、幅広く役立つことでしょう。</p>
-</li></ul>
+</div>

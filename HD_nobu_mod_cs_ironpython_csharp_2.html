@@ -1,16 +1,20 @@
 %(hilight)s
 
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる</h2>
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+  <h2><i class="fa fa-pencil-square-o fa-fw"></i>C#からIronPythonを利用してみる</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>概要</h3>
     <p>ここでは、前節の続きとなります。<br>
-    基本的なところは前節と変わりません。<br>
-    もう少し、いろいろなパターンを探ってみましょう。</p>
-    </li><li>
-    <h3>C#側</h3>
+      基本的なところは前節と変わりません。<br>
+      もう少し、いろいろなパターンを探ってみましょう。</p>
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>C#側</h3>
 
-    <fieldset class="code"><legend>C#のソース</legend><pre class="brush:csharp;">using System;
+  <fieldset class="code">
+    <legend>C#のソース</legend>
+    <pre class="brush:csharp;">using System;
 using IronPython.Hosting;
 
 namespace ConsoleApplication16
@@ -48,11 +52,15 @@ namespace ConsoleApplication16
         }
     }
 }
-</pre></fieldset>
+</pre>
+  </fieldset>
 
-    </li><li>
-    <h3>Python側</h3>
-    <fieldset class="code"><legend>IronPythonのソース:script.py</legend><pre class="brush:python;"># coding: utf8
+</div>
+<div class="content-box mb-3 content-lighten">
+  <h3>Python側</h3>
+  <fieldset class="code">
+    <legend>IronPythonのソース:script.py</legend>
+    <pre class="brush:python;"># coding: utf8
 
 
 def hello( x ) :
@@ -72,9 +80,9 @@ class Foo() :
 
 def getMetaClass() :
   return type( 'MyClass', (), {'my_func' : lambda self, x : 2 ** x} )
-</pre></fieldset>
-    <p>以上となります。</p>
-    <p>C#にあるdynamicのおかげで、C#とIronPythonは、「ほぼシームレス」といって良いレベルで<br>
+</pre>
+  </fieldset>
+  <p>以上となります。</p>
+  <p>C#にあるdynamicのおかげで、C#とIronPythonは、「ほぼシームレス」といって良いレベルで<br>
     「値」「関数」や「クラスそのもの」「クラスのインスタンス」の送受信が出来ています。</p>
-</li></ul>
-
+</div>

@@ -1,22 +1,22 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦略_軍団ターン変更時</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>On_戦略_軍団ターン変更時</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>On_戦略_軍団ターン変更時</h3>
     <p>行動する軍団が変わったタイミングと、<br>
     どの軍団も行動しなくなったタイミングの<br>
     双方で呼ばれるイベントハンドラとなります。<br>
 
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>注意点</h3>
     <p>「どの軍団も行動しなくなったタイミング」でもこのイベントハンドラが呼ばれるということをは重要です。<br>
     どの軍団も行動していない時には、通常、軍団番号に「0xFFFF」が入った状態で、<br>
     このイベントハンドラが呼ばれます。<br>
     </p>
-
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>各軍団ターンの頭で、このイベントハンドラが呼ばれるという特性は、<br>
     大名・軍団・武将・城など、いずれの値を更新するとしても、<br>
@@ -25,9 +25,9 @@
     </p>
     <p>実際に各種SDKの解説も、このイベントハンドラを用いたものが多くなっています。 <br>
     <br>
-
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
     <p>まずは、このイベントハンドラがどのような時に呼ばれるのか、<br>
     天翔記HDの画面とModDebuggerを両方見ながら確認しましょう。</p>
@@ -46,8 +46,8 @@
 
 }</pre></fieldset>
     <p><img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_on_change_gundan_turn_01.png"></p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例②</h3>
     <p>回ってきた軍団ターンが、プレイヤが直接担当している軍団なのか？<br>
     というのは最もよく利用する記述となることでしょう。</p>
@@ -71,8 +71,8 @@
 }
 
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例③</h3>
     <p>この「On_戦略_軍団ターン変更時」が呼び出された瞬間は、<br>
     ダイアログや吹き出しなどが表示されていないことが保証されています。<br>
@@ -92,14 +92,12 @@
 }
 
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>ソースサンプルの多くは、「On_戦略_軍団ターン変更時」内で記述するサンプルとなっていますので、<br>
     それらを参考としてください。<br>
     </p>
     <p>「On_戦略_軍団ターン変更時」イベントハンドラについて、主な解説は以上となります。<br>
     </p>
-    </li>
-</ul>
-
+</div>

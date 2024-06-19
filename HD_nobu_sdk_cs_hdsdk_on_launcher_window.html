@@ -1,29 +1,31 @@
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>My_ランチャーウィンドウ起動時</h2>
-
-<ul class="checklist">
-    <li>
+<div class="content-box mb-3 content-lighten">
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>My_ランチャーウィンドウ起動時</h2>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>My_ランチャーウィンドウ起動時</h3>
     <p>ランチャーウィンドウが起動された直後に<br>
   １回だけ呼びだされるイベントハンドラとなります。<br></p>
     <p>ランチャーウィンドウの起動を伴わない方法でゲームを起動した場合は<br>
   このイベントハンドラは呼び出されないので注意してください。<br>
     </p>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>注意点</h3>
     <p>このイベントハンドラの間はまだ、ゲーム本体が立ち上がっていません。<br>
   このため、「My_ランチャーウィンドウ起動時」イベントハンドラでは、<br>
   <span class="negative">「起動環境設定」オブジェクトだけが利用可能</span>で<br>
   他の天翔記専用のオブジェクトはこの段階では一切利用不可能です。<br>
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使い処</h3>
     <p>ゲーム起動前という性質上、このイベントハンドラでは<br>
   「起動環境設定」オブジェクトを使って、特定の解像度やウィンドウモードに固定する記述、<br>
   あるいは、天翔記系オブジェクトは使わずに、ゲーム起動前に行いたいことを<br>
   .NET FrameWorkを直接使って記述をすることが多いでしょう。<br>
     </p>
-    </li><li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>使用例</h3>
     <fieldset class="code"><legend>ランチャー起動時に「解像度」や「ウィンドウモード」等を上書きする</legend> <pre class="brush:csharp;">    public static void My_ランチャーウィンドウ起動時()
     {
@@ -38,10 +40,8 @@
     }
 
 </pre></fieldset>
-    </li>
-    <li>
+</div>
+<div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>「My_ランチャーウィンドウ起動時」イベントハンドラについて、主な解説は以上となります。<br></p>
-    </li>
-</ul>
-
+</div>
