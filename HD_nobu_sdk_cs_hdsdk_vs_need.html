@@ -28,13 +28,13 @@
     <p>User.version.SDKをコンパイルすると、<br>x86\ReleaseフォルダにUser.version.dllが出来上がりますので、<br>
     このファイルを天翔記フォルダへとコピーしましょう。<br>
     </p>
-    <fieldset class="alert alert-info"><legend>天翔記フォルダ</legend>%(tshd)sの実行ファイルがある場所のこと。<br>
+    <fieldset class="alert alert-info"><legend>天翔記フォルダ</legend>天翔記HD版の実行ファイルがある場所のこと。<br>
     <img src="./cnt_sdk/hd_version/cnt_sdk_cs_hdsdk_vs_need_04.png"><br>
     </fieldset>
     <fieldset class="alert alert-info"><legend>version.dllとHD.version.dll</legend>SDKに元々添付されているversion.dllとHD.version.dllのコピーも忘れないでください。<br>
-    %(tshd)sがversion.dllを呼び出し、<br>
+    天翔記HD版がversion.dllを呼び出し、<br>
     version.dllが「どのプログラムから呼び出されたのか」を判断し、<br>
-    呼び出したのが%(tshd)sであれば、HD.version.dllを呼び出します。<br>
+    呼び出したのが天翔記HD版であれば、HD.version.dllを呼び出します。<br>
     そして、HD.version.dllは、User.version.dllの状態が正しければ、<br>
     実装されているイベントハンドラだけ呼び出します。</fieldset>
     <fieldset class="alert alert-info"><legend>コピーバッチの必要性</legend>開発をし始めると、１日100回はUser.version.dllをコピーすることになるハズです。

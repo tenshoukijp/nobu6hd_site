@@ -24,8 +24,7 @@ fieldset, legend { all: revert; }
 <link rel="stylesheet" type="text/css" href="./jquery/hc-offcanvas-nav.css">
 <link rel="stylesheet" type="text/css" href="./jquery/hc-offcanvas-nav.custom.css?v=%(mlpmcssdate)s">
 %(style_dynamic)s
-%(webfont_loader)s
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.slim.min.js"></script>
 %(shcore_head)s
 </head>
 <body>
@@ -48,7 +47,6 @@ fieldset, legend { all: revert; }
 <script type="text/javascript" src="./jquery/hc-offcanvas-nav.custom.js?v=%(mlpmcustomdate)s"></script>
 
 %(shcore_foot)s
-%(hover_card)s
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js"></script>
 </body>

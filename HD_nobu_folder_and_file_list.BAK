@@ -2,9 +2,9 @@
     <h2><i class="fa fa-folder-open fa-fw"></i>HD版のフォルダ構成やファイルの役割</h2>
 </div>
 <div class="content-box mb-3 content-lighten">
-    <h3>「信長の野望30周年版の天翔記」から「天翔記HD版」が誕生した</h3>
+    <h3>「信長の野望30周年版の天翔記」から「%(tshd)s」が誕生した</h3>
     <p>ディレクトリ構成の残骸、及び、exeの内容などを分析した結果、 <br>
-    「信長の野望30周年記念版の天翔記」を基にして「天翔記HD版」が作成されたことは確実と言えます。<br>
+    「信長の野望30周年記念版の天翔記」を基にして「%(tshd)s」が作成されたことは確実と言えます。<br>
     </p>
 </div>
 <div class="content-box mb-3 content-lighten">
@@ -84,13 +84,13 @@
             <td>野戦マップや籠城戦マップのチップ情報となります。<br>
             画像ファイルではなく、「どの位置が川」「どの位置が城」などと言った、<br>
             いわば「ヘックスマップの各位置の機能的な役割情報」となります。<br>
-            <fieldset class="alert alert-success"><legend>ヘックスマップエディタ</legend><i class="fa fa-ts95 fa-fw"></i>サイトの<a href="http://xn--rssu31gj1g.jp/?page=nobu_mod_the_hexmap_editor">ヘックスマップエディタ</a>を参照してください。<br>
+            <fieldset class="alert alert-success"><legend>ヘックスマップエディタ</legend>%(home)sの<a href="http://xn--rssu31gj1g.jp/?page=nobu_mod_the_hexmap_editor">ヘックスマップエディタ</a>を参照してください。<br>
             </fieldset>
-            天翔記HD版で使用されているファイルの中では、唯一天翔記95PK版と同じファイルがこの<span class="posotive">HEXMAP.NB6</span>です。<br>
+            %(tshd)sで使用されているファイルの中では、唯一%(ts95)sと同じファイルがこの<span class="posotive">HEXMAP.NB6</span>です。<br>
 
 
-            <fieldset class="alert alert-warning"><legend>天翔記HD版ではグラフィックが反映されない</legend>
-            天翔記95PK版とは異なり、天翔記HD版では、HEXMAP.NB6のうち、<br>
+            <fieldset class="alert alert-warning"><legend>%(tshd)sではグラフィックが反映されない</legend>
+            %(ts95)sとは異なり、%(tshd)sでは、HEXMAP.NB6のうち、<br>
             「使用するグラフィックチップ番号」の部分が参照利用されていません。<br>
             このためグラフィックと一致させられず、編集が意味を成しません。
             </fieldset>
@@ -198,6 +198,33 @@
         </td></tr>
     </tbody></table>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#hovercard_L_foldandfile01").hovercard({
+        detailsHTML: '<p style="padding-top:20px">MPEG-1 Audio Layer II。<br>1998年前後によく利用された「Mpeg1動画/音声形式」の「音声部分の圧縮形式」としてよく利用された。</p>',
+        width: 600,
+    });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#hovercard_L_foldandfile02").hovercard({
+        detailsHTML: '<p style="padding-top:20px">主としてVorbisコーデックが利用される音声・音楽ファイル形式。</p>',
+        width: 600,
+    });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#hovercard_L_foldandfile03").hovercard({
+        detailsHTML: '<p style="padding-top:20px">Windows Media Video。<br>2003年前後によく利用されたマイクロソフトが開発したビデオコーデック。<br>オーディオコーデックとしてWindows Media Audio(WMA)があり、<br>一般にはWMVとWMAの組み合わせが用いられる。</p>',
+        width: 600,
+    });
+});
+</script>
 
 
 

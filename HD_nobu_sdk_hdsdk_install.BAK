@@ -44,9 +44,9 @@
 <div class="content-box mb-3 content-lighten">
     <h3>動作環境</h3>
     
-        <tr><td>OS</td><td>Windows10以上</td><td>それ未満のバージョンのOSでも動作する可能性はありますが、<br>対象外となります。</td></tr>
+        %(environment_os)s
         
-        <tr><td>.NET</td><td>.NET FrameWork 4.6以上</td><td>(※ Windows10には最初から入っています。)</td></tr>
+        %(environment_dnet)s
     <table class="coder tbl_v_bgcolor"><tbody><tr>
             <td>開発環境</td>
             <td>Visual Studio 2015 Update3 以上</td>
@@ -91,10 +91,10 @@
     <h3>関連ツール</h3>
     <ul class="pointlist">
         <li>
-        <h4>天翔記95PK版用のScenarioMod</h4>
-        <p>天翔記95PK版用として、<a href="http://xn--rssu31gj1g.jp/?page=nobu_mod_the_snmod">ScenarioMod</a>という本SDKに類似したものを提供しています。<br>
+        <h4>%(ts95)s用のScenarioMod</h4>
+        <p>%(ts95)s用として、<a href="http://xn--rssu31gj1g.jp/?page=nobu_mod_the_snmod">ScenarioMod</a>という本SDKに類似したものを提供しています。<br>
         </p>
-        <p>「天翔記95PK版用のScenarioMod」と「天翔記HD版用のHD.version.SDK」では、<br>
+        <p>「%(ts95)s用のScenarioMod」と「%(tshd)s用のHD.version.SDK」では、<br>
         ScenarioModの方が約２倍ほど出来ることが多くなっています。<br>
         特に「ユーザー独自に新たなイベントを作成する」という部分ではAPI提供数に大きな開きがあります。<br>
         </p>
@@ -104,3 +104,13 @@
         </p></li>
     </ul>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#hovercard_L_hdsdk_install_01").hovercard({
+        detailsHTML: '<p>.NET Frameworkの共通言語基盤 (CLI)上で実行するプログラムを作るためにC++を拡張したプログラミング言語<br>詳細は<a href="https://ja.wikipedia.org/wiki/C%2B%2B/CLI">こちら</a></p>',
+        width: 600,
+    });
+});
+</script>
+

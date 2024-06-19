@@ -24,7 +24,7 @@
     <fieldset class="alert alert-info">
         <legend>エラー追及などの際はDebugで</legend>フリーズなどが発生し、すぐには原因がわからない場合は、「Debug」「x86」でビルドし、<br>
         怪しいと思う部分を大きく「try..catch」文で囲むことで原因を追究していきます。<br>
-        残念なことではありますが、%(tshd)sは本体に「アンチデバッグ機能」が搭載されているため、<br>
+        残念なことではありますが、天翔記HD版は本体に「アンチデバッグ機能」が搭載されているため、<br>
         ゆっくりと「ステップ実行」をしてデバッグしてゆくことは出来ません。<br>
     </fieldset>
 </div>
@@ -33,14 +33,14 @@
     <p>ReleaseフォルダにHD.version.dllが出来上がりますので、このファイルを天翔記フォルダへとコピーしましょう。<br>
     </p>
     <fieldset class="alert alert-info">
-        <legend>天翔記フォルダ</legend>%(tshd)sの実行ファイルがある場所のこと。<br>
+        <legend>天翔記フォルダ</legend>天翔記HD版の実行ファイルがある場所のこと。<br>
         <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_vs_need_04.png"><br>
     </fieldset>
     <fieldset class="alert alert-info">
         <legend>version.dll</legend>SDKに元々添付されているversion.dllのコピーも忘れないでください。<br>
-        %(tshd)sがversion.dllを呼び出し、<br>
+        天翔記HD版がversion.dllを呼び出し、<br>
         version.dllが「どのプログラムから呼び出されたのか」を判断し、<br>
-        呼び出したのが%(tshd)sであれば、HD.version.dllを呼び出します。
+        呼び出したのが天翔記HD版であれば、HD.version.dllを呼び出します。
     </fieldset>
     <fieldset class="alert alert-info">
         <legend>コピーバッチの必要性</legend>開発をし始めると、１日100回はHD.version.dllをコピーすることになるハズです。
