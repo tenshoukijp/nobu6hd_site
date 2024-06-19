@@ -1,5 +1,4 @@
-<nav id="main-nav">
-
+<nav id="main-nav" style="background-image: url('./web_img/menu_top_back.png');">
     <ul>
         <li><a href="./HD.php"><i class="fa-tshd fa-fw"></i>HD version トップ</span></a></li>
         <li>
@@ -129,41 +128,41 @@
                                 <li><a href="?page=HD_nobu_sdk_hdsdk_battle_turn"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_battle_turn">戦争-&gt;ターン</span></a></li>
                                 <li><a href="?page=HD_nobu_sdk_hdsdk_battle_kisyou"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_battle_kisyou">戦争-&gt;気象</span></a></li>
                                 <li><a href="?page=HD_nobu_sdk_hdsdk_bushou_battle"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_bushou_battle">武将-&gt;戦争</span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_bushou_battle_hex"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_bushou_battle_hex"><span style="font-size: 0.95em">武将-&gt;戦争-&gt;ヘックス位置</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_bushou_battle_hex"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_bushou_battle_hex">武将-&gt;戦争-&gt;ヘックス位置</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i>HD.ver.SDK ハンドラ</a>
 
                             <ul>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_launcher_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_launcher_window"><span style="font-size: 0.78em">On_ランチャーウィンドウ起動時</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_game_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_game_window"><span style="font-size: 0.82em">On_ゲームウィンドウ起動時</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_read_datafile"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_read_datafile"><span style="font-size: 0.82em">On_データファイル読込直前</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_bgm_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_bgm_play"><span style="font-size: 0.82em">On_ＢＧＭ再生直前</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_movie_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_movie_play"><span style="font-size: 0.82em">On_ＭＯＶＩＥ再生直前</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_scenario_decide"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_scenario_decide"><span style="font-size: 0.82em">On_シナリオ選択直後</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_launcher_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_launcher_window">On_ランチャーウィンドウ起動時</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_game_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_game_window">On_ゲームウィンドウ起動時</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_read_datafile"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_read_datafile">On_データファイル読込直前</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_bgm_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_bgm_play">On_ＢＧＭ再生直前</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_movie_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_movie_play">On_ＭＯＶＩＥ再生直前</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_scenario_decide"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_scenario_decide">On_シナリオ選択直後</span></a></li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_hdsdk_on_fukidashi_message">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_fukidashi_message"><span style="font-size: 0.82em">On_噴出メッセージ直前</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_fukidashi_message">On_噴出メッセージ直前</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_hdsdk_on_main_gundan_turn_change">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_main_gundan_turn_change"><span style="font-size: 0.82em">On_戦略_軍団ターン変更時</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_main_gundan_turn_change">On_戦略_軍団ターン変更時</span>
                                     </a>
                                 </li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_battle_start"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_start"><span style="font-size: 0.82em">On_戦争開始時</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_battle_start"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_start">On_戦争開始時</span></a></li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_hdsdk_on_battle_join_seiryoku_decide">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_join_seiryoku_decide"><span style="font-size: 0.82em">On_戦争参加勢力決定直後</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_join_seiryoku_decide">On_戦争参加勢力決定直後</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_hdsdk_on_battle_remain_turn_change">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_remain_turn_change"><span style="font-size: 0.82em">On_戦争_残りターン変更時</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_remain_turn_change">On_戦争_残りターン変更時</span>
                                     </a>
                                 </li>
-                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_battle_end"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_end"><span style="font-size: 0.82em">On_戦争終了時</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_hdsdk_on_battle_end"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_on_battle_end">On_戦争終了時</span></a></li>
                             </ul>
                         </li>
                         <li><a href="?page=HD_nobu_sdk_hdsdk_introduct_freez"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_introduct_freez">よくあるフリーズ</span></a></li>
@@ -214,41 +213,41 @@
                                 <li><a href="?page=HD_nobu_sdk_cs_hdsdk_battle_turn"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_battle_turn">戦争.ターン</span></a></li>
                                 <li><a href="?page=HD_nobu_sdk_cs_hdsdk_battle_kisyou"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_battle_kisyou">戦争.気象</span></a></li>
                                 <li><a href="?page=HD_nobu_sdk_cs_hdsdk_bushou_battle"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_bushou_battle">武将.戦争</span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_bushou_battle_hex"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_bushou_battle_hex"><span style="font-size: 0.95em">武将.戦争.ヘックス位置</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_bushou_battle_hex"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_bushou_battle_hex">武将.戦争.ヘックス位置</span></a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i>User.ver.SDK ハンドラ</a>
 
                             <ul>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_launcher_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_launcher_window"><span style="font-size: 0.78em">My_ランチャーウィンドウ起動時</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_game_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_game_window"><span style="font-size: 0.82em">My_ゲームウィンドウ起動時</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_read_datafile"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_read_datafile"><span style="font-size: 0.82em">My_データファイル読込直前</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_bgm_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_bgm_play"><span style="font-size: 0.82em">My_ＢＧＭ再生直前</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_movie_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_movie_play"><span style="font-size: 0.82em">My_ＭＯＶＩＥ再生直前</span></span></a></li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_scenario_decide"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_scenario_decide"><span style="font-size: 0.82em">My_シナリオ選択直後</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_launcher_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_launcher_window">My_ランチャーウィンドウ起動時</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_game_window"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_game_window">My_ゲームウィンドウ起動時</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_read_datafile"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_read_datafile">My_データファイル読込直前</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_bgm_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_bgm_play">My_ＢＧＭ再生直前</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_movie_play"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_movie_play">My_ＭＯＶＩＥ再生直前</span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_scenario_decide"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_scenario_decide">My_シナリオ選択直後</span></a></li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_cs_hdsdk_on_fukidashi_message">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_fukidashi_message"><span style="font-size: 0.82em">My_噴出メッセージ直前</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_fukidashi_message">My_噴出メッセージ直前</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_cs_hdsdk_on_main_gundan_turn_change">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_main_gundan_turn_change"><span style="font-size: 0.82em">My_戦略_軍団ターン変更時</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_main_gundan_turn_change">My_戦略_軍団ターン変更時</span>
                                     </a>
                                 </li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_start"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_start"><span style="font-size: 0.82em">My_戦争開始時</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_start"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_start">My_戦争開始時</span></a></li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_join_seiryoku_decide">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_join_seiryoku_decide"><span style="font-size: 0.82em">My_戦争参加勢力決定直後</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_join_seiryoku_decide">My_戦争参加勢力決定直後</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_remain_turn_change">
-                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_remain_turn_change"><span style="font-size: 0.82em">My_戦争_残りターン変更時</span></span>
+                                        <i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_remain_turn_change">My_戦争_残りターン変更時</span>
                                     </a>
                                 </li>
-                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_end"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_end"><span style="font-size: 0.82em">My_戦争終了時</span></span></a></li>
+                                <li><a href="?page=HD_nobu_sdk_cs_hdsdk_on_battle_end"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_cs_hdsdk_on_battle_end">My_戦争終了時</span></a></li>
                             </ul>
                         </li>
                         <li>
