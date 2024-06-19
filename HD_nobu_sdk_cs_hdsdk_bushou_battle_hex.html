@@ -1,19 +1,22 @@
 <div class="content-box mb-3 content-lighten">
-<h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～武将.戦争.ヘックス位置～</h2>
+    <h2><i class="fa fa-pencil-square-o fa-fw"></i>User.version.SDK ～武将.戦争.ヘックス位置～</h2>
 </div>
 <div class="content-box mb-3 content-lighten">
     <h3>武将.戦争.ヘックス位置</h3>
     <p>武将.戦争.ヘックス位置とは、<br>
-    戦争中、画面に表示されているヘックス画面(野戦もしくは籠城戦)において、<br>
-    武将が居るヘックス(升目)の「位置」もしくは、その位置の役割(山・橋・門等)を得るための<br>
-    オブジェクトとなります。</p>
+        戦争中、画面に表示されているヘックス画面(野戦もしくは籠城戦)において、<br>
+        武将が居るヘックス(升目)の「位置」もしくは、その位置の役割(山・橋・門等)を得るための<br>
+        オブジェクトとなります。</p>
     <p>ヘックスはゲーム中の機能でも下記のような升目になっていることがわかります。<br>
-    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_battle_hex_01.png"><br>
-    <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_battle_hex_02.png"></p>
+        <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_battle_hex_01.png"><br>
+        <img src="./cnt_sdk/hd_version/cnt_sdk_hdsdk_battle_hex_02.png">
+    </p>
 </div>
 <div class="content-box mb-3 content-lighten">
     <h3>使用例①</h3>
-    <fieldset class="code"><legend>現在の画面に出陣している武将のヘックス位置を得る</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code">
+        <legend>現在の画面に出陣している武将のヘックス位置を得る</legend>
+        <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
         {
@@ -32,14 +35,17 @@
         return "";
     }
 
-</pre></fieldset>
+</pre>
+    </fieldset>
 </div>
 <div class="content-box mb-3 content-lighten">
     <h3>使用例②</h3>
     <p>武将の位置をとるだけでは、あまり意味がありません。<br>
-    通常は武将Ａと武将Ｂのヘックス上での間隔などを得るために、<br>
-    位置をとっているといえるでしょう。</p>
-    <fieldset class="code"><legend>表示中の戦場に上杉謙信と武田信玄が両方いるなら、２人の間隔を得る</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+        通常は武将Ａと武将Ｂのヘックス上での間隔などを得るために、<br>
+        位置をとっているといえるでしょう。</p>
+    <fieldset class="code">
+        <legend>表示中の戦場に上杉謙信と武田信玄が両方いるなら、２人の間隔を得る</legend>
+        <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
         {
@@ -70,13 +76,17 @@
         return "";
     }
 
-</pre></fieldset>
+</pre>
+    </fieldset>
 </div>
 <div class="content-box mb-3 content-lighten">
     <h3>使用例③</h3>
     <p>武将の具体的な位置に対応する「ヘックスの役割(山・橋・門等)」も<br>
-    同様の手段で得ることができます。<br>
-    </p><fieldset class="code"><legend>原始的な記述例</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+        同様の手段で得ることができます。<br>
+    </p>
+    <fieldset class="code">
+        <legend>原始的な記述例</legend>
+        <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
 
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
@@ -111,12 +121,15 @@
         return "";
     }
 
-</pre></fieldset>
+</pre>
+    </fieldset>
 </div>
 <div class="content-box mb-3 content-lighten">
     <h3>使用例④</h3>
     <p>その他、ヘックスの炎上情報や高さ情報なども得ることができます。</p>
-    <fieldset class="code"><legend>ヘックスの炎上状態やヘックスの高さ</legend> <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
+    <fieldset class="code">
+        <legend>ヘックスの炎上状態やヘックスの高さ</legend>
+        <pre class="brush:csharp;">    public static string My_噴出メッセージ直前(string 元メッセージ, 噴出メッセージパラメタ型 パラメタ)
     {
         if (戦争.Is_野戦中 || 戦争.Is_籠城戦中)
         {
@@ -137,10 +150,11 @@
         return "";
     }
 
-</pre></fieldset>
+</pre>
+    </fieldset>
 </div>
 <div class="content-box mb-3 content-lighten">
     <h3>その他</h3>
     <p>武将.戦争.ヘックス位置について、主な解説は以上となります。<br>
-    詳しくはHD.version.SDKソース内の「戦争_ヘックス.h」や「戦争_ヘックス列挙.h」を参照してみてください。</p>
+        詳しくはHD.version.SDKソース内の「戦争_ヘックス.h」や「戦争_ヘックス列挙.h」を参照してみてください。</p>
 </div>
