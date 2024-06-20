@@ -6,7 +6,7 @@ $punnyAddress = "hd.xn--rssu31gj1g.jp";
 
 $defaultHomePage = "HD_nobu_top";
 
-$indexFileName = "HD_index.html";
+$indexFileName = "index.html";
 
 $strTitle = "天翔記.jp (HD版)";
 
