@@ -1,6 +1,6 @@
 <?php
 
-require("LIB_pagetree.php");
+require("HD_contents.php");
 
 $punnyAddress = "hd.xn--rssu31gj1g.jp";
 
