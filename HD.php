@@ -1,6 +1,6 @@
 <?php
 
-require("HD_contents.php");
+require("contents.php");
 
 $punnyAddress = "hd.xn--rssu31gj1g.jp";
 
