@@ -234,7 +234,11 @@ $content_hash = [
         [ 'html'=>'HD_nobu_bgm_convert_to_wav.html', 'title'=>'音入替 新版→他物' , 'dir'=>'音入替'],
 
     'HD_nobu_link' =>
-        [ 'html'=>'HD_nobu_link.html', 'title'=>'天翔記関連リンク' , 'dir'=>'リンク']
+        [ 'html'=>'HD_nobu_link.html', 'title'=>'天翔記関連リンク' , 'dir'=>'リンク'],
+
+    'nobu_site_the_profile' =>
+        [ 'html'=>'nobu_site_the_profile.html', 'title'=>'プロフィール' , 'dir'=>'コンタクト']
+
 ];
 
 
