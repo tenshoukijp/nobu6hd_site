@@ -39,16 +39,11 @@
                 <li>
 
                     <a href="?page=HD_nobu_image_hdsdk_change_fullcolor_face">
-                        <i class="fa fa-image fa-fw"></i><span id="HD_nobu_image_hdsdk_change_fullcolor_face"><span style="font-size:0.88em">
-                                95PK版フルカラー顔グラを<br>
-                                &nbsp;&nbsp;→&nbsp;天翔記HD版の顔グラに反映
-                            </span></span></a>
+                        <i class="fa fa-image fa-fw"></i><span id="HD_nobu_image_hdsdk_change_fullcolor_face"><span style="font-size:0.88em">95PK版フルカラー顔グラを<br>&nbsp;&nbsp;→&nbsp;天翔記HD版の顔グラに反映</span></span></a>
                 </li>
                 <li>
                     <a href="?page=HD_nobu_image_main_mapdata_convert_to_95">
-                        <i class="fa fa-map-o fa-fw"></i><span id="HD_nobu_image_main_mapdata_convert_to_95">天翔記HD版の全国地図を<br>
-                            &nbsp;&nbsp;→&nbsp;天翔記95PK版で使う</span>
-                    </a>
+                        <i class="fa fa-map-o fa-fw"></i><span id="HD_nobu_image_main_mapdata_convert_to_95">天翔記HD版の全国地図を<br>&nbsp;&nbsp;→&nbsp;天翔記95PK版で使う</span>                    </a>
                 </li>
             </ul>
         </li>
@@ -58,14 +53,12 @@
             <ul>
                 <li>
                     <a href="?page=HD_nobu_movie_convert_to_hd">
-                        <i class="fa fa-film fa-fw"></i><span id="HD_nobu_movie_convert_to_hd">別コンテンツの映像を<br>
-                            &nbsp;&nbsp;→&nbsp;天翔記HD版で使う</span>
+                        <i class="fa fa-film fa-fw"></i><span id="HD_nobu_movie_convert_to_hd">別コンテンツの映像を<br>&nbsp;&nbsp;→&nbsp;天翔記HD版で使う</span>
                     </a>
                 </li>
                 <li>
                     <a href="?page=HD_nobu_movie_convert_to_95">
-                        <i class="fa fa-film fa-fw"></i><span id="HD_nobu_movie_convert_to_95">天翔記HD版の映像を<br>
-                            &nbsp;&nbsp;→&nbsp;天翔記95PK版で使う</span>
+                        <i class="fa fa-film fa-fw"></i><span id="HD_nobu_movie_convert_to_95">天翔記HD版の映像を<br>&nbsp;&nbsp;→&nbsp;天翔記95PK版で使う</span>
                     </a>
                 </li>
             </ul>
@@ -267,20 +260,13 @@
             </ul>
         </li>
         <li data-nav-custom-content></li>
-    </ul>
-
-    <h3>その他</h3>
-    <ul class="second-nav">
-        <li id="HD_nobu_link">
-            <a href="?page=HD_nobu_link">
-                <i class="fa fa-link fa-fw"></i>リンク<br>
-            </a>
-        </li>
         <li>
             <a href="#"><i class="fa fa-lightbulb-o fa-fw"></i>質問・コンタクト</a>
             <ul>
                 <li><a href="https://twitter.com/tenshouki_jp"><i class="fa fa-twitter fa-fw"></i>Twitter</a></li>
                 <li><a href="https://github.com/search?q=tenshoukijp%2Fnobu6hd_&type=repositories"><i class="fa fa-github fa-fw"></i>Github</a></li>
+                <li data-nav-custom-content></li>
+                <li><a href="?page=nobu_site_the_profile"><i class="fa fa-user fa-fw"></i><span id="nobu_site_the_profile">プロフィール</span></a></li>
             </ul>
         </li>
         <li data-nav-custom-content></li>

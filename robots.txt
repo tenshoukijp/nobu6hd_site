@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://hd.xn--rssu31gj1g.jp/sitemap.xml
