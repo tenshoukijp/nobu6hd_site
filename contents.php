@@ -1,5 +1,11 @@
 <?php
 $content_hash = [
+	'401' =>
+        [ 'html'=>'401.html', 'title'=>'ホーム' , 'dir'=>''],
+
+    '404' =>
+        [ 'html'=>'404.html', 'title'=>'ホーム' , 'dir'=>''],
+
     'HD_nobu_top' =>
         [ 'html'=>'HD_nobu_top.html', 'title'=>'トップページ' , 'dir'=>''],
 
