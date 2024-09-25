@@ -121,8 +121,7 @@
     On_ＢＧＭ再生直前でそれを受けて独自の音楽ファイルを再生することで、<br>
     本来の天翔記には存在しない音楽再生タイミングをいくつでも作り出すことが可能です。<br>
     </p>
-    <fieldset class="code"><legend>好きなタイミングで独自のＢＧＭを再生する</legend><pre class="brush:cpp;">
-bool BGM送信受信フラグ = false;
+    <fieldset class="code"><legend>好きなタイミングで独自のＢＧＭを再生する</legend><pre class="brush:cpp;">bool BGM送信受信フラグ = false;
 
 String^ 天翔記クラス::On_ＢＧＭ再生直前(int ＢＧＭ番号, int ＢＧＭシーン番号, String^ 元ファイル名) {
   デバッグ出力 &lt;&lt; "ＢＧＭ番号" &lt;&lt; ＢＧＭ番号 &lt;&lt; endl;
