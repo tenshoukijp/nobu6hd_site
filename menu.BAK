@@ -69,14 +69,12 @@
             <ul>
                 <li>
                     <a href="?page=HD_nobu_bgm_convert_to_hd">
-                        <i class="fa fa-music fa-fw"></i><span id="HD_nobu_bgm_convert_to_hd">別コンテンツの音楽を<br>
-                            &nbsp;&nbsp;→&nbsp;天翔記HD版で使う</span>
+                        <i class="fa fa-music fa-fw"></i><span id="HD_nobu_bgm_convert_to_hd">別コンテンツの音楽を<br>&nbsp;&nbsp;→&nbsp;天翔記HD版で使う</span>
                     </a>
                 </li>
                 <li>
                     <a href="?page=HD_nobu_bgm_convert_to_wav">
-                        <i class="fa fa-music fa-fw"></i><span id="HD_nobu_bgm_convert_to_wav">天翔記HD版の音楽を<br>
-                            &nbsp;&nbsp;→&nbsp;.wavに変換する</span>
+                        <i class="fa fa-music fa-fw"></i><span id="HD_nobu_bgm_convert_to_wav">天翔記HD版の音楽を<br>&nbsp;&nbsp;→&nbsp;.wavに変換する</span>
                     </a>
                 </li>
             </ul>
@@ -93,6 +91,7 @@
                     <a href="#"><i class="fa fa-pencil-square-o fa-fw"></i>C++/CLIで記述する場合</a>
 
                     <ul>
+                        <li><a href="?page=HD_nobu_sdk_hdsdk_build_vsinstall"><i class="fa fa-bool fa-fw"></i><span id="HD_nobu_sdk_hdsdk_build_vsinstall">より新しいバージョンの Visual Studioの利用</span></a></li>
                         <li><a href="?page=HD_nobu_sdk_hdsdk_vs_need"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_vs_need">HD.version.dllの作り方</span></a></li>
                         <li><a href="?page=HD_nobu_sdk_hdsdk_introduct_01"><i class="fa fa-pencil-square-o fa-fw"></i><span id="HD_nobu_sdk_hdsdk_introduct_01">初めての HD.ver.SDK</span></a></li>
                         <li>

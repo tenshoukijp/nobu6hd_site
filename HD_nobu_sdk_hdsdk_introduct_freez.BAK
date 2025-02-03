@@ -75,7 +75,7 @@
   int iBushouID = 武将-&gt;Find_武将番号(列挙::武将::列伝番号::長尾景虎);
 
   // Is_Containsの「１番目の引数と２番目の引数」は、どちらが先でも後でもよい。
-  if ( Is_Contains( iBushouID, 武将-&gt;配列 ) ) {
+  if ( Is_Contains( iBushouID, 武将-&gt;配列 ) {
     デバッグ出力 &lt;&lt; 武将-&gt;配列[iBushouID]-&gt;姓名 &lt;&lt; endl;
   }
 

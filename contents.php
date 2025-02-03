@@ -38,6 +38,8 @@ $content_hash = [
         [ 'html'=>'HD_nobu_sdk_hdsdk_vs_need.html', 'title'=>'VSと導入' , 'dir'=>'C++/CLIで記述する場合'],
     'HD_nobu_sdk_hdsdk_introduct_01' =>
         [ 'html'=>'HD_nobu_sdk_hdsdk_introduct_01.html', 'title'=>'SDKその①' , 'dir'=>'C++/CLIで記述する場合'],
+    'HD_nobu_sdk_hdsdk_build_vsinstall' =>
+        [ 'html'=>'HD_nobu_sdk_hdsdk_build_vsinstall.html', 'title'=>'VSと導入' , 'dir'=>'C++/CLIで記述する場合'],
     'HD_nobu_sdk_hdsdk_kidoukankyousettei' =>
         [ 'html'=>'HD_nobu_sdk_hdsdk_kidoukankyousettei.html', 'title'=>'起動環境設定' , 'dir'=>'HD.ver.SDK クラス'],
     'HD_nobu_sdk_hdsdk_kankyousettei' =>
@@ -128,7 +130,7 @@ $content_hash = [
 
     'HD_nobu_sdk_cs_hdsdk_install' =>
         [ 'html'=>'HD_nobu_sdk_cs_hdsdk_install.html', 'title'=>'HD版のSDK' , 'dir'=>'C#で記述する場合'],
-     'HD_nobu_sdk_cs_hdsdk_vs_need' =>
+    'HD_nobu_sdk_cs_hdsdk_vs_need' =>
         [ 'html'=>'HD_nobu_sdk_cs_hdsdk_vs_need.html', 'title'=>'VSと導入' , 'dir'=>'C#で記述する場合'],
     'HD_nobu_sdk_cs_hdsdk_introduct_01' =>
         [ 'html'=>'HD_nobu_sdk_cs_hdsdk_introduct_01.html', 'title'=>'SDKその①' , 'dir'=>'C#で記述する場合'],
