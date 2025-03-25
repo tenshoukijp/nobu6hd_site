@@ -8,20 +8,22 @@ DirectoryIndex HD.php index.php index.py index.cgi index.html index.htm
 RewriteEngine On
 RewriteRule ^(.*)HD\.php(.*)$ /$1$2 [R=301,L]
 
-<Files ~ "\.(zip|xls)$">
+<Files ~ "\.(zip|xls|gz|7z|tar)$">
 	Header add Pragma "no-cache"
 	Header set Cache-Control no-cache
 </Files>
 
 <IfModule mod_mime.c>
-	AddType font/opentype         .otf
-	AddType font/eot              .eot
-	AddType font/truetype         .ttf
-	AddType application/font-woff .woff
+AddType font/opentype         .otf
+AddType font/eot              .eot
+AddType font/truetype         .ttf
+AddType font/woff2            .woff2
 </IfModule>
+
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE font/opentype font/eot font/truetype application/font-woff
+AddOutputFilterByType DEFLATE font/opentype font/eot font/truetype font/woff2
 </IfModule>
+
 <Files ~  "\.(?i:(otf|ttf|eot|woff)(\.gz)?)$">
     ExpiresDefault A25920000
 </Files>
@@ -36,5 +38,6 @@ ExpiresByType application/x-javascript "access plus 15 days"
 ExpiresByType image/png "access plus 30 days"
 ExpiresByType image/jpg "access plus 30 days"
 ExpiresByType image/jpeg "access plus 30 days"
+ExpiresByType font/woff2 "access plus 30 days"
 </IfModule>
 
