@@ -1,0 +1,1 @@
+User.version.SDKはC#用天翔記HD版SDK。プログラム経験者向けで、HD.version.SDKと同機能。高速コンパイル、現代的文法が利点だが、インラインアセンブラは不可。Windows 10/.NET 4.6+で動作。

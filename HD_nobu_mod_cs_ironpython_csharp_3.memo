@@ -1,0 +1,1 @@
+C#からIronPython利用例。HD.version.SDKでPythonスクリプトを読み込み、武将を年齢でフィルターし、結果をList<int>で返す。

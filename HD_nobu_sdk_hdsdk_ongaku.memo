@@ -1,0 +1,1 @@
+HD.SDK: 音楽APIはBGM再生用。Do_BGM再生はスロット番号でBGMを再生。On_BGM再生直前で詳細制御やカスタムBGMが可能。

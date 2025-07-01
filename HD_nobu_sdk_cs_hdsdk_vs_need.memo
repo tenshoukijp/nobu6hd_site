@@ -1,0 +1,1 @@
+User.version.SDKでUser.version.dllを作成するには、HD.version.dllを参照に追加しコンパイル。生成されたdllを天翔記フォルダに配置。

@@ -1,0 +1,1 @@
+C++/CLIからIronPythonMod利用。HD.IronPythonMod.dllで連携し、変数・関数操作が可能。PythonスクリプトはShiftJIS保存。

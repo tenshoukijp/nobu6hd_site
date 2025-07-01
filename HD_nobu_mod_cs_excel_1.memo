@@ -1,0 +1,1 @@
+C#でExcelを操作する方法を解説。Type.GetTypeFromProgIDとdynamicを使い、IO効率化のため一括書き込みを推奨。

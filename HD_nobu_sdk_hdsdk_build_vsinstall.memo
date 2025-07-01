@@ -1,0 +1,1 @@
+HD.version.SDKビルドにはVisual Studio 2015-2022とC++ツールが必要。Windows 10 SDK 10.0.17763.0が推奨され、新しいSDKではコンパイル不可の場合あり。

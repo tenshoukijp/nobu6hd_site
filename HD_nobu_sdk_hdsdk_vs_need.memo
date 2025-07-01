@@ -1,0 +1,1 @@
+HD.version.dll作成: Visual Studio 2015以降でC++環境設定後、Release x86でビルド。生成DLLを天翔記フォルダへコピー。version.dllも必要。

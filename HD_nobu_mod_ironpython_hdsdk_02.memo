@@ -1,0 +1,1 @@
+HD.version.SDKでIronPythonMod利用。SDKのインスタンスをIronPythonと直接連携し、武将オブジェクトを渡し、年齢でフィルターした武将リストをPythonから取得する例。
