@@ -44,7 +44,7 @@
                     <h4 class="card-title">列伝エディタ</h4>
                     <p class="card-text">武将列伝・姫列伝・家宝列伝・城列伝・官位列伝を編集出来るツール。</p>
                 </div>
-                <div class="card-footer text-end">
+                <div class="card-footer text-right">
                     <a href="?page=HD_nobu_tools_retsuden" class="card-link"><i class="fa fa-arrow-right fa-fw"></i>もっと見る</a>
                 </div>
             </div>
