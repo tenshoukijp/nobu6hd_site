@@ -1,8 +1,10 @@
 <?php
 
-require("contents.php");
+require_once __DIR__ .  '/contents.php';
 
-$punnyAddress = "hd.xn--rssu31gj1g.jp";
+$siteAuthor = "翔.jp";
+
+$punyAddress = "hd.xn--rssu31gj1g.jp";
 
 $strTitle = "天翔記.jp (HD版)";
 
@@ -12,7 +14,7 @@ $defaultHomePage = "HD_nobu_top";
 
 $indexFileName = "index.html";
 
-require( "common.php");
+require_once __DIR__ .  '/common.php';
 ?>
 
 

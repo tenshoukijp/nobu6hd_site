@@ -8,43 +8,43 @@ DirectoryIndex HD.php index.php index.py index.cgi index.html index.htm
 RewriteEngine On
 RewriteRule ^(.*)HD\.php(.*)$ /$1$2 [R=301,L]
 
-<Files ~ "\.(zip|xls|gz|7z|tar)$">
-	Header add Pragma "no-cache"
-	Header set Cache-Control no-cache
+<Files ~ "\.(zip|xls|gz)$">
+  Header add Pragma "no-cache"
+  Header set Cache-Control no-cache
 </Files>
 
 <IfModule mod_mime.c>
-AddType font/opentype         .otf
-AddType font/eot              .eot
-AddType font/truetype         .ttf
-AddType font/woff             .woff
-AddType font/woff2            .woff2
+  AddType font/otf                      .otf
+  AddType font/ttf                      .ttf
+  AddType application/vnd.ms-fontobject .eot
+  AddType font/woff                     .woff
+  AddType font/woff2                    .woff2
 </IfModule>
 
 <IfModule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/html text/plain text/xml
-AddOutputFilterByType DEFLATE text/css text/javascript application/javascript application/x-javascript
-AddOutputFilterByType DEFLATE font/opentype font/eot font/truetype font/woff font/woff2
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml
+  AddOutputFilterByType DEFLATE text/css text/javascript application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml application/json
 </IfModule>
-
-<Files ~  "\.(?i:(otf|ttf|eot|woff)(\.gz)?)$">
-    ExpiresDefault A25920000
-</Files>
 
 <IfModule mod_expires.c>
-ExpiresActive On
-ExpiresByType text/css "access plus 15 days"
-ExpiresByType text/js "access plus 15 days"
-ExpiresByType text/javascript "access plus 15 days"
-ExpiresByType application/javascript "access plus 15 days"
-ExpiresByType application/x-javascript "access plus 15 days"
-ExpiresByType image/png "access plus 30 days"
-ExpiresByType image/webp "access plus 30 days"
-ExpiresByType image/jpg "access plus 30 days"
-ExpiresByType image/jpeg "access plus 30 days"
-ExpiresByType image/gif "access plus 30 days"
-ExpiresByType image/svg+xml "access plus 30 days"
-ExpiresByType font/woff "access plus 30 days"
-ExpiresByType font/woff2 "access plus 30 days"
+  ExpiresActive On
+  ExpiresByType text/css                    "access plus 1 year"
+  ExpiresByType text/javascript             "access plus 1 year"
+  ExpiresByType application/javascript      "access plus 1 year"
+  ExpiresByType application/x-javascript    "access plus 1 year"
+  ExpiresByType image/png                   "access plus 1 year"
+  ExpiresByType image/webp                  "access plus 1 year"
+  ExpiresByType image/jpeg                  "access plus 1 year"
+  ExpiresByType image/gif                   "access plus 1 year"
+  ExpiresByType image/svg+xml               "access plus 1 year"
+  ExpiresByType font/otf                    "access plus 1 year"
+  ExpiresByType font/ttf                    "access plus 1 year"
+  ExpiresByType font/woff                   "access plus 1 year"
+  ExpiresByType font/woff2                  "access plus 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
 </IfModule>
 
+<FilesMatch "\.(css|js|html|xml|svg)$">
+  Header append Vary Accept-Encoding
+</FilesMatch>
