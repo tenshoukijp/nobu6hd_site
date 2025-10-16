@@ -1,1 +1,1 @@
-HD.version.SDKでIronPythonMod利用。PythonエンジンとスコープをGREFで保持。PythonスクリプトはShiftJIS保存。
+HD.version.SDKでIronPythonModを利用する手順を解説。C++/CLI例を基に、Pythonエンジンとスコープ構築、グローバル参照、スクリプト連携方法を示します。

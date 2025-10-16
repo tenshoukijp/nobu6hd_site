@@ -1,1 +1,1 @@
-C++/CLIからIronPythonMod利用。HD.IronPythonMod.dllで連携し、変数・関数操作が可能。PythonスクリプトはShiftJIS保存。
+C++/CLIからIronPythonModを利用する手順とコード例を解説。C#のdynamic機能がないC++/CLIでの文字列ベース操作と.NET型を介したデータ連携方法を紹介します。

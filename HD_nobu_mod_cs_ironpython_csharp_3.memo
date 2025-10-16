@@ -1,1 +1,1 @@
-C#からIronPython利用例。HD.version.SDKでPythonスクリプトを読み込み、武将を年齢でフィルターし、結果をList<int>で返す。
+C#からIronPythonを利用し、武将データを年齢でフィルタリングする実践例を解説。C#とIronPythonの連携とスクリプト言語の活用法を紹介します。
